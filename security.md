@@ -58,6 +58,12 @@ Attacker posts some script string that retrieves, changes, adds or deletes data 
 
 ****
 ## Keys
+**Generating key**
+1. SSH key of type "ed25519" with a comment.
+`ssh-keygen -t ed25519 -C "comment"`
+2. Enter file name and hit `enter`.
+3. File location by default will be at `C:\Users\*USERNAME*`
+
 **Asymmetric**
 `Public` Can only be used to encrypt.
 `Private` Can be used to encrypt and decrypt.
