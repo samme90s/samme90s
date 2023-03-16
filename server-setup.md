@@ -81,6 +81,7 @@ Locally
 - `pm2 logs --lines 200` Shows log with 200 rows.
 - `pm2 monit` Monitoring view.
 - `pm2 env :id` Look up all enviroment variables for the specified pm2 instance.
+- `:env_var="" pm2 restart :id --update-env` Update a specific enviroment variable for the specified pm2 instance.
 
 **Start application**
 1. Move to application location on server, example: `/var/www/webapp`.
