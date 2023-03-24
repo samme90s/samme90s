@@ -14,6 +14,9 @@
 
 ****
 ## Setting up server
+**Commands**
+`df -h` Lists filesystem usage.
+
 **Connect to machine**
 - `ssh ubuntu@194.47.177.33`
 - If no keychain `ssh ubuntu@194.47.177.33 -i C:/Users/samme/.ssh/ss225ze_key_ssh.pem`
@@ -56,10 +59,20 @@ Check if installation was successful by using the commands.
 
 ****
 ## Docker
+**Commands**
+`sudo docker system prune -a --volumes`
+Removes:
+- all stopped containers.
+- all networks not used by at least one container.
+- all volumes not used by at least one container.
+- all images without at least one container associated to them.
+- all build cache.
+
+**Steps**
 1. Follow guide to install the latest version: [docker-install-ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 Install using repository x86_64 / amd64.
 
-2. Add group docker to user ubuntu
+1. Add group docker to user ubuntu
 `sudo usermod -aG docker ubuntu`
 `sudo systemctl restart docker`
 `exit` and enter server again.
