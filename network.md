@@ -101,7 +101,7 @@ Identifying the server (do not trust, can easily be changed and should be to thr
 `400` - `499` Client error responses
 `500` - `599` Server error responses
 
-Read more @ [MDN/HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+Read more at **[MDN/HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)**
 
 ****
 ## TCP/IP

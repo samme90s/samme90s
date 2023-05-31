@@ -1,39 +1,34 @@
-# Versionshantering
+# Git Flow
 
-[Git Flow](https://nvie.com/posts/a-successful-git-branching-model/)
+****
+## Areas
+1. Working directory, where `git status` can be used to get a good overview.
+   - New files (untracked)
+   - Modified files
+   - Deleted files
 
-## Working directory, staging area och local repository.
+2. `git add` is used to place material in the staging area, preparing it for a commit.
 
-1. Working directory, där kan `git status` användas för att få en bra       överblick.
-   - Nya filer (untracked)
-   - Ändrade filer (modified)
-   - Borttagna filer (deleted)
+3. `git commit` is then used to place the selected material in the local repository, which can be pushed to the remote repository using `git push`.
 
-2. För att placera material i staging area används `git add` och förbereder inför en commit.
+****
+## Workflow
+`git fetch` retrieves the latest information from the remote repository and updates the local repository, but no files are changed in the working directory.
 
-3. `git commit` används sedan för att placera det valda materialet i local repository som sedan kan skickas till remote repository genom `git push`.
+`git merge <branch>` takes all commits from the specified branch and adds them to the current branch. The working directory is updated here! Conflicts may arise where Git cannot determine which change should take priority.
 
+`git pull` fetches changes from the remote repository to the local repository. (The command is not the same as `git fetch` followed by `git merge <other-branch>`).
 
-
-## Git: Fetch, merge och pull.
-
-1. `git fetch` hämtar den senaste informationen från remote repository och uppdaterar local repository, men inga filer förändras i working directory.
-
-2. `git merge <branch>` Tar samtliga commits från den angivna "branch" och lägger till dem i aktuell "branch". Working directory uppdateras här! Här kan konflikter uppstå där Git inte kan avgöra vilken förändring som ska prioriteras.
-
-3. `git pull` hämtar förändringar från remote repository gentemot local repository. (Kommandot är inte samma sak som `git fetch` följt av `git merge <other-branch>`.
-
-
-
-## Kommandon
-
-Listar existerande "branches" i local repository. Asterisken visar vilken "branch" som är aktiv.
+****
+## Commands
+Lists existing branches in the local repository. The asterisk indicates the active branch.
 ```powershell
 $ git branch
 * main
 ```
 
-`git branch <new-branch>` skapar en ny "branch" baserad på aktiv "branch", men aktiv "branch" byts inte.
+`git branch <new-branch>` creates a new branch based on the active branch, but the active branch is not switched.
+
 ```powershell
 $ git branch develop
 $ git branch
@@ -41,7 +36,8 @@ $ git branch
 * main
 ```
 
-`git checkout <branch>` byts aktiv "branch". Innehållet i working directory uppdateras för att överensstämma med innehållet i aktiv branch. Med flaggan `-b` så skapas och byts aktiv "branch" exempelvis: `git checkout -b <new-branch>`
+`git checkout <branch>` switches the active branch. The contents of the working directory are updated to match the contents of the active branch. With the -b flag, a new branch is created and switched, for example: `git checkout -b <new-branch>`.
+
 ```powershell
 $ git checkout develop
 Switched to branch 'develop'
@@ -51,7 +47,8 @@ $ git branch
   main
 ```
 
-För att slå samman en "branch" med en annan så används `git merge <other-branch>`. Om man vill trycka ihop alla commits som har gjorts i en branch kan `git merge --squash <other-branch>` användas. Då det följs ut av en `git commit -m "Add feature..."`. Observera att vid användning av flaggan `--squash` så räknas det inte som en fullständig sammanslagning!
+To merge one branch with another, use `git merge <other-branch>`. If you want to combine all the commits made in a branch, you can use `git merge --squash <other-branch>`. This is followed by a `git commit -m "Add feature..."`. Note that when using the `--squash` flag, it is not considered a complete merge!
+
 ```powershell
 $ git checkout main
 Switched to branch 'main'
@@ -63,7 +60,8 @@ Merge made by the 'recursive' strategy.
   create mode 100644 app.js
 ```
 
-Efter merge kan "branchen" behållas eller tas bort. För att ta bort används `git branch -d <branch>`. Hursom måste "branchen" vara sammanslagen för att kunna tas bort, men om man av någon anledning vill tvinga bort "branchen" kan flaggan `-f` kort eller `--force` fullständigt användas.
+After merging, the branch can be kept or removed. To remove it, use `git branch -d <branch>`. However, the branch must be merged if to be removed. If for some reason you want to forcefully remove the branch, you can use the `-f` flag for a short version or `--force` for a complete version.
+
 ```powershell
 $ git branch -d develop
 Deleted branch develop (was 55c4b2d)

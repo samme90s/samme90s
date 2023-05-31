@@ -74,24 +74,24 @@ When a commit is completing an issue, you can reference that issue in the commit
 
 `git commit -m "Add salt before the password. Closes #12"`
 
-Read more: ["Closing issues automatically" at Gitlab Docs](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
+Read more at **["Closing issues automatically" at Gitlab Docs](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)**
 
 ****
 ## Advanced: Study other projects
 What better way to learn than to look at the pros? Browse well known open source projects on GitHub to get a feel for how to work with commit messages
 
 Some examples:
-- [Github: Angular](https://github.com/angular/angular/commits/master) _Google_
-- [Github: VSCode](https://github.com/microsoft/vscode/commits/main) _Microsoft_
-- [Github: React native](https://github.com/facebook/react-native/commits/main) _Facebook_
+- **[Github: Angular](https://github.com/angular/angular/commits/master)** _Google_
+- **[Github: VSCode](https://github.com/microsoft/vscode/commits/main)** _Microsoft_
+- **[Github: React native](https://github.com/facebook/react-native/commits/main)** _Facebook_
 
 _You will see that some breaks the rules above. Do not be that person._ 🙅‍♀️
 
 ****
 ## Sources and further reading:
-- ["A Note About Git Commit Messages" by Tbaggery](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
-- ["How to Write a Git Commit Message"](https://chris.beams.io/posts/git-commit/)
+- **["A Note About Git Commit Messages" by Tbaggery](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)**
+- **["How to Write a Git Commit Message"](https://chris.beams.io/posts/git-commit/)**
 
 ****
 ## Git
-- ["Changing a commit message"](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/changing-a-commit-message)
+- **["Changing a commit message"](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/changing-a-commit-message)**

@@ -4,7 +4,7 @@
 ## Legend
 `XSS` Cross Site Scripting
 `CSRF` Cross Site Request Forgery
-`OWASP` The Open Web Application Security Project [OWASP](https://owasp.org/)
+`OWASP` The Open Web Application Security Project **[OWASP](https://owasp.org/)**
 
 ****
 ## XSS

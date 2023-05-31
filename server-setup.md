@@ -32,7 +32,7 @@
 
 ****
 ## Node.js
-Head over to [nodejs-downloads](https://nodejs.org/en/download/) scroll down and select "*Installing Node.js via package manager*". Select Ubuntu and follow the instructions that are given.
+Head over to **[nodejs-downloads](https://nodejs.org/en/download/)** scroll down and select "*Installing Node.js via package manager*". Select Ubuntu and follow the instructions that are given.
 
 Check if installation was successful by using the commands.
 - `node -v`
@@ -69,10 +69,9 @@ Removes:
 - all build cache.
 
 **Steps**
-1. Follow guide to install the latest version: [docker-install-ubuntu](https://docs.docker.com/engine/install/ubuntu/)
-Install using repository x86_64 / amd64.
+1. Follow guide to install the latest version: **[docker-install-ubuntu](https://docs.docker.com/engine/install/ubuntu/)** install using repository x86_64 / amd64.
 
-1. Add group docker to user ubuntu
+2. Add group docker to user ubuntu
 `sudo usermod -aG docker ubuntu`
 `sudo systemctl restart docker`
 `exit` and enter server again.
@@ -187,6 +186,5 @@ Change owner of folder
     - If interactive does not work then change `Logon Type` to `Key file` and locate the SSH file on your local computer.
 
 ****
-### Links
-**HTTPS Certificate**
-[letsencrypt.org](https://letsencrypt.org/)
+## Links
+HTTPS Certificate at **[letsencrypt.org](https://letsencrypt.org/)**
