@@ -1,71 +1,34 @@
 # Git Flow
 
-****
+## Introduction
+
+Git Flow is a set of practices and conventions for using Git to manage your source code efficiently. It defines a structured workflow that helps developers collaborate on projects while maintaining version control.
+
 ## Areas
-1. Working directory, where `git status` can be used to get a good overview.
+
+1. **Working Directory:** The working directory is where you interact with your files. You can use `git status` to get an overview of the following:
    - New files (untracked)
    - Modified files
    - Deleted files
 
-2. `git add` is used to place material in the staging area, preparing it for a commit.
+2. **Staging Area:** Use `git add` to place changes in the staging area, preparing them for a commit.
 
-3. `git commit` is then used to place the selected material in the local repository, which can be pushed to the remote repository using `git push`.
+3. **Local Repository:** After staging, use `git commit` to save your changes to the local repository. These changes can then be pushed to the remote repository using `git push`.
 
-****
 ## Workflow
-`git fetch` retrieves the latest information from the remote repository and updates the local repository, but no files are changed in the working directory.
 
-`git merge <branch>` takes all commits from the specified branch and adds them to the current branch. The working directory is updated here! Conflicts may arise where Git cannot determine which change should take priority.
+- **`git fetch`**: Retrieves the latest information from the remote repository and updates the local repository, but it doesn't change files in the working directory.
 
-`git pull` fetches changes from the remote repository to the local repository. (The command is not the same as `git fetch` followed by `git merge <other-branch>`).
+- **`git merge <branch>`**: Combines all commits from the specified branch into the current branch. This updates the working directory, and conflicts may occur when Git can't determine which change to prioritize.
 
-****
+- **`git pull`**: Fetches changes from the remote repository and merges them into the local repository. Unlike `git fetch` followed by `git merge <other-branch>`, `git pull` is a single command for both actions.
+
 ## Commands
-Lists existing branches in the local repository. The asterisk indicates the active branch.
-```powershell
-$ git branch
-* main
-```
 
-`git branch <new-branch>` creates a new branch based on the active branch, but the active branch is not switched.
-
-```powershell
-$ git branch develop
-$ git branch
-  develop
-* main
-```
-
-`git checkout <branch>` switches the active branch. The contents of the working directory are updated to match the contents of the active branch. With the -b flag, a new branch is created and switched, for example: `git checkout -b <new-branch>`.
-
-```powershell
-$ git checkout develop
-Switched to branch 'develop'
-
-$ git branch
-* develop
-  main
-```
-
-To merge one branch with another, use `git merge <other-branch>`. If you want to combine all the commits made in a branch, you can use `git merge --squash <other-branch>`. This is followed by a `git commit -m "Add feature..."`. Note that when using the `--squash` flag, it is not considered a complete merge!
-
-```powershell
-$ git checkout main
-Switched to branch 'main'
-
-$ git merge develop
-Merge made by the 'recursive' strategy.
-  app.js | 0
-  1 file changed, 4 insertions(+), 2 deletions(-)
-  create mode 100644 app.js
-```
-
-After merging, the branch can be kept or removed. To remove it, use `git branch -d <branch>`. However, the branch must be merged if to be removed. If for some reason you want to forcefully remove the branch, you can use the `-f` flag for a short version or `--force` for a complete version.
-
-```powershell
-$ git branch -d develop
-Deleted branch develop (was 55c4b2d)
-
-$ git branch
-* main
+Rename a branch using the following commands:
+```shell
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
 ```
