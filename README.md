@@ -1,4 +1,6 @@
-### Hi there 👋
+### Aloha 👋😃
+- 🔭 I'm currently experimenting with new methods and creating projects primarily using JavaScript, but I also have some other interesting projects in my portfolio!
+- 🌱 I'm currently learning how to work with WebGL.
 
 <!--
 **samme99/samme99** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
