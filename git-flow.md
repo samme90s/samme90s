@@ -7,6 +7,7 @@ Git Flow is a set of practices and conventions for using Git to manage your sour
 ## Areas
 
 1. **Working Directory:** The working directory is where you interact with your files. You can use `git status` to get an overview of the following:
+
    - New files (untracked)
    - Modified files
    - Deleted files
@@ -26,6 +27,7 @@ Git Flow is a set of practices and conventions for using Git to manage your sour
 ## Commands
 
 Rename a branch using the following commands:
+
 ```shell
 git branch -m master main
 git fetch origin
