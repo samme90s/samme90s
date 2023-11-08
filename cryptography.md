@@ -53,7 +53,12 @@ This cipher is a substitution cipher, the key is the number of letters to shift.
 
 ### Playfair Cipher
 
-In the Playfair cipher you place the alphabet in a matrix usually 5x5 in English alphabet. You then fill the first row with letters of a key, then the rest of the matrix is filled with unique characters (characters that has not yet been presented) in alphabetical order. The plaintext can then be encrypted by these rulesets; if the letters are in the same column, they are interchanged with the one below in a circular manner (wrap). If the letters are in different rows and columns, the cipher is calculated by forming a rectangle and taking the letters on the opposite corners of the rectangle i.e. cropping the matrix by fitting the required letters.
+In the Playfair cipher you typically place the alphabet in a 5x5 matrix (English). First, you fill the matrix with the letters of a key, ensuring each letter only appears once. Then, you fill the rest of the matrix with the remaining letters of the alphabetical order.
+
+To encrypt plaintext (vice versa for decrypting), you follow these rules:
+
+1. If the letters are in the same column, replace them with the letters directly below them, wrapping around to the top if necessary.
+2. If the letters are in different rows and columns, imagine a rectangle formed by the positions of the letters in the matrix (can be seen as cropping the matrix). Replace the letters with the ones on the opposite corners of this rectangle.
 
 ### Vernam Cipher
 
@@ -91,12 +96,12 @@ Further reading: [Vernam Cipher](https://www.geeksforgeeks.org/vernam-cipher-in-
 
 DES mainly uses 56-bit keys for encryption and an additional 8-bit for checking values. This can be improved upon by using double key DES (57-bit key) however this opens up for _MIM_\*`1` (meet-in-the-middle) attacks, double key triple DES (80-bit key), or triple key DES (112-bit key). Each encryption is done in 16 rounds.
 
-> \*`1` A meet-in-the-middle attack targets block cipher cryptographic functions. The intruder applies brute-force techniques to both the plaintext, which is ordinary text before it is encrypted, and the ciphertext, or encrypted text that has been transformed from plaintext, of a block cipher.
+> \*`1` A Meet-in-the-Middle attack is a type of attack on encryption algorithms, specifically against block ciphers. In this attack, the attacker simultaneously decrypts the ciphertext (the scrambled message) from one end and encrypts the plaintext (the original message) from the other end, hoping to meet in the middle at the correct key. This can significantly reduce the time needed to find the correct key.
 
 ### AES (Advanced Encryption System)
 
 AES mainly uses 128-bit keys but can also use 192-bit and 256-bit keys. Each encryption is done in different rounds incrementing by two for each key size, 10 rounds for 128-bit keys, 12 rounds for 192-bit keys and so on.
 
-### RSA
+### RSA (Rivest-Shamir-Adleman) - Asymmetric Encryption
 
-RSA uses two keys for encryption and decryption. They are interchangeable, so either can be chosen as the public key. Once one key is chosen as the public key, the other must be kept private. The encryption is done by raising a plaintext block to the power of the public key, then performing substitution and transposition.
+RSA uses two keys for encryption and decryption. They are interchangeable, so either can be chosen as the public key. Once one key is chosen as the public key, the other must be kept private. The encryption is done by raising a plaintext block to the power of the public key, then performing substitution and transposition. The beauty of this is that the public key can be published anywhere without compromising the encryption, since it is only the private key that can decypher the ciphertext.
