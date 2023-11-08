@@ -47,9 +47,43 @@ Imagine you have a secret language with your friend where you replace each lette
 
 Now, imagine you and your friend decide to make your secret language even more secret. Instead of just replacing letters, you also decide to mix up the order of the letters. So, "abc" might become "bac". This is what a transposition cipher does - it changes the order of the letters. The _permutation box_ (P-box) is like your secret rule book that tells you how to mix up the letters.
 
+### Ceasar Cipher
+
+This cipher is a substitution cipher, the key is the number of letters to shift. A would represent 0 and Z would represent 25. The plaintext is shifted by the key and the ciphertext is the result of the shift. The decryption is done by shifting the ciphertext by the negative key. The sum is always modulo 26 (length of the alphabet).
+
 ### Playfair Cipher
 
-In the Playfair cipher, if the letters are in the same column, they are interchanged with the one below in a circular manner (wrap). If the letters are in different rows and columns, the cipher is calculated by forming a rectangle and taking the letters on the opposite corners of the rectangle i.e. cropping the matrix by fitting the required letters.
+In the Playfair cipher you place the alphabet in a matrix usually 5x5 in English alphabet. You then fill the first row with letters of a key, then the rest of the matrix is filled with unique characters (characters that has not yet been presented) in alphabetical order. The plaintext can then be encrypted by these rulesets; if the letters are in the same column, they are interchanged with the one below in a circular manner (wrap). If the letters are in different rows and columns, the cipher is calculated by forming a rectangle and taking the letters on the opposite corners of the rectangle i.e. cropping the matrix by fitting the required letters.
+
+### Vernam Cipher
+
+The Vernam Cipher, also known as the One-Time Pad, is a type of substitution cipher where the key is as long as the plaintext message. This means if your message is 10 letters long, your key should also be 10 letters long.
+
+The encryption process involves taking each character (or bit in the case of binary data) of the plaintext and the corresponding character from the key and combining them using the XOR (Exclusive OR) operation. The XOR operation is a binary operation that takes two bits and returns 0 if the bits are the same, and 1 if the bits are different.
+
+For example, if we have a plaintext bit `1` and a key bit `0`, the XOR operation would return `1`. If both bits were `1` or `0`, the XOR operation would return `0`. This process is repeated for each bit in the plaintext and the key to produce the ciphertext.
+
+The decryption process is the same as the encryption process because the XOR operation is reversible. If you take the ciphertext and XOR it with the same key, you get back the original plaintext.
+
+The Vernam Cipher is theoretically unbreakable if used correctly, because each bit of the key is used only once and then discarded. However, in practice, it can be difficult to generate and securely distribute keys that are truly random and as long as the message.
+
+```http
+Plain-Text: O A K
+Key: S O N
+```
+
+```js
+O ==> 14 = 0 1 1 1 0
+S ==> 18 = 1 0 0 1 0
+Bitwise XOR Result: 1 1 1 0 0 = 28
+```
+
+```http
+28 - 26 = 2 ==> C
+CIPHER-TEXT: C
+```
+
+Further reading: [Vernam Cipher](https://www.geeksforgeeks.org/vernam-cipher-in-cryptography/)
 
 ## Commonly Used Encryption Standards
 
