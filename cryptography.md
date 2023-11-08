@@ -72,7 +72,7 @@ The decryption process is the same as the encryption process because the XOR ope
 
 The Vernam Cipher is theoretically unbreakable if used correctly, because each bit of the key is used only once and then discarded. However, in practice, it can be difficult to generate and securely distribute keys that are truly random and as long as the message.
 
-```http
+```js
 Plain-Text: O A K
 Key: S O N
 ```
@@ -83,9 +83,9 @@ S ==> 18 = 1 0 0 1 0
 Bitwise XOR Result: 1 1 1 0 0 = 28
 ```
 
-```http
+```js
 28 - 26 = 2 ==> C
-CIPHER-TEXT: C
+Cipher-Text: C
 ```
 
 Further reading: [Vernam Cipher](https://www.geeksforgeeks.org/vernam-cipher-in-cryptography/)
