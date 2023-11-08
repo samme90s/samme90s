@@ -2,73 +2,67 @@
 
 ## Abbreviations
 
-P = Plaintext
-C = Ciphertext
-K = Key
+| Abbreviation | Meaning                                                 |
+| ------------ | ------------------------------------------------------- |
+| CIA          | Confidentiality\*`1`, Integrity\*`2`, Availability\*`3` |
+| P            | Plaintext                                               |
+| C            | Ciphertext                                              |
+| K            | Key                                                     |
 
-## Encryption and Decryption
+> \*`1` Confidentiality ensures that data is only available to authorized users.
 
-The plaintext you want to encrypt to ciphertext. vice versa for decryption.
+> \*`2` Integrity ensures that data can only be changed by authorized users.
 
-## Cipher
+> \*`3` Availability refers to the accessibility of the data. It considers how easy it is to access the data and how many layers of security are in place to protect it.
 
-The algorithm used to encrypt and decrypt the plaintext/ciphertext.
+## Basic Concepts
 
-## Key
+### Encryption and Decryption
+
+Encryption is the process of converting plaintext into ciphertext using a cipher and a key. Decryption is the reverse process, converting ciphertext back into plaintext.
+
+### Cipher
+
+A cipher is the algorithm used for encryption and decryption.
+
+### Key
 
 The key can be seen as a password to the cipher.
 
-## Cryptanalysis
+### Cryptanalysis
 
-The process of breaking a cipher. You do not know the key and you want to find it. The process is only worth if the cost of breaking the algorithm (cipher) is less than the amount spent breaking it, same goes with time if the information has to be obtain before a certain date or timestamp otherwise the information may be irrelevant.
+Cryptanalysis is the process of breaking a cipher. The goal is to find the key without knowing it. The process is only worth it if the cost of breaking the cipher is less than the value of the information obtained, or if the information can be obtained before it becomes irrelevant.
 
-## Block Cipher
+## Types of Ciphers
 
-Feistel Cipher is the basis for all block ciphers.
-Plaintext and ciphertext consists of fixed sized blocks
+### Block Cipher
 
-## Substitution Cipher
+In a block cipher, plaintext and ciphertext consist of fixed-size blocks. The Feistel Cipher is the basis for all block ciphers.
 
-Changes one alphabet to another alphabet.
+### Substitution Cipher
 
-(substitution) S-box
+Imagine you have a secret language with your friend where you replace each letter with another letter. For example, you might decide that in your secret language, "a" is "c", "b" is "d", "c" is "e", and so on. So, if you want to write "abc", you would write "cde". This is what a substitution cipher does - it substitutes one letter for another. The _substitution box_ (S-box) is like your secret language dictionary that tells you what each letter should be replaced with.
 
-## Transposition Cipher
+### Transposition Cipher
 
-Changes the order of the alphabets.
+Now, imagine you and your friend decide to make your secret language even more secret. Instead of just replacing letters, you also decide to mix up the order of the letters. So, "abc" might become "bac". This is what a transposition cipher does - it changes the order of the letters. The _permutation box_ (P-box) is like your secret rule book that tells you how to mix up the letters.
 
-(permutation) P-box
+### Playfair Cipher
 
-## Playfair cipher
+In the Playfair cipher, if the letters are in the same column, they are interchanged with the one below in a circular manner (wrap). If the letters are in different rows and columns, the cipher is calculated by forming a rectangle and taking the letters on the opposite corners of the rectangle i.e. cropping the matrix by fitting the required letters.
 
-Rule 1: If the letters are in the same column then the interchange the letter with the one below or in a circular manner.
+## Commonly Used Encryption Standards
 
-Rule 2: If the letters are in different row and colum then the cipher would be calculated by forming a rectangle and taking the letters on the opposite corners of the rectangle. In other words take the smallest possible matrix that can contain the letters and take the opposite corners of the matrix (crop the matrix).
+### DES (Data Encryption Standard)
 
-## Commonly used encryptions over history
+DES mainly uses 56-bit keys for encryption and an additional 8-bit for checking values. This can be improved upon by using double key DES (57-bit key) however this opens up for _MIM_\*`1` (meet-in-the-middle) attacks, double key triple DES (80-bit key), or triple key DES (112-bit key). Each encryption is done in 16 rounds.
 
-### DES Data Encryption Standard
+> \*`1` A meet-in-the-middle attack targets block cipher cryptographic functions. The intruder applies brute-force techniques to both the plaintext, which is ordinary text before it is encrypted, and the ciphertext, or encrypted text that has been transformed from plaintext, of a block cipher.
 
-Mainly uses 56-bit keys to encrypt and the other 8-bit for checking values. This can be improved upon by either double key DES which roughly represent a 57-bit key, double key triple DES which represent an 80-bit key and triple key DES which represent a 112-bit key. Each encryption is done in 16 rounds.
+### AES (Advanced Encryption System)
 
-### AES Advanced Encryption System
+AES mainly uses 128-bit keys but can also use 192-bit and 256-bit keys. Each encryption is done in different rounds incrementing by two for each key size, 10 rounds for 128-bit keys, 12 rounds for 192-bit keys and so on.
 
-Mainly uses 128-bit keys but can also use 192-bit and 256-bit keys and possibly more bits. Each encryption is done in 10 rounds for 128-bit keys, 12 rounds for 192-bit keys and 14 rounds for 256-bit keys.
+### RSA
 
-## RSA (public key system)
-
-Two keys are used for decryption and encryption. They are interchangable so either can be chosen as the public key (encryption) but one having been chosen the other must be kept private (encryption and decryption). The encryption is done by taking a plaintext block and raising it to the power of the public key, then doing fast substitution and transposition (permutation).
-
-## CIA (confidentiality, integrity, availability)
-
-### Confidentiality
-
-Only available to authorized users.
-
-### Integrity
-
-The data may only be changed by authorized users.
-
-### Availability
-
-The accessibiliy of the data, how easy it is to access the data. How many layers of security is there to access the data.
+RSA uses two keys for encryption and decryption. They are interchangeable, so either can be chosen as the public key. Once one key is chosen as the public key, the other must be kept private. The encryption is done by raising a plaintext block to the power of the public key, then performing substitution and transposition.
