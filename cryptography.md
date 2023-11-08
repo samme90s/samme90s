@@ -104,15 +104,11 @@ AES mainly uses 128-bit keys but can also use 192-bit and 256-bit keys. Each enc
 
 ### RSA (Rivest-Shamir-Adleman) - Asymmetric Encryption
 
-RSA uses two keys for encryption and decryption. They are interchangeable, so either can be chosen as the public key. Once one key is chosen as the public key, the other must be kept private. The encryption is done by raising a plaintext block to the power of the public key, then performing substitution and transposition. The beauty of this is that the public key can be published anywhere without compromising the encryption, since it is only the private key that can decypher the ciphertext. This is called asymmetric encryption and can be prone to attacks such as; man-in-the-middle\*`1`. This attack can be prevented by using a key exchange protocol such as Revised Key Exchange (RKE):
-
-1. Alice and Bob exchange their public keys.
-2. Alice creates a symmetric key, encrypts it with Bob's public key, and sends half of the result to Bob.
-3. Bob acknowledges receipt of Alice's partial result and sends half of a random number encrypted with his private key to Alice.
-4. Alice sends the remaining half of the encrypted symmetric key to Bob.
-   Bob combines the two halves of the encrypted symmetric key, decrypts it with his private key to obtain the shared symmetric key, and sends the remaining half of his encrypted random number to Alice.
-5. Alice combines the two halves of Bob's encrypted random number, decrypts it with her private key, re-encrypts it with the shared symmetric key, and sends it back to Bob.
-6. Bob decrypts Alice's message with the symmetric key and verifies that the random number matches the one he originally chose, confirming the validity of the exchange.
-7. This protocol ensures that even if an attacker intercepts the key exchange, they won't have enough information to decrypt the messages or impersonate either party, as they would only have half of the necessary data at any given time.
+RSA uses two keys for encryption and decryption. They are interchangeable, so either can be chosen as the public key. Once one key is chosen as the public key, the other must be kept private. The encryption is done by raising a plaintext block to the power of the public key, then performing substitution and transposition. The beauty of this is that the public key can be published anywhere without compromising the encryption, since it is only the private key that can decypher the ciphertext. This is called asymmetric encryption and can be prone to attacks such as; man-in-the-middle\*`1`. This attack can be prevented by using a key exchange protocol such as Revised Key Exchange (RKE).
 
 > \*`1` A Man-In-The-Middle (MitM) attack occurs when an attacker secretly intercepts and potentially alters the communication between two parties who believe they are directly communicating with each other. In the context of RSA, this could happen during the key exchange process. For example, Alice wants to send Bob her public key. The attacker intercepts Alice's public key and sends their own public key to Bob instead. Bob, thinking he received Alice's public key, uses it to encrypt and send a symmetric key back which the perpretator recieves. He (interceptor) then sends his own symmetric to Alice. The attacker can now decrypt and encrypt Bob's and Alice's messages using both symmetric keys he has recieved. He has the freedom to read or modify the messages, re-encrypt and forward them. This way, the attacker can eavesdrop or alter the communication without Alice or Bob knowing. This is considered both an integrity and confidentiality attack as it compromises the secrecy of the communication and can also manipulate the content.
+
+## Error and modification detection
+
+### Parity
+This is the simplest error detection method. An extra bit is added to the end of a message. The bit is set to 1 if the number of 1's in the message is odd, and 0 if the number of 1's in the message is even. This way, if a single bit is flipped, the parity bit will be incorrect and the receiver will know that an error has occurred. However, if two bits are flipped, the parity bit will still be correct and the receiver will not know that an error has occurred.
