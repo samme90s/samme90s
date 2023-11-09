@@ -94,7 +94,7 @@ Further reading: [Vernam Cipher](https://www.geeksforgeeks.org/vernam-cipher-in-
 
 ### DES (Data Encryption Standard)
 
-DES mainly uses 56-bit keys for encryption and an additional 8-bit for checking values. This can be improved upon by using double key DES (57-bit key) however this opens up for _MIM_\*`1` (meet-in-the-middle) attacks, double key triple DES (80-bit key), or triple key DES (112-bit key). Each encryption is done in 16 rounds.
+DES mainly uses 56-bit keys for encryption and an additional 8-bit for checking values. This can be improved upon by using double key DES (57-bit key) however this opens up for _MIM_\*`1` (meet-in-the-middle) attacks, double key triple DES (80-bit key), or triple key DES (112-bit key). Each encryption is done in 16 rounds. However increasing the amount of keys makes the encryption slower. That is why most have moved to AES.
 
 > \*`1` A Meet-in-the-Middle attack is a type of attack on encryption algorithms, specifically against block ciphers. In this attack, the attacker simultaneously decrypts the ciphertext (the scrambled message) from one end and encrypts the plaintext (the original message) from the other end, hoping to meet in the middle at the correct key. This can significantly reduce the time needed to find the correct key.
 
@@ -111,4 +111,13 @@ RSA uses two keys for encryption and decryption. They are interchangeable, so ei
 ## Error and modification detection
 
 ### Parity
+
 This is the simplest error detection method. An extra bit is added to the end of a message. The bit is set to 1 if the number of 1's in the message is odd, and 0 if the number of 1's in the message is even. This way, if a single bit is flipped, the parity bit will be incorrect and the receiver will know that an error has occurred. However, if two bits are flipped, the parity bit will still be correct and the receiver will not know that an error has occurred.
+
+### Hashing
+
+Hashing is a technique to seal a file, encasing it so that any change becomes apparent. This can be seen as wax seal done in medieval days. One example of hash is called checksum and provides summation of all the bytes in a file. If the file is changed, the checksum will be different. This is a very simple method and can be easily broken. A more secure method is to use a cryptographic hash collection such as _SHS_ or _SHA_. _SHA_ as an example is a one-way function, meaning that it is easy to compute the hash of a file, but it is very difficult to find a file that has a given hash. This is because the hash function is designed to be irreversible. The hash function takes a file of any size and returns a fixed-length string. If the file is changed, the hash will be different. This is a very secure method and is used in many applications such as password storage.
+
+### Digital Signatures
+
+Digital signatures are used to verify the authenticity of a message. Once a signature has been attached to a message the signature can not be changed or removed by either part (sender or reciever) (_alterable_). The signature may also not be reused (_reusable_).
