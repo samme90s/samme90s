@@ -64,3 +64,24 @@ Hashing generates a unique value for input, like a medieval wax seal. A checksum
 
 Digital signatures verify message authenticity and integrity. Attached to a message, the signature is computationally secure and unalterable. A signature is generated using a private key, then it is verified (**not** decrypted), using the corresponding public key. The _RSA_ signature scheme is an example, ensuring the integrity of the original message.
 
+## Program Security
+
+Programs, while regularly patched for discovered vulnerabilities, may introduce new attack vectors. Security tests, comparing behavior to requirements, help identify and address risks, including unexpected behaviors like easter eggs that could pose security threats.
+
+Testing typically reveals faults by insiders (developers) and failures by outsiders (users).
+
+Complex programs are more prone to faults, making simplicity essential for security. Regular program updates are vital to address evolving technologies and prevent security issues arising from outdated technology.
+
+Flaws can be unintentional or intentional, categorized as either malicious or non-malicious.
+
+### Buffer Overflow
+
+Buffer overflows can enable attackers to write to memory beyond the allocated space, allowing code execution or system crashes by flooding with excessive data.
+
+### Incomplete Mediation
+
+Incomplete mediation occurs when a program fails to verify user permissions, potentially granting unauthorized access to data or actions. This vulnerability can expose sensitive information.
+
+### Time of Check to Time of Use
+
+In computing, this vulnerability involves changes to a resource between the time access is checked and the time it is used. Analogous to a buyer seeing a genuine Rolex but receiving a forged one after purchase.
