@@ -66,11 +66,11 @@ Digital signatures verify message authenticity and integrity. Attached to a mess
 
 ## Program Security
 
-Programs, while regularly patched for discovered vulnerabilities, may introduce new attack vectors. Security tests, comparing behavior to requirements, help identify and address risks, including unexpected behaviors like easter eggs that could pose security threats.
+Programs, while regularly patched for discovered vulnerabilities, may introduce new attack vectors. Security tests, comparing behavior to requirements, help identify and address risks, including unexpected behaviors like easter eggs that could pose security threats. Preventing threats is a collaborative effort between developers, testers, and users.
 
 Testing typically reveals faults by insiders (developers) and failures by outsiders (users).
 
-Complex programs are more prone to faults, making simplicity essential for security. Regular program updates are vital to address evolving technologies and prevent security issues arising from outdated technology.
+Complex programs are more prone to faults, making simplicity essential for security. Regular program updates are vital to address evolving technologies and prevent security issues arising from outdated technology. Keep it simple, small and independent modules.
 
 Flaws can be unintentional or intentional, categorized as either malicious or non-malicious.
 
