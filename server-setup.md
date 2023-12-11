@@ -123,6 +123,10 @@ or with enviroment variables (update values where needed).
 Pay attention to the `/` at row 1 and 2.
 
 ```nginx
+server {
+  listen 80;
+  listen [::]:80;
+
   # used to serve static files
   index index.html;
 
@@ -131,11 +135,16 @@ Pay attention to the `/` at row 1 and 2.
   location / {
     try_files $uri $uri/ =404;
   }
+}
 ```
 
 Serve static home page in directory `/var/www/home` with starting point `index.html`.
 
 ```nginx
+server {
+  listen 80;
+  listen [::]:80;
+
   server_name cscloud7-33.lnu.se;
   index index.html;
 
@@ -157,19 +166,24 @@ Serve static home page in directory `/var/www/home` with starting point `index.h
     proxy_set_header X-Forwarded-Host   $host;
     proxy_set_header X-Forwarded-Port   $server_port;
   }
+}
 ```
 
 Serve application as home page (NOTE: location).
 
 ```nginx
+server {
+  listen 80;
+  listen [::]:80;
+
   server_name cscloud7-33.lnu.se;
-#  index index.html;
+  # index index.html;
 
-#  root /var/www/html;
+  # root /var/www/html;
 
-#  location / {
-#    try_files $uri $uri/ =404;
-#  }
+  # location / {
+  #   try_files $uri $uri/ =404;
+  # }
 
   location / {
     proxy_pass http://localhost:5001/;
@@ -183,6 +197,7 @@ Serve application as home page (NOTE: location).
     proxy_set_header X-Forwarded-Host   $host;
     proxy_set_header X-Forwarded-Port   $server_port;
   }
+}
 ```
 
 ## Transfering files using SSH
