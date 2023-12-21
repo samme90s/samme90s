@@ -8,36 +8,41 @@ flowchart LR, TB, RL, BT to change the flow direction.
 
 The data holds information such as valid voters, votes cast etc. The databases should perhaps be seperated for security reasons.
 
-`DRE` _Direct-Recording Electronic_
-
 ```mermaid
 flowchart LR
-      style serviceCluster stroke:#f66,stroke-width:2px,stroke-dasharray: 5 5
-      style dbCluster stroke:#66f,stroke-width:2px,stroke-dasharray: 5 5
+      style serviceCluster stroke:#f66,stroke-width:2px,stroke-dasharray: 5 5;
+      style dbCluster stroke:#66f,stroke-width:2px,stroke-dasharray: 5 5;
 
-      client[DRE]
+      client[Client/Frontend]
+      client <--> authService
+      client <--> voteService
+      client <--> resService
+      admin[Admin]
+      admin <--> dbLogsAnalysis
+      dbLogsAnalysis([Log Analysis])
+      dbLogs --> dbLogsAnalysis
+
 
       subgraph serviceCluster
-            auth([Authentication Service])
-            vote([Voting Service])
+            authService([Auth-Service])
+            authService <--> votersDb
+            voteService([Voting-Service])
+            voteService <--> resDb
+            resService([Result-Service])
+            resService <--> resDb
 
             subgraph dbCluster
-                  db([Database])
-                  dbBackup([Database Backup])
-                  dbData[[Data]]
-                  dbLog[[Log]]
+                  dbBackups(((DB-Backups)))
+                  resDb --> dbBackups
+                  votersDb --> dbBackups
+                  dbLogs(((DB-Logs)))
+                  resDb --> dbLogs
+                  votersDb --> dbLogs
 
-                  db --> dbBackup
-                  db <--> dbData
-                  db --> dbLog
+
+                  resDb[(Res-DB)]
+
+                  votersDb[(Voters-DB)]
             end
       end
-
-      dbLogAnalysis([Log Analysis])
-
-      client <--> auth
-      client <--> vote
-      vote <--> db
-      auth <--> db
-      dbLog --> dbLogAnalysis
 ```
