@@ -14,35 +14,41 @@ flowchart LR
       style dbCluster stroke:#66f,stroke-width:2px,stroke-dasharray: 5 5;
 
       client[Client/Frontend]
-      client <--> authService
-      client <--> voteService
-      client <--> resService
-      admin[Admin]
-      admin <--> dbLogsAnalysis
-      dbLogsAnalysis([Log Analysis])
-      dbLogs --> dbLogsAnalysis
+      client <-- Authenticates --> authService
+      client <-- Handles voting process --> voteService
+      resService <-- Compiled result --> client
 
+      admin[Admin]
+      admin <-- Processed/categorized log data --> auditService
+      admin <-- Voter credentials --> registrationService
 
       subgraph serviceCluster
+            auditService([Audit-Service])
+            dbLogs -- Log data --> auditService
+
             authService([Auth-Service])
-            authService <--> votersDb
+            votersDb -- Compares information --> authService
+
             voteService([Voting-Service])
-            voteService <--> resDb
+            voteService -- Registers ballots --> ballotDb
+
             resService([Result-Service])
-            resService <--> resDb
+            ballotDb -- Handles ballots --> resService
+
+            registrationService([Registration-Service])
+            registrationService <-- Manages voter credentials --> votersDb
 
             subgraph dbCluster
-                  dbBackups(((DB-Backups)))
-                  resDb --> dbBackups
-                  votersDb --> dbBackups
-                  dbLogs(((DB-Logs)))
-                  resDb --> dbLogs
-                  votersDb --> dbLogs
-
-
-                  resDb[(Res-DB)]
+                  ballotDb[(Ballot-DB)]
+                  ballotDb -- Saves state --> dbBackups
+                  ballotDb -- Logs request --> dbLogs
 
                   votersDb[(Voters-DB)]
+                  votersDb -- Saves state --> dbBackups
+                  votersDb -- Logs request --> dbLogs
+
+                  dbBackups(((DB-Backups)))
+                  dbLogs(((DB-Logs)))
             end
       end
 ```
