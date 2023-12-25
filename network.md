@@ -74,41 +74,28 @@
 7. Application
    - Communicates with the application through a protocol.
 
-## HTTP
+## [HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 
-`Text-based`
-
-`Client` requests
-`Server` responds
-
-`Stateless` or `no session` and no built-in `security`.
-
-Can be `stateful` with use of cookies.
+Text-based protocol where the `client` requests and the `server` responds. It is `stateless / no session` and has no built-in `security`. It can be `stateful` with use of cookies.
 
 ### Headers
 
-**User-Agent**
-Identifying the client (do not trust, can easily be changed).
-
-**Server**
-Identifying the server (do not trust, can easily be changed and should be to throw of any script attacks).
+1. `User-Agent` Used to identify the client (do not trust, can easily be changed).
+2. `Server` Used to identify the server (do not trust, can easily be changed and should be to throw of any script attacks).
 
 ### Status Codes
 
-`100` - `199` Informational responses
-`200` - `299` Successful responses
-`300` - `399` Redirection messages
-`400` - `499` Client error responses
-`500` - `599` Server error responses
-
-Read more at **[MDN/HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)**
+- `100` - `199` Informational responses
+- `200` - `299` Successful responses
+- `300` - `399` Redirection messages
+- `400` - `499` Client error responses
+- `500` - `599` Server error responses
 
 ## TCP/IP
 
 ### Application Layer
 
-**HTTP**
-The application starts here and creates a `request` to get the page `hello.html` using HTTP.
+Process starts here with a `request` to get the page `hello.html` using `HTTP`.
 
 ```http
 GET /hello.html HTTP/1.1
@@ -121,8 +108,7 @@ Connection: Keep-Alive
 
 ### Transport Layer
 
-**TCP**
-After the `request` is created a `connection` is established that is used to send the HTTP `request`.
+After the `request` is created a `connection` is established that is used to send the `HTTP-request`.
 
 ```js
 Src Port: 44712     Seq: 1      Len: 175
@@ -131,7 +117,6 @@ Dst Port: 80        Ack: 1      Flags: ACK
 
 ### Network (Internet) Layer
 
-**IP**
 Here the data is sent over the `Internet Protocol (IP)` to get the data from one network to the other.
 
 ```js
@@ -144,8 +129,7 @@ Dst: 192.158.30.16  // reciever.
 
 ### Data-Link Layer
 
-**Ethernet**
-Handles transfering data between nodes on the same network segment using MAC-adresses. (Most often same physical network.)
+Handles transfering data between nodes on the same network segment using MAC-adresses (Most often the same physical network using `ethernet`).
 
 ```js
 Src: 60:6c:66:1e:cf:d5
@@ -153,7 +137,7 @@ Dst: e8:08:8b:5a:df:82
 Type: IP (0x0800)
 ```
 
-`The physical layer is not always present and may sometimes be baked in to the data link layer.`
+> The physical layer is not always present and may sometimes be baked in to the data link layer.
 
 ## 3- Way Handshake
 
