@@ -21,8 +21,8 @@
 
 **Connect to machine**
 
-- `ssh ubuntu@194.47.177.33`
-- If no keychain `ssh ubuntu@194.47.177.33 -i C:/Users/samme/.ssh/ss225ze_key_ssh.pem`
+- `ssh ubuntu@ip-address` (ip-address is the IPv4 address of the server).
+- If no keychain `ssh ubuntu@ip-adress -i location-to-key.pem`
 
 **Update software**
 
@@ -31,8 +31,9 @@
 3. `sudo apt dist-upgrade` update OS/Distribution.
 
 **Restart machine after update**
-`sudo shutdown -r now` (This will perform a system shutdown in a proper way and then reboot the computer).
-`sudo reboot`
+
+- `sudo shutdown -r now` (This will perform a system shutdown in a proper way and then reboot the computer).
+- `sudo reboot`
 
 ## Node.js
 
@@ -63,38 +64,35 @@ Check if installation was successful by using the commands.
 3. Restart nginx `sudo systemctl restart nginx.service`
 
 **Editing config file of server**
-`sudo nano /etc/nginx/conf.d/cscloud7-33.lnu.se.conf`
+`sudo nano /etc/nginx/conf.d/server-name.conf`
 
 ## Docker
 
 **Commands**
-`sudo docker system prune -a --volumes`
-Removes:
 
-- all stopped containers.
-- all networks not used by at least one container.
-- all volumes not used by at least one container.
-- all images without at least one container associated to them.
-- all build cache.
+- `sudo docker system prune -a --volumes` removes all:
+  - stopped containers.
+  - networks not used by at least one container.
+  - volumes not used by at least one container.
+  - images without at least one container associated to them.
+  - build cache.
 
 **Steps**
 
 1. Follow guide to install the latest version: **[docker-install-ubuntu](https://docs.docker.com/engine/install/ubuntu/)** install using repository x86_64 / amd64.
 
 2. Add group docker to user ubuntu
-   `sudo usermod -aG docker ubuntu`
-   `sudo systemctl restart docker`
-   `exit` and enter server again.
+   1. `sudo usermod -aG docker ubuntu`
+   2. `sudo systemctl restart docker`
+   3. `exit`
+   4. and enter server again.
 
 Docker is now accessible from the server or local terminal (check for newer version).
 
 3. Server
-   `docker pull mongo:latest`
-   `docker run -d -p 27017:27017 --name mongodb mongo:latest`
-   Run docker on different port
-   `docker run -d -p 27018:27017 --name mongodb mongo:latest`
-   Locally
-   `docker -H ssh://ubuntu@194.47.177.33 run -d -p 27017:27017 --name mongodb mongo:latest`
+   1. `docker pull mongo:latest`
+   2. `docker run -d -p 27017:27017 --name mongodb mongo:latest`
+   3. **Alt**: run docker on different port: `docker run -d -p 27018:27017 --name mongodb mongo:latest`
 
 ## PM2
 
@@ -120,13 +118,14 @@ or with enviroment variables (update values where needed).
 
 ## Template
 
-Pay attention to the `/` at row 1 and 2.
+Pay attention to the `/` at the end of the `location` block. Serves static html page in directory `/var/www/html` with starting point `index.html`.
 
 ```nginx
 server {
   listen 80;
   listen [::]:80;
 
+  server_name cscloud7-33.lnu.se;
   # used to serve static files
   index index.html;
 
@@ -138,7 +137,7 @@ server {
 }
 ```
 
-Serve static home page in directory `/var/www/home` with starting point `index.html`.
+Adding a location block to serve the application.
 
 ```nginx
 server {
@@ -146,9 +145,10 @@ server {
   listen [::]:80;
 
   server_name cscloud7-33.lnu.se;
+  # used to serve static files
   index index.html;
 
-  root /var/www/home;
+  root /var/www/html;
 
   location / {
     try_files $uri $uri/ =404;
@@ -169,7 +169,7 @@ server {
 }
 ```
 
-Serve application as home page (NOTE: location).
+Serve application as index page (NOTE: location).
 
 ```nginx
 server {
@@ -177,6 +177,7 @@ server {
   listen [::]:80;
 
   server_name cscloud7-33.lnu.se;
+  # used to serve static files
   # index index.html;
 
   # root /var/www/html;
@@ -200,14 +201,13 @@ server {
 }
 ```
 
-## Transfering files using SSH
+## Transfering files using SSH-key
 
-> Make sure that the owner of the folder is the server (ubuntu) and not root!
-> **Path** > `/var/www` place folder here
+Place application folders at: `/var/www` and make sure that the owner of the folder is the server (`ubuntu`) and not `root`!
 
 **Commands**
-Change owner of folder
-`sudo chown ubuntu webapp/`
+
+- `sudo chown ubuntu webapp/` changes owner of the folder.
 
 **FileZilla**
 
@@ -217,6 +217,6 @@ Change owner of folder
 4. Change `Logon Type` to interactive and change `User` to `ubuntu`.
    - If interactive does not work then change `Logon Type` to `Key file` and locate the SSH file on your local computer.
 
-## Links
+## Useful links
 
-HTTPS Certificate at **[letsencrypt.org](https://letsencrypt.org/)**
+[TLS certificate (letsencrypt)](https://letsencrypt.org/)

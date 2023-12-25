@@ -6,8 +6,6 @@ flowchart LR, TB, RL, BT to change the flow direction.
 
 [Mermaid Flowchart](https://mermaid.js.org/syntax/flowchart.html)
 
-The data holds information such as valid voters, votes cast etc. The databases should perhaps be seperated for security reasons.
-
 ```mermaid
 flowchart LR
       style serviceCluster stroke:#f66,stroke-width:2px,stroke-dasharray: 5 5;

@@ -20,30 +20,25 @@
 
 ## Legend
 
-`Unicast` (One to one)
-`Broadcast` (One to all)
-`Multicast` (One to any that expects a message)
-`Anycast` (One to the most suitable)
-
-`Hypertext transfer protocol` (HTTP)
-`Transport Layer Security` (TLS) - Encrypts data.
-`Domain name system protocol` (DNS) - Find the IP adress of the domain name
-
-`Transmission control protocol` (TCP)
-Establishes a reliable connection and if anything is lost both parts will get notified.
-Commonly used for websites.
-`User datagram protocol` (UDP)
-Tries to reach its destination but does not maintain a connection and does not notify if anything is lost.
-Commonly used for games.
-
-`Internet protocol` (IPv4 or IPv6)
-`Adress resolution protocol` (ARP)
-`CSMA` (Carrier Sence Multiple Access)
-`Ethernet`
-
-`SMTP` (Simple Mail Transfer)
-`POP` (Post Office)
-`IMAP` (Internet Message Access)
+| Abbreviation | Meaning                                                                                                                                                     |
+| :----------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Unicast`    | One to one                                                                                                                                                  |
+| `Broadcast`  | One to all                                                                                                                                                  |
+| `Multicast`  | One to any that expects a message                                                                                                                           |
+| `Anycast`    | One to the most suitable                                                                                                                                    |
+| `HTTP`       | Hypertext Transfer Protocol                                                                                                                                 |
+| `TLS`        | Transport Layer Security, encrypts data                                                                                                                     |
+| `DNS`        | Domain Name System, finds the IP adress of the domain name                                                                                                  |
+| `TCP`        | Transmission Control Protocol, establishes a reliable connection and if anything is lost both parts will get notified. Commonly used for websites.          |
+| `UDP`        | User Datagram Protocol, tries to reach its destination but does not maintain a connection and does not notify if anything is lost. Commonly used for games. |
+| `IPv4`       | Internet Protocol version 4                                                                                                                                 |
+| `IPv6`       | Internet Protocol version 6                                                                                                                                 |
+| `ARP`        | Adress Resolution Protocol                                                                                                                                  |
+| `CSMA`       | Carrier Sence Multiple Access                                                                                                                               |
+| `Ethernet`   |                                                                                                                                                             |
+| `SMTP`       | Simple Mail Transfer Protocol                                                                                                                               |
+| `POP`        | Post Office Protocol                                                                                                                                        |
+| `IMAP`       | Internet Message Access Protocol                                                                                                                            |
 
 ## OSI - The Open Systems Interconnection Basic Reference Model
 

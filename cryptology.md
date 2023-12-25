@@ -6,11 +6,11 @@ Encryption is the process of converting plaintext into ciphertext using a cipher
 
 | Abbreviation | Meaning                                                 |
 | ------------ | ------------------------------------------------------- |
-| CIA          | Confidentiality\*`1`, Integrity\*`2`, Availability\*`3` |
-| P or PT      | Plaintext                                               |
-| C or CT      | Ciphertext                                              |
-| K            | Key                                                     |
-| Cipher       | Algorithm used for encryption and decryption            |
+| `CIA`        | Confidentiality\*`1`, Integrity\*`2`, Availability\*`3` |
+| `P` or `PT`  | Plaintext                                               |
+| `C` or `CT`  | Ciphertext                                              |
+| `K`          | Key                                                     |
+| `Cipher`     | Algorithm used for encryption and decryption            |
 
 > \*`1` Confidentiality ensures that data is only available to authorized users.
 
