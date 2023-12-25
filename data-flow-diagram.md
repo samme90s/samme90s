@@ -12,8 +12,8 @@ flowchart LR
       style dbCluster stroke:#66f,stroke-width:2px,stroke-dasharray: 5 5;
 
       client[Client/Frontend]
-      client <-- Authenticates --> authService
-      client <-- Handles voting process --> voteService
+      client <-- Credentials --> authService
+      client <-- Vote ballot --> voteService
       resService <-- Compiled result --> client
 
       admin[Admin]
@@ -25,25 +25,25 @@ flowchart LR
             dbLogs -- Log data --> auditService
 
             authService([Auth-Service])
-            votersDb -- Compares information --> authService
+            votersDb -- Voter credentials --> authService
 
             voteService([Voting-Service])
-            voteService -- Registers ballots --> ballotDb
+            voteService -- Vote ballot --> ballotDb
 
             resService([Result-Service])
-            ballotDb -- Handles ballots --> resService
+            ballotDb -- Vote ballots --> resService
 
             registrationService([Registration-Service])
-            registrationService <-- Manages voter credentials --> votersDb
+            registrationService <-- Voter credentials --> votersDb
 
             subgraph dbCluster
                   ballotDb[(Ballot-DB)]
-                  ballotDb -- Saves state --> dbBackups
-                  ballotDb -- Logs request --> dbLogs
+                  ballotDb -- State --> dbBackups
+                  ballotDb -- Requests --> dbLogs
 
                   votersDb[(Voters-DB)]
-                  votersDb -- Saves state --> dbBackups
-                  votersDb -- Logs request --> dbLogs
+                  votersDb -- State --> dbBackups
+                  votersDb -- Requests --> dbLogs
 
                   dbBackups(((DB-Backups)))
                   dbLogs(((DB-Logs)))
