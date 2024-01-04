@@ -77,6 +77,8 @@ Generates a unique value for input, enhancing security, widely used in password 
 
 Verify message authenticity and integrity, ensuring computationally secure signatures.
 
+![Digital signature model](.data-security/figure2.png "Digital signature model")
+
 ### Program Security
 
 Security tests identify vulnerabilities in programs, necessitating collaboration between developers, testers, and users. Complex programs are prone to faults; simplicity is crucial for security. Regular updates are essential to address evolving technologies.
