@@ -26,7 +26,9 @@ Encryption converts plaintext to ciphertext using a key. Cryptography studies en
 
 #### Block Cipher
 
-Plaintext and ciphertext are fixed-size blocks. The Feistel Cipher underlies block ciphers.
+Block ciphers encrypt fixed-size blocks (e.g., DES with 64-bit blocks). The Feistel Cipher is foundational to block ciphers. Different modes of operation, like _Electronic Codebook_ (ECB), _Cipher Block Chaining_ (CBC), and _Cipher Feedback_ (CFB), handle arbitrary-length messages.
+
+![Example of ECB and different modes](.data-security/figure1.png "Example of ECB and different modes")
 
 #### Substitution Cipher
 
@@ -35,6 +37,10 @@ Replaces letters based on a predetermined rule, utilizing a substitution box (S-
 #### Transposition Cipher
 
 Alters letter order, employing a permutation box (P-box).
+
+#### Summary
+
+A hybrid approach is most secure, combining substitution and transposition ciphers as only applying one is not secure enough.
 
 ### Commonly Used Encryption Standards
 
@@ -49,6 +55,13 @@ Employs 128-bit, 192-bit, or 256-bit keys with varying rounds.
 #### RSA (Rivest-Shamir-Adleman)
 
 Uses interchangeable public and private keys for asymmetric encryption. Susceptible to MitM attacks, addressed by key exchange protocols.
+
+#### Summary
+
+An encryption method should have a number of properties to ensure it is secure. Examples of these are:
+
+- [Avalanche effect](https://en.wikipedia.org/wiki/Avalanche_effect)
+- [Completeness](<https://en.wikipedia.org/wiki/Completeness_(cryptography)>)
 
 ### Integrity Options
 
