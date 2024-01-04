@@ -3,7 +3,7 @@
 ## Legend
 
 | Abbreviation | Meaning                                                               |
-| :----------- | :-------------------------------------------------------------------- |
+|:-------------|:----------------------------------------------------------------------|
 | `FIEO`       | Filter input, escape output                                           |
 | `CSP`        | Content Security Policy                                               |
 | `STP`        | Synchronized Token Pattern                                            |
@@ -16,7 +16,7 @@
 
 ## XSS
 
-This attack can be done by posting script strings that are then later presented on the application. The scripts usually steal cookies, keylog or phishing (compromised forms). This happens when the posted data is handled incorrectly by the application. `innerHTML` is the most common issue.
+This attack can be done by posting script strings that are then later presented on the application. The scripts usually steal cookies, key-log or phishing (compromised forms). This happens when the posted data is handled incorrectly by the application. `innerHTML` is the most common issue.
 
 ### Protection
 
@@ -29,7 +29,7 @@ Using the `CSP` HTTP header whitelists allowed sources of scripts, style and oth
 
 ## CSRF
 
-This attack is done by using session-cookies to do state-changing requests (transfer of funds, change password, change email adress etc). If the victim has administrator privilieges it can compromise the entire application.
+This attack is done by using session-cookies to do state-changing requests (transfer of funds, change password, change email address etc.). If the victim has administrator privileges it can compromise the entire application.
 
 ### Protection
 
@@ -59,4 +59,4 @@ const sessionOptions = {
 
 **Generating SSH-key**
 
-Follow instructions found [here (github generate SSH-key)](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+Follow instructions found [here (GitHub generate SSH-key)](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).

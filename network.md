@@ -21,20 +21,20 @@
 ## Legend
 
 | Abbreviation | Meaning                                                                                                                                                     |
-| :----------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|:-------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `Unicast`    | One to one                                                                                                                                                  |
 | `Broadcast`  | One to all                                                                                                                                                  |
 | `Multicast`  | One to any that expects a message                                                                                                                           |
 | `Anycast`    | One to the most suitable                                                                                                                                    |
 | `HTTP`       | Hypertext Transfer Protocol                                                                                                                                 |
 | `TLS`        | Transport Layer Security, encrypts data                                                                                                                     |
-| `DNS`        | Domain Name System, finds the IP adress of the domain name                                                                                                  |
+| `DNS`        | Domain Name System, finds the IP address of the domain name                                                                                                 |
 | `TCP`        | Transmission Control Protocol, establishes a reliable connection and if anything is lost both parts will get notified. Commonly used for websites.          |
 | `UDP`        | User Datagram Protocol, tries to reach its destination but does not maintain a connection and does not notify if anything is lost. Commonly used for games. |
 | `IPv4`       | Internet Protocol version 4                                                                                                                                 |
 | `IPv6`       | Internet Protocol version 6                                                                                                                                 |
-| `ARP`        | Adress Resolution Protocol                                                                                                                                  |
-| `CSMA`       | Carrier Sence Multiple Access                                                                                                                               |
+| `ARP`        | Address Resolution Protocol                                                                                                                                 |
+| `CSMA`       | Carrier Sense Multiple Access                                                                                                                               |
 | `Ethernet`   |                                                                                                                                                             |
 | `SMTP`       | Simple Mail Transfer Protocol                                                                                                                               |
 | `POP`        | Post Office Protocol                                                                                                                                        |
@@ -43,8 +43,8 @@
 ## OSI - The Open Systems Interconnection Basic Reference Model
 
 7 Layer model
-4-7: Kommunicerar direkt mellan varandra.
-1-3: Kommunicerar inte nödvändigtvis mellan varandra utan kan finnas flera datorer emellan.
+4-7: Communicates directly between each-other.
+1-3: Does not inherently communicate between each-other due to the possibility of there being multiple computers between them.
 
 **Layers**
 
@@ -57,7 +57,7 @@
 3. Network
    - Routing protocol
    - End-to-end encryption
-   - IP adress
+   - IP address
 4. Transport
    - Connections (TCP or UDP(Connectionless))
    - Message segmentation
@@ -129,7 +129,7 @@ Dst: 192.158.30.16  // reciever.
 
 ### Data-Link Layer
 
-Handles transfering data between nodes on the same network segment using MAC-adresses (Most often the same physical network using `ethernet`).
+Handles transferring data between nodes on the same network segment using MAC-addresses (Most often the same physical network using `ethernet`).
 
 ```js
 Src: 60:6c:66:1e:cf:d5

@@ -27,7 +27,7 @@
 **Update software**
 
 1. `sudo apt update` get newest packages.
-2. `sudo apt upgrade` update to newest packages.
+2. `sudo apt upgrade` update to the newest packages.
 3. `sudo apt dist-upgrade` update OS/Distribution.
 
 **Restart machine after update**
@@ -101,8 +101,8 @@ Docker is now accessible from the server or local terminal (check for newer vers
 - `sudo npm i pm2 -g` Installation (global).
 - `pm2 logs --lines 200` Shows log with 200 rows.
 - `pm2 monit` Monitoring view.
-- `pm2 env :id` Look up all enviroment variables for the specified pm2 instance.
-- `:env_var="" pm2 restart :id --update-env` Update a specific enviroment variable for the specified pm2 instance.
+- `pm2 env :id` Look up all environment variables for the specified pm2 instance.
+- `:env_var="" pm2 restart :id --update-env` Update a specific environment variable for the specified pm2 instance.
 
 **Start application**
 
@@ -112,7 +112,7 @@ Docker is now accessible from the server or local terminal (check for newer vers
 
 - `PORT=5001 NODE_ENV=production pm2 start npm --name webapp:5001 -- start`
 
-or with enviroment variables (update values where needed).
+or with environment variables (update values where needed).
 
 - `PORT=5001 DB_CONNECTION_STRING=mongodb://localhost:27017/mongodb BASE_URL=/ SESSION_NAME=1aobys73 SESSION_SECRET=0dns7b2a NODE_ENV=production pm2 start npm --name webapp:5001 -- start`
 
@@ -201,7 +201,7 @@ server {
 }
 ```
 
-## Transfering files using SSH-key
+## Transferring files using SSH-key
 
 Place application folders at: `/var/www` and make sure that the owner of the folder is the server (`ubuntu`) and not `root`!
 
@@ -213,7 +213,7 @@ Place application folders at: `/var/www` and make sure that the owner of the fol
 
 1. Click on `hosts` top left corner.
 2. Create a new site and select protocol `SFTP - SSH File Transfer Protocol`
-3. Enter the IPv4 adress of the server.
+3. Enter the IPv4 address of the server.
 4. Change `Logon Type` to interactive and change `User` to `ubuntu`.
    - If interactive does not work then change `Logon Type` to `Key file` and locate the SSH file on your local computer.
 
