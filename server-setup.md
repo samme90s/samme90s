@@ -22,7 +22,7 @@
 **Connect to machine**
 
 - `ssh ubuntu@ip-address` (ip-address is the IPv4 address of the server).
-- If no keychain `ssh ubuntu@ip-adress -i location-to-key.pem`
+- If no keychain `ssh ubuntu@ip-address -i location-to-key.pem`
 
 **Update software**
 

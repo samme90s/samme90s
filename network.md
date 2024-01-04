@@ -52,14 +52,14 @@
 2. Data Link (Local)
    - `CSMA/CD` Before casting a message it checks if any of the computers are already talking.
    - `CSMA/CA` Asks the access point before casting a message to avoidance collision.
-   - `MAC Adress` Local communication
+   - `MAC Address` Local communication
    - `Ethernet frame` Local communication
 3. Network
    - Routing protocol
    - End-to-end encryption
    - IP address
 4. Transport
-   - Connections (TCP or UDP(Connectionless))
+   - Connections (TCP or UDP(Connection-less))
    - Message segmentation
    - Error & flow handling
 5. Session
@@ -124,7 +124,7 @@ Version: 4
 Time to live: 64    // each router will lower this by one.
 Protocol: TCP (6)
 Src: 192.168.1.2    // transmitter.
-Dst: 192.158.30.16  // reciever.
+Dst: 192.158.30.16  // receiver.
 ```
 
 ### Data-Link Layer
