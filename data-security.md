@@ -89,8 +89,22 @@ Enables unauthorized code execution or system crashes by overflowing memory with
 
 #### Incomplete Mediation
 
-Fails to verify user permissions, potentially granting unauthorized access.
+Exposes sensitive data in an uncontrolled state. For instance, allowing users to manipulate URLs, altering prices and total costs without proper verification, posing a risk of unauthorized access.
 
 #### Time of Check to Time of Use
 
 Involves changes to a resource between access check and use, akin to receiving a forged item after purchase.
+
+#### Types of Malware
+
+| Malicious Code Type | Characteristics                                                                                                                |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Virus               | Causes malicious behavior and propagates copies of itself to other programs.                                                   |
+| Trojan Horse        | Contains unexpected, undocumented, additional functionality.                                                                   |
+| Worm                | Propagates copies of itself through a network; impact is usually degraded performance.                                         |
+| Rabbit              | Replicates itself without limit to exhaust resources.                                                                          |
+| Script Attack       | Malicious code communicated in JavaScript, ActiveX, or other scripting languages, downloaded as part of displaying a web page. |
+| Rootkit             | Code installed in "root" or most privileged level of a system, concealing its presence and enabling unauthorized access.       |
+| Spyware             | Intercepts and covertly communicates user data or activity                                                                     |
+
+
