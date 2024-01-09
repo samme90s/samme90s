@@ -116,3 +116,14 @@ Ensure the data is stored and processed lawfully and in a **transparent** manner
 Certain safeguards should be established to prevent loss, corruption, desctruction or missuse of data. Further, clear policies and procedures for protection should be established and individuals should be assigned respective responsibilities.
 
 Keep the users data either anonymous (not identifiable) pseudonymous (identifiable only by a pseudonym, but cannot be traced back to a real identity) or identifiable (directly identifiable).
+
+### Characteristics of a good security policy
+
+- **Comprehensive** - Covers all aspects of security, and general enough to apply to new cases/situations.
+- **Durability** - Must be able to grow and adapt to new situations.
+- **Realism** - It must be implementable with existing resources and technologies.
+- **Usefulness** - It must be clear, direct and understanding.
+
+A security plan then details how these policies/rules are implemented/applied.
+
+![Inputs to the security plan](.data-security/figure3.png "Inputs to the security plan")
