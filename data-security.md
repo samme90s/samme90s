@@ -127,3 +127,21 @@ Keep the users data either anonymous (not identifiable) pseudonymous (identifiab
 A security plan then details how these policies/rules are implemented/applied.
 
 ![Inputs to the security plan](.data-security/figure3.png "Inputs to the security plan")
+
+### Contingency Planning (Business Continuity Plan - BCP)
+
+This is used when there is a threat to the business existance.
+
+Document processes on how to continue **during** or **after** a computer security incident. This is often done in conjuction with analysis of impact (Business Impact Analysis).
+
+#### Incident Response Plan (IRP)
+
+Specifically addresses security-related threats to systems, networks, and data, encompassing the confidentiality, integrity, and availability (CIA) aspects of data. Additionally, it addresses the concept of non-repudiable transactions.
+
+#### Disaster Recovery Plan (DRP)
+
+Focused on preparing the organization for and facilitating recovery from disasters, whether natural or man-made.
+
+#### Physical Security
+
+Concerned with safeguarding against human vandals, natural disasters, power disruptions, and other physical threats.
