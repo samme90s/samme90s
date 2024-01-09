@@ -77,6 +77,8 @@ Generates a unique value for input, enhancing security, widely used in password 
 
 Verify message authenticity and integrity, ensuring computationally secure signatures.
 
+Assymetric key pairs are used here. The message is hashed to produce a hash-digest that is then encrypted with the _senders private key_ and appended to the message. The _senders public key_ is then used by the receiver to verify **(process that resembles decryption in concept)** the hash-digest. The message is then hashed using the same hash algorithm and then compared between both digests. If they match, the message is authentic.
+
 ![Digital signature model](.data-security/figure2.png "Digital signature model")
 
 ### Program Security
@@ -107,4 +109,10 @@ Involves changes to a resource between access check and use, akin to receiving a
 | Rootkit             | Code installed in "root" or most privileged level of a system, concealing its presence and enabling unauthorized access.       |
 | Spyware             | Intercepts and covertly communicates user data or activity                                                                     |
 
+### Privacy Principles
 
+Ensure the data is stored and processed lawfully and in a **transparent** manner by specifying the purpose for storing the specified data. Destroy data when it is no longer needed.
+
+Certain safeguards should be established to prevent loss, corruption, desctruction or missuse of data. Further, clear policies and procedures for protection should be established and individuals should be assigned respective responsibilities.
+
+Keep the users data either anonymous (not identifiable) pseudonymous (identifiable only by a pseudonym, but cannot be traced back to a real identity) or identifiable (directly identifiable).
