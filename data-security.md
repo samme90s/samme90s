@@ -185,3 +185,14 @@ risk_leverage = (risk_exposure_before_reduction -
                  risk_exposure_after_reduction)
                  / cost_of_security_measure
 ```
+
+### Intellectual Property
+
+|                               | Copyright                                 | Patent                                   | Trade Secret                                           |
+| ----------------------------- | ----------------------------------------- | ---------------------------------------- | ------------------------------------------------------ |
+| **Protects**                  | Expression of idea, not the idea itself   | Invention                                | A secret, competitive advantage in how something works |
+| **Public Disclosure**         | Yes; intention is to promote publication  | No                                       | No                                                     |
+| **Requirement to Distribute** | Yes                                       | No                                       | No                                                     |
+| **Ease of Filing**            | Very easy, do-it-yourself                 | Complicated; specialist lawyer suggested | No filing                                              |
+| **Duration**                  | Varies by country; typically 75-100 years | 19 years                                 | Indefinite                                             |
+| **Legal Protection**          | Sue if unauthorized copy sold             | Sue if invention copied                  | Sue if secret improperly obtained                      |
