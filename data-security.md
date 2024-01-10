@@ -77,7 +77,7 @@ Generates a unique value for input, enhancing security, widely used in password 
 
 Verify message authenticity and integrity, ensuring computationally secure signatures.
 
-Assymetric key pairs are used here. The message is hashed to produce a hash-digest that is then encrypted with the _senders private key_ and appended to the message. The _senders public key_ is then used by the receiver to verify **(process that resembles decryption in concept)** the hash-digest. The message is then hashed using the same hash algorithm and then compared between both digests. If they match, the message is authentic.
+Asymmetric key pairs are used here. The message is hashed to produce a hash-digest that is then encrypted with the _senders private key_ and appended to the message. The _senders public key_ is then used by the receiver to verify **(process that resembles decryption in concept)** the hash-digest. The message is then hashed using the same hash algorithm and then compared between both digests. If they match, the message is authentic.
 
 ![Digital signature model](.data-security/figure2.png "Digital signature model")
 
@@ -113,7 +113,7 @@ Involves changes to a resource between access check and use, akin to receiving a
 
 Ensure the data is stored and processed lawfully and in a **transparent** manner by specifying the purpose for storing the specified data. Destroy data when it is no longer needed.
 
-Certain safeguards should be established to prevent loss, corruption, desctruction or missuse of data. Further, clear policies and procedures for protection should be established and individuals should be assigned respective responsibilities.
+Certain safeguards should be established to prevent loss, corruption, destruction or misuse of data. Further, clear policies and procedures for protection should be established and individuals should be assigned respective responsibilities.
 
 Keep the users data either anonymous (not identifiable) pseudonymous (identifiable only by a pseudonym, but cannot be traced back to a real identity) or identifiable (directly identifiable).
 
@@ -130,9 +130,9 @@ A security plan then details how these policies/rules are implemented/applied.
 
 ### Contingency Planning (Business Continuity Plan - BCP)
 
-This is used when there is a threat to the business existance.
+This is used when there is a threat to the business existence.
 
-Document processes on how to continue **during** or **after** a computer security incident. This is often done in conjuction with analysis of impact (Business Impact Analysis).
+Document processes on how to continue **during** or **after** a computer security incident. This is often done in conjunction with analysis of impact (Business Impact Analysis).
 
 #### Incident Response Plan (IRP)
 
@@ -145,3 +145,43 @@ Focused on preparing the organization for and facilitating recovery from disaste
 #### Physical Security
 
 Concerned with safeguarding against human vandals, natural disasters, power disruptions, and other physical threats.
+
+### Risk assessment/analysis
+
+1. Identify assets and their value.
+2. Identify threats and vulnerabilities.
+
+   | Category                                 | Potential threats and vulnerabilities   |
+   | ---------------------------------------- | --------------------------------------- |
+   | Forces of nature                         | Fire, flood, earthquake, lightning      |
+   | Human error or failure                   | Accidents, mistakes                     |
+   | Software attacks                         | Malware, dos                            |
+   | Technical software failures              | Bugs, code errors, loopholes            |
+   | Technical hardware failures              | Disk crashes                            |
+   | Deviation of quality of service          | Power, WAN                              |
+   | Missing, inadequate, incomplete controls | Training, privacy, ineffective policies |
+
+3. Estimate the likelihood of exploitation.
+4. Compute the expected loss.
+5. Identify countermeasures.
+6. Compute the cost/benefit ratio (savings).
+
+#### Risk Exposure
+
+```py
+p(risk) = 0,4 # 40% chance for a malware attack.
+risk_impact = 10_000 # 10.000$ (cost of cleaning the affected files).
+
+risk_exposure = risk_impact * p(risk) # If the risk exposure is greater than the cost of the security measure, then it is worth it getting.
+```
+
+#### Risk Leverage
+
+```py
+risk_exposure_after_reduction # Risk that remains after the security measure is applied.
+cost_of_security_measure # Cost or resources invested to the security measure.
+
+risk_leverage = (risk_exposure_before_reduction -
+                 risk_exposure_after_reduction)
+                 / cost_of_security_measure
+```
