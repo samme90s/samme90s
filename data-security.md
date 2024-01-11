@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Security involves safeguarding against harm or loss, ensuring confidentiality, integrity, and availability of assets. In information security, it protects data and systems from unauthorized access, alteration, or destruction. Balancing security with personal privacy sparks varied public opinions. Scientifically studied in cryptography, cyber-security, and risk management. The security process involves identification, protection, detection, response, and recovery.
+Security encompasses safeguarding against harm or loss, ensuring the confidentiality, integrity, and availability of assets. In information security, it defends data and systems from unauthorized access, alteration, or destruction. The balance between security and personal privacy generates diverse public opinions. Scientifically explored in cryptography, cyber-security, and risk management, the security process includes identification, protection, detection, response, and recovery.
 
 ### Abbreviations
 
@@ -32,11 +32,11 @@ Block ciphers encrypt fixed-size blocks (e.g., DES with 64-bit blocks). The Feis
 
 #### Substitution Cipher
 
-Replaces letters based on a predetermined rule, utilizing a substitution box (S-box).
+**Replaces** letters based on a predetermined rule, utilizing a substitution box (S-box).
 
 #### Transposition Cipher
 
-Alters letter order, employing a permutation box (P-box).
+**Alters** letter **order**, employing a permutation box (P-box).
 
 #### Summary
 
@@ -56,13 +56,6 @@ Employs 128-bit, 192-bit, or 256-bit keys with varying rounds.
 
 Uses interchangeable public and private keys for asymmetric encryption. Susceptible to MitM attacks, addressed by key exchange protocols.
 
-#### Summary
-
-An encryption method should have a number of properties to ensure it is secure. Examples of these are:
-
-- [Avalanche effect](https://en.wikipedia.org/wiki/Avalanche_effect)
-- [Completeness](<https://en.wikipedia.org/wiki/Completeness_(cryptography)>)
-
 ### Integrity Options
 
 #### Parity
@@ -72,6 +65,11 @@ Simple error detection by adding a bit, detecting single bit flips.
 #### Hashing
 
 Generates a unique value for input, enhancing security, widely used in password storage.
+
+A hash method should have a number of properties to ensure it is secure. Examples of these are:
+
+- [Avalanche effect](https://en.wikipedia.org/wiki/Avalanche_effect)
+- [Completeness](<https://en.wikipedia.org/wiki/Completeness_(cryptography)>)
 
 #### Digital Signatures
 
@@ -140,11 +138,11 @@ Specifically addresses security-related threats to systems, networks, and data, 
 
 #### Disaster Recovery Plan (DRP)
 
-Focused on preparing the organization for and facilitating recovery from disasters, whether natural or man-made.
+Ensures an organization can resume critical functions **post-disaster**, with plans for data recovery and business continuity.
 
 #### Physical Security
 
-Concerned with safeguarding against human vandals, natural disasters, power disruptions, and other physical threats.
+Focuses on proactively **preventing** physical threats (human vandals, natural disasters, power disruptions, etc.), employing measures like surveillance and access controls against unauthorized access, vandalism, and disasters.
 
 ### Risk assessment/analysis
 
@@ -182,8 +180,8 @@ risk_exposure_after_reduction # Risk that remains after the security measure is 
 cost_of_security_measure # Cost or resources invested to the security measure.
 
 risk_leverage = (risk_exposure_before_reduction -
-                 risk_exposure_after_reduction)
-                 / cost_of_security_measure
+                 risk_exposure_after_reduction) /
+                 cost_of_security_measure
 ```
 
 ### Intellectual Property
