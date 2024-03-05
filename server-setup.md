@@ -39,12 +39,16 @@
 
 Head over to **[nodejs-downloads](https://nodejs.org/en/download/)** scroll down and select "_Installing Node.js via package manager_". Select Ubuntu and follow the instructions that are given.
 
+Distributions for Ubunty and Debian can be found here: **[nodesource-distributions](https://github.com/nodesource/distributions)** (suggest using a bash terminal that allows the script to be entered properly). The script command should install both node and npm.
+
 Check if installation was successful by using the commands.
 
 - `node -v`
 - `npm -v`
 
 ## NGINX
+
+IMPORTANT! Only edit the `sites-enabled` default file. Set the new application location outside the `default` block found inside the file.
 
 **Commands**
 
@@ -56,15 +60,13 @@ Check if installation was successful by using the commands.
 
 - `/etc/nginx/nginx.conf` Location of global config file.
 - `/etc/nginx/sites-enabled/default` Location of default server block config file.
+- `/etc/nginx/conf.d/server-name.conf` Location of possible server block config file.
 
 **Remove server leaks for production**
 
 1. `sudo nano /etc/nginx/nginx.conf`
 2. Remove the comment sign (`#`) before `server_tokens off;`
 3. Restart nginx `sudo systemctl restart nginx.service`
-
-**Editing config file of server**
-`sudo nano /etc/nginx/conf.d/server-name.conf`
 
 ## Docker
 
