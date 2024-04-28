@@ -87,11 +87,14 @@ server {
 
   # Pre-added blocks may exist... do not remove these!
 
-	# location / {
-	#   First attempt to serve request as file, then
-	#	  as directory, then fall back to displaying a 404.
-	#	  try_files $uri $uri/ =404;
-	# }
+	# for client-side applications multiple locations can be added here:
+	# Example use /app (notice there is no "/" at the end).
+	# Make sure the files are correctly placed under "/var/www/html"!
+	location / {
+		  # First attempt to serve request as file, then
+		  # as directory, then fall back to displaying a 404.
+		  try_files $uri $uri/ =404;
+	}
 
 	location / {
 		proxy_pass http://localhost:5000/;
