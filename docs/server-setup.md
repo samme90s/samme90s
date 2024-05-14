@@ -141,13 +141,13 @@ Docker is now accessible from the server or local terminal (check for newer vers
 
 Create a docker network:
 
-```bash
+```shell
 docker network create {name}
 ```
 
 Run the mongo container:
 
-```bash
+```shell
 docker run --network={name} -d -p 27017:27017 --name mongo mongo:latest
 ```
 
@@ -155,7 +155,7 @@ docker run --network={name} -d -p 27017:27017 --name mongo mongo:latest
 
 Run the api container:
 
-```bash
+```shell
 docker run --network=apinet -d -p 5000:80 --name api api:latest
 ```
 
@@ -163,19 +163,19 @@ docker run --network=apinet -d -p 5000:80 --name api api:latest
 
 Building the image:
 
-```bash
+```shell
 docker build -t {name} .
 ```
 
 Saving the image to a `.tar` file:
 
-```bash
+```shell
 docker save -o C:\Users\user\{name}.tar {image}
 ```
 
 Loading the image machine:
 
-```bash
+```shell
 docker load -i C:\Users\user\{name}.tar
 ```
 
@@ -185,7 +185,7 @@ docker load -i C:\Users\user\{name}.tar
 
 Run script during an active _Docker_ container instance:
 
-```bash
+```shell
 # python keyword may differ here:
 docker exec -it {container} python script.py
 ```
