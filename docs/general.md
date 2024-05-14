@@ -9,7 +9,26 @@ git branch -u origin/main main
 git remote set-head origin -a
 ```
 
-## Network Linux
+## Linux
+
+### Filesystem
+
+```shell
+# Show disk usage
+df -h
+```
+
+```shell
+# Show memory usage
+free -h
+```
+
+```shell
+# Show performance statistics
+top
+```
+
+### Network
 
 ```shell
 # Get public IP
