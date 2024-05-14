@@ -4,7 +4,7 @@
 
 ### Commands
 
-- `sudo chown {user} directory/` Changes the owner of the directory.
+- `chown {user} directory/` Changes the owner of the directory.
 
 ## Adding SSH to keychain
 
@@ -33,14 +33,14 @@
 
 ### Update
 
-1. `sudo apt update` get newest packages.
-2. `sudo apt upgrade` update to the newest packages.
-3. `sudo apt dist-upgrade` update OS/Distribution.
+1. `apt update` get newest packages.
+2. `apt upgrade` update to the newest packages.
+3. `apt dist-upgrade` update OS/Distribution.
 
 ### Restart
 
-- `sudo shutdown -r now` (This will perform a system shutdown in a proper way and then reboot the computer).
-- `sudo reboot`
+- `shutdown -r now` (This will perform a system shutdown in a proper way and then reboot the computer).
+- `reboot`
 
 ## Node.js
 
@@ -59,9 +59,9 @@ IMPORTANT! Only edit the `sites-available` or `sites-enabled` default file. Set 
 
 ### Commands
 
-- `sudo apt-get install nginx`
-- `sudo systemctl status nginx`
-- `sudo systemctl reload nginx`
+- `apt-get install nginx`
+- `systemctl status nginx`
+- `systemctl reload nginx`
 
 ### Useful paths
 
@@ -71,9 +71,9 @@ IMPORTANT! Only edit the `sites-available` or `sites-enabled` default file. Set 
 
 ### Remove server leaks
 
-1. `sudo nano /etc/nginx/nginx.conf`
+1. `nano /etc/nginx/nginx.conf`
 2. Remove the comment sign (`#`) before `server_tokens off;`
-3. Restart nginx `sudo systemctl restart nginx.service`
+3. Restart nginx `systemctl restart nginx.service`
 
 ### Server blocks
 
@@ -118,8 +118,8 @@ server {
 
 ### Commands
 
-- `sudo docker ps` lists all running containers. Add `-all` to list all containers.
-- `sudo docker system prune -a --volumes` removes all:
+- `docker ps` lists all running containers. Add `-all` to list all containers.
+- `docker system prune -a --volumes` removes all:
   - stopped containers.
   - networks not used by at least one container.
   - volumes not used by at least one container.
@@ -194,7 +194,7 @@ docker exec -it {container} python script.py
 
 ### Commands
 
-- `sudo npm i pm2 -g` Installation (global).
+- `npm i pm2 -g` Installation (global).
 - `pm2 monit` Monitoring view.
 - `pm2 logs --lines 200` Shows log with 200 rows.
 - [PM2-env-variable-cmd](https://pm2.io/docs/runtime/best-practices/environment-variables/)

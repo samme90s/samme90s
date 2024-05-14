@@ -11,7 +11,7 @@ Make sure to configure the correct network settings and enable SSH.
 ## Raspi config
 
 ```bash
-sudo raspi-config
+raspi-config
 ```
 
 ## Networking
@@ -21,12 +21,12 @@ The network configuration can be found in `/etc/wpa_supplicant/wpa_supplicant.co
 ```bash
 # Add more networks
 # >> appends to the file
-sudo wpa_passphrase "SSID" "password" >> /etc/wpa_supplicant/wpa_supplicant.conf
+wpa_passphrase "SSID" "password" >> /etc/wpa_supplicant/wpa_supplicant.conf
 ```
 
 ```bash
 # Edit the network configuration
-sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+nano /etc/wpa_supplicant/wpa_supplicant.conf
 ```
 
 Remove the plaintext password (psk). Furthermore, add the priority to the network.
@@ -45,7 +45,7 @@ network={
 
 ```bash
 # Restart the network service
-sudo systemctl restart wpa_supplicant.service
+systemctl restart wpa_supplicant.service
 ```
 
 ## Remote desktop access (RDP)
