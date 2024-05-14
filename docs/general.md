@@ -2,7 +2,7 @@
 
 ## Rename a remote git branch:
 
-```shell
+```bash
 git branch -m master main
 git fetch origin
 git branch -u origin/main main
@@ -13,34 +13,34 @@ git remote set-head origin -a
 
 ### Filesystem
 
-```shell
+```bash
 # Show disk usage
 df -h
 ```
 
-```shell
+```bash
 # Show memory usage
 free -h
 ```
 
-```shell
+```bash
 # Show performance statistics
 top
 ```
 
 ### Network
 
-```shell
+```bash
 # Get public IP
 curl ifconfig.me
 ```
 
-```shell
+```bash
 # Show network interfaces
 ip addr
 ```
 
-```shell
+```bash
 # Show host network IPs
 hostname -I
 ```

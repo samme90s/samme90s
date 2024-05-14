@@ -10,7 +10,7 @@ Make sure to configure the correct network settings and enable SSH.
 
 ## Raspi config
 
-```shell
+```bash
 sudo raspi-config
 ```
 
@@ -18,13 +18,13 @@ sudo raspi-config
 
 The network configuration can be found in `/etc/wpa_supplicant/wpa_supplicant.conf`.
 
-```shell
+```bash
 # Add more networks
 # >> appends to the file
 sudo wpa_passphrase "SSID" "password" >> /etc/wpa_supplicant/wpa_supplicant.conf
 ```
 
-```shell
+```bash
 # Edit the network configuration
 sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
 ```
@@ -43,7 +43,7 @@ network={
 }
 ```
 
-```shell
+```bash
 # Restart the network service
 sudo systemctl restart wpa_supplicant.service
 ```
