@@ -51,3 +51,35 @@ systemctl restart wpa_supplicant.service
 ## Remote desktop access (RDP)
 
 Using xrdp follow this guide [linuxize.com](https://linuxize.com/post/how-to-install-xrdp-on-raspberry-pi/).
+
+## NGROK
+
+Download the agent and create the configuration file as the setup guide says.
+
+```bash
+# Configuration file location:
+cd /home/user/.config/ngrok
+```
+
+Add endpoint to the configuration file (see [ngrok->config](https://ngrok.com/docs/agent/config/) for more options).
+
+```yml
+# Defines all tunnels
+tunnels:
+  # This is the tunnel name
+  ssh:
+    proto: tcp
+    addr: 22
+```
+
+Run the command to ensure the config is correct. This will also prepare the service.
+
+```bash
+ngrok service install --config /home/user/.config/ngrok/ngrok.yml
+```
+
+### Useful links
+
+- [ngrok->raspberry-pi](https://dashboard.ngrok.com/get-started/setup/raspberrypi)
+- [ngrok->background-service](https://ngrok.com/docs/agent/#background-service)
+- [ngrok->config](https://ngrok.com/docs/agent/config/)
