@@ -16,6 +16,38 @@ raspi-config
 
 ## Networking
 
+### nmcli
+
+```bash
+# List all available networks
+nlmcli device wifi
+```
+
+```bash
+# List all current and previous connections
+nmcli connection show
+```
+
+```bash
+# Disconnect
+nmcli radio wifi off
+nmcli radio wifi on
+```
+
+```bash
+# Connect
+nmcli device wifi connect {SSID}
+
+# If the network is hidden
+nmcli device wifi connect {SSID} hidden yes
+```
+
+All connections are stored in seperate files (their respective name) in:
+
+```bash
+cd /etc/NetworkManager/system-connections/
+```
+
 The network configuration can be found in `/etc/wpa_supplicant/wpa_supplicant.conf`.
 
 ```bash
