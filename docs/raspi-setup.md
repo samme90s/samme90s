@@ -29,8 +29,8 @@ nmcli connection show
 ```
 
 ```bash
-# Disconnect
-nmcli radio wifi off
+# Reconnect
+nmcli radio wifi off &&
 nmcli radio wifi on
 ```
 
