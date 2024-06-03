@@ -90,7 +90,7 @@ Download the agent and create the configuration file as the setup guide says.
 
 ```bash
 # Configuration file location:
-cd /home/user/.config/ngrok
+nano /home/samme/.config/ngrok/ngrok.yml
 ```
 
 Add endpoint to the configuration file (see [ngrok->config](https://ngrok.com/docs/agent/config/) for more options).
@@ -100,14 +100,16 @@ Add endpoint to the configuration file (see [ngrok->config](https://ngrok.com/do
 tunnels:
   # This is the tunnel name
   ssh:
-    proto: tcp
     addr: 22
+    proto: tcp
 ```
 
 Run the command to ensure the config is correct. This will also prepare the service.
 
 ```bash
-ngrok service install --config /home/user/.config/ngrok/ngrok.yml
+# Run the uninstall command if the service is already installed.
+ngrok service uninstall &&
+ngrok service install --config /home/samme/.config/ngrok/ngrok.yml
 ```
 
 ### Useful links
