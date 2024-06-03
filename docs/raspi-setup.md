@@ -18,6 +18,12 @@ raspi-config
 
 SSH can be enabled through the raspi-config tool.
 
+Generation of SSH key can be done with any algorithm, but ed25519 is recommended.
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "email@example.com"
+```
+
 Configuring the SSH can be done through the following file:
 
 ```bash
