@@ -20,7 +20,7 @@ raspi-config
 
 ```bash
 # List all available networks
-nlmcli device wifi
+nmcli device wifi
 ```
 
 ```bash
@@ -36,7 +36,7 @@ nmcli radio wifi on
 
 ```bash
 # Connect
-nmcli device wifi connect {SSID}
+nmcli device wifi connect {SSID} --ask
 
 # If the network is hidden
 nmcli device wifi connect {SSID} hidden yes
