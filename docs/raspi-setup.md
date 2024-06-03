@@ -112,6 +112,11 @@ ngrok service uninstall &&
 ngrok service install --config /home/samme/.config/ngrok/ngrok.yml
 ```
 
+```bash
+# Restart the service
+systemctl restart ngrok
+```
+
 ### Useful links
 
 - [ngrok->raspberry-pi](https://dashboard.ngrok.com/get-started/setup/raspberrypi)
