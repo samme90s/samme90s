@@ -179,7 +179,7 @@ Loading the image machine:
 docker load -i C:\Users\user\{name}.tar
 ```
 
-## Scripts
+### Scripts
 
 **IMPORTANT** -- Make sure that all environment variables are set!
 
@@ -188,6 +188,13 @@ Run script during an active _Docker_ container instance:
 ```bash
 # python keyword may differ here:
 docker exec -it {container} python script.py
+```
+
+### Login
+
+```bash
+# Docker will prompt for password after this command.
+sudo docker login -u {username}
 ```
 
 ## PM2
