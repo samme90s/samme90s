@@ -14,6 +14,30 @@ Make sure to configure the correct network settings and enable SSH.
 raspi-config
 ```
 
+## SSH
+
+SSH can be enabled through the raspi-config tool.
+
+Configuring the SSH can be done through the following file:
+
+```bash
+vim /etc/ssh/sshd_config
+```
+
+Look for `PasswordAuthentication` and set it to `no`, see below:
+
+```yml
+PasswordAuthentication no
+```
+
+**FALLBACK** -- enable password authentication for local connections by putting this in the bottom of the file (formatting matters here):
+
+```yml
+# Allow password authentication for all local connections.
+Match address 192.168.*.*
+    PasswordAuthentication yes
+```
+
 ## Networking
 
 ### nmcli
@@ -46,38 +70,6 @@ All connections are stored in seperate files (their respective name) in:
 
 ```bash
 cd /etc/NetworkManager/system-connections/
-```
-
-The network configuration can be found in `/etc/wpa_supplicant/wpa_supplicant.conf`.
-
-```bash
-# Add more networks
-# >> appends to the file
-wpa_passphrase "SSID" "password" >> /etc/wpa_supplicant/wpa_supplicant.conf
-```
-
-```bash
-# Edit the network configuration
-nano /etc/wpa_supplicant/wpa_supplicant.conf
-```
-
-Remove the plaintext password (psk). Furthermore, add the priority to the network.
-
-```conf
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-
-network={
-    ssid="SSID"
-    #psk="password"
-    psk="password_hashed"
-    priority=1
-}
-```
-
-```bash
-# Restart the network service
-systemctl restart wpa_supplicant.service
 ```
 
 ## Remote desktop access (RDP)
