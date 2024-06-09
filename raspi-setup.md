@@ -41,7 +41,7 @@ PasswordAuthentication no
 ```yml
 # Allow password authentication for all local connections.
 Match address 192.168.*.*
-    PasswordAuthentication yes
+PasswordAuthentication yes
 ```
 
 ## Networking
@@ -78,10 +78,6 @@ All connections are stored in seperate files (their respective name) in:
 cd /etc/NetworkManager/system-connections/
 ```
 
-## Remote desktop access (RDP)
-
-Using xrdp follow this guide [linuxize.com](https://linuxize.com/post/how-to-install-xrdp-on-raspberry-pi/).
-
 ## NGROK
 
 Download the agent and create the configuration file as the setup guide says.
@@ -91,15 +87,13 @@ Download the agent and create the configuration file as the setup guide says.
 nano /home/samme/.config/ngrok/ngrok.yml
 ```
 
-Add endpoint to the configuration file (see [ngrok->config](https://ngrok.com/docs/agent/config/) for more options).
-
 ```yml
 # Defines all tunnels
 tunnels:
   # This is the tunnel name
   ssh:
-    addr: 22
     proto: tcp
+    addr: 22
 ```
 
 Run the command to ensure the config is correct. This will also prepare the service.
@@ -114,9 +108,3 @@ ngrok service install --config /home/samme/.config/ngrok/ngrok.yml
 # Restart the service
 systemctl restart ngrok
 ```
-
-### Useful links
-
-- [ngrok->raspberry-pi](https://dashboard.ngrok.com/get-started/setup/raspberrypi)
-- [ngrok->background-service](https://ngrok.com/docs/agent/#background-service)
-- [ngrok->config](https://ngrok.com/docs/agent/config/)
