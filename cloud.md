@@ -43,7 +43,14 @@ pip install --upgrade python-openstackclient
 pip install python-openstackclient
 ```
 
-## OpenStackClient CMD
+## OpenStackClient cmd:s
+
+Download the OpenStack RC file from the provider and extract to `~\.rc`
+
+```shell
+# Set environment variables to the current process/session.
+source ~/.rc/FILE-NAME-openrc.sh
+```
 
 ```shell
 # Lists all servers
