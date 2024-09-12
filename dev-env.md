@@ -14,3 +14,8 @@ echo ".idea/" >> ~/.gitignore_global
 # Configure Git to use the global .gitignore
 git config --global core.excludesfile ~/.gitignore_global
 ```
+
+```shell
+# To verify the file was correctly added
+git config --global --list
+```
