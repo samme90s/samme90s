@@ -13,7 +13,23 @@ Add to `~/.bashrc` (filenames after ssh cmd):
 
 Ignore warnings if asymmetric key is missing!
 
-```sh
+```shell
 # Auto start ssh agent and add keys
 eval `keychain --eval --agents ssh id_ed25519 ss225ze-keypair.pem`
+```
+
+## OpenStackClient (Ubuntu)
+
+```shell
+sudo apt update && sudo apt upgrade
+```
+
+```shell
+sudo apt install python3-pip
+```
+
+```shell
+# In order for the binary path to get set we install it as an apt package!
+sudo apt install python3-openstackclient
+pip install --upgrade python-openstackclient
 ```
