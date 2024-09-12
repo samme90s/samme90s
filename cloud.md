@@ -1,5 +1,10 @@
 # Cloud
 
+## General Information
+
+Terraform -> Provider
+Ansible   -> Configurer
+
 ## WSL (Windows Subsystem for Linux) Setup
 
 [Windows WSL Setup](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#file-storage)
@@ -72,9 +77,9 @@ openstack image list
 openstack flavor list
 ```
 
-## TerraForm Setup
+## Terraform Setup
 
-[TerraForm Install](https://developer.hashicorp.com/terraform/install?product_intent=terraform)
+[Terraform Install](https://developer.hashicorp.com/terraform/install?product_intent=terraform)
 
 Extract content to `C:\terraform` -> see file structure:
 
