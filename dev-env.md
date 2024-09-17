@@ -1,6 +1,16 @@
 # Development Environment Setup
 
-## Global Gitignore
+## Git Global Configuration
+
+```shell
+git config --global user.email "email"
+```
+
+```shell
+git config --global user.name "name"
+```
+
+## Git Global Gitignore
 
 ```shell
 touch ~/.gitignore_global
