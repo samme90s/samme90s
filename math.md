@@ -16,7 +16,7 @@ Geometric Series: $\sum_{i=0}^n b^i = \frac{b^{n+1}-1}{b-1}$
 
 $F(n)^2 = F(n) \cdot F(n+1)$
 
-## Linear Equations
+## Linear Growth Equations
 
 General form: $y = mx + b$
 
@@ -30,7 +30,7 @@ $m = \frac{y_a - y_b}{x_a - x_b}$
 
 Example: $m = \frac{10 - 0}{2 - 0}$
 
-## Exponential Equations
+## Exponential Growth Equations (not to be confused with power-law)
 
 General form: $y = b \cdot r^x$
 
@@ -43,7 +43,3 @@ Example: $y = 4(1.05)^x$
 Verifying points:
 - When $x = 0$: $y = 4(1.05)^0 = 4$
 - When $x = 14$: $y = 4(1.05)^{14} \approx 7.92$
-
-
-
-
