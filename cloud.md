@@ -3,7 +3,7 @@
 ## General Information
 
 Terraform -> Provider
-Ansible   -> Configurer
+Ansible -> Configurer
 
 ## WSL (Windows Subsystem for Linux) Setup
 
@@ -15,11 +15,37 @@ For Visual Studio modify to add: "Linux and embedded development with C++" in or
 
 [Sharing SSH Keys](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
 
-Add to `~/.bashrc` (filenames after ssh cmd):
-
-Ignore warnings if asymmetric key is missing!
+```shell
+# Install keychain
+sudo apt install keychain
+```
 
 ```shell
+# Copy .ssh from Windows to Linux and prevents duplicates.
+# It is important to note the trailing slash, this ensures only the content of the directory is copied.
+rsync -av /mnt/c/users/samme/.ssh/ ~/.ssh/
+```
+
+A worse approach:
+
+```shell
+# Copy .ssh from Windows to Linux
+cp -r /mnt/c/users/samme/.ssh/ ~/.ssh/
+```
+
+```shell
+# Change permissions, this is important for the ssh-agent to work!
+chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
+```
+
+Add to `~/.bashrc` (filenames after ssh cmd):
+
+```shell
+vim ~/.bashrc
+```
+
+```shell
+# Ignore warnings if asymmetric key is missing!
 # Auto start ssh agent and add keys
 eval `keychain --eval --agents ssh id_ed25519 ss225ze-keypair.pem`
 ```
@@ -77,7 +103,43 @@ openstack image list
 openstack flavor list
 ```
 
-## Terraform Setup
+## Terraform Setup (Ubuntu)
+
+[Terraform Install](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+
+```shell
+# Ensure system is up to date and "gnupg", "software-properties-common" and "curl" are installed.
+# These packages to verify HashiCorp's GPG signature and install HashiCorp's Debian package repository.
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+```
+
+```shell
+# Install HashiCorp's GPG key
+wget -O- https://apt.releases.hashicorp.com/gpg | \
+gpg --dearmor | \
+sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+```
+
+```shell
+# Verify the key's fingerprint
+gpg --no-default-keyring \
+--keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+--fingerprint
+```
+
+```shell
+# Add HashiCorp's official Debian repository
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+sudo tee /etc/apt/sources.list.d/hashicorp.list
+```
+
+```shell
+# Update and install Terraform
+sudo apt update && sudo apt-get install terraform
+```
+
+## Terraform Setup (Windows)
 
 [Terraform Install](https://developer.hashicorp.com/terraform/install?product_intent=terraform)
 
@@ -94,4 +156,27 @@ Extract content to `C:\terraform` -> see file structure:
 # Add to PATH (using PowerShell)
 # `User` can be interchanged with `Machine` or `Process`
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\terraform", "User")
+```
+
+## Ansible Setup (Ubuntu)
+
+[Ansible Install](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pip)
+
+```shell
+sudo apt update && sudo apt upgrade
+```
+
+```shell
+# Verify pip is installed
+python3 -m pip -V
+```
+
+```shell
+# Install pip
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py --user
+```
+
+```shell
+# Install and upgrade Ansible
+python3 -m pip install --user ansible && python3 -m pip install --upgrade --user ansible
 ```
