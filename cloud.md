@@ -80,7 +80,7 @@ Download the OpenStack RC file from the provider and extract to `~\.rc`
 
 ```shell
 # Set environment variables to the current process/session.
-source ~/.rc/FILE-NAME-openrc.sh
+source ~/.rc/<fn>-openrc.sh
 ```
 
 ```shell
@@ -158,6 +158,12 @@ Extract content to `C:\terraform` -> see file structure:
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\terraform", "User")
 ```
 
+## Terraform cmd:s
+
+```shell
+terraform <cmd> -auto-approve
+```
+
 ## Ansible Setup (Ubuntu)
 
 [Ansible Install](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pip)
@@ -176,7 +182,17 @@ python3 -m pip -V
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py --user
 ```
 
+If the previous step gives an error try the following:
+
+```shell
+sudo apt install python3-pip
+```
+
 ```shell
 # Install and upgrade Ansible
 python3 -m pip install --user ansible && python3 -m pip install --upgrade --user ansible
 ```
+
+## Ansible cmd:s
+
+[Ansible Getting Started](https://docs.ansible.com/ansible/latest/getting_started/get_started_inventory.html)
