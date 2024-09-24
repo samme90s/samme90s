@@ -1,3 +1,23 @@
+# Notations
+
+| Notation  | Meaning                    | Example               |
+|-----------|----------------------------|-----------------------|
+| Big Theta | Asymptotically tight bound | $f(n) = \Theta(g(n))$ |
+| Big O     | Asymptotic upper bound     | $f(n) = O(g(n))$      |
+| Big Omega | Asymptotic lower bound     | $f(n) = \Omega(g(n))$ |
+
+# Growth Functions
+
+| Notation   | Meaning      | Growth $\frac{T(2N)}{T(N)}$ |
+|------------|--------------|-----------------------------|
+| $1$        | Constant     | 1                           |
+| $\log n$   | Logarithmic  | ~1                          |
+| $n$        | Linear       | 2                           |
+| $n \log n$ | Linearithmic | ~2                          |
+| $n^2$      | Quadratic    | 4                           |
+| $n^3$      | Cubic        | 8                           |
+| $2^n$      | Exponential  | T(N)                        |
+
 # Formulas
 
 ## Basic Exponents and Logarithms
@@ -71,3 +91,4 @@ Verifying points:
 
 - When $x = 0$: $y = 4(1.05)^0 = 4$
 - When $x = 14$: $y = 4(1.05)^{14} \approx 7.92$
+
