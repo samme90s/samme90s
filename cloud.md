@@ -3,6 +3,7 @@
 ## General Information
 
 Terraform -> Provider
+
 Ansible -> Configurer
 
 ## WSL (Windows Subsystem for Linux) Setup
@@ -35,7 +36,8 @@ cp -r /mnt/c/users/samme/.ssh/ ~/.ssh/
 
 ```shell
 # Change permissions, this is important for the ssh-agent to work!
-chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
+chmod 700 ~/.ssh && \
+chmod 600 ~/.ssh/*
 ```
 
 Add to `~/.bashrc` (filenames after ssh cmd):
@@ -53,7 +55,8 @@ eval `keychain --eval --agents ssh id_ed25519 ss225ze-keypair.pem`
 ## OpenStackClient Setup (Ubuntu)
 
 ```shell
-sudo apt update && sudo apt upgrade
+sudo apt update && \
+sudo apt upgrade -y
 ```
 
 ```shell
@@ -62,7 +65,7 @@ sudo apt install python3-pip
 
 ```shell
 # In order for the binary path to get set we install it as an apt package!
-sudo apt install python3-openstackclient
+sudo apt install python3-openstackclient && \
 pip install --upgrade python-openstackclient
 ```
 
@@ -110,7 +113,8 @@ openstack flavor list
 ```shell
 # Ensure system is up to date and "gnupg", "software-properties-common" and "curl" are installed.
 # These packages to verify HashiCorp's GPG signature and install HashiCorp's Debian package repository.
-sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+sudo apt-get update && \
+sudo apt-get install -y gnupg software-properties-common
 ```
 
 ```shell
@@ -136,7 +140,8 @@ sudo tee /etc/apt/sources.list.d/hashicorp.list
 
 ```shell
 # Update and install Terraform
-sudo apt update && sudo apt-get install terraform
+sudo apt update && \
+sudo apt-get install terraform
 ```
 
 ## Terraform Setup (Windows)
@@ -169,7 +174,8 @@ terraform <cmd> -auto-approve
 [Ansible Install](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pip)
 
 ```shell
-sudo apt update && sudo apt upgrade
+sudo apt update && \
+sudo apt upgrade -y
 ```
 
 ```shell
@@ -182,15 +188,20 @@ python3 -m pip -V
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py --user
 ```
 
-If the previous step gives an error try the following:
-
 ```shell
+# If the previous step with pip gives an error
 sudo apt install python3-pip
 ```
 
 ```shell
 # Install and upgrade Ansible
-python3 -m pip install --user ansible && python3 -m pip install --upgrade --user ansible
+python3 -m pip install --user ansible && \
+python3 -m pip install --upgrade --user ansible
+```
+
+```shell
+# If ansible was not added to PATH
+sudo apt install ansible
 ```
 
 ## Ansible cmd:s
