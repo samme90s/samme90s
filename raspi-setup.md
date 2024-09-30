@@ -2,7 +2,8 @@
 
 ## Flashing (microSD)
 
-Download **Raspberry Pi Imager** from [raspberrypi.org](https://www.raspberrypi.org/software/).
+Download **Raspberry Pi Imager**
+from [raspberrypi.org](https://www.raspberrypi.org/software/).
 
 ### Config
 
@@ -18,7 +19,8 @@ raspi-config
 
 SSH can be enabled through the raspi-config tool.
 
-Generation of SSH key can be done with any algorithm, but ed25519 is recommended.
+Generation of SSH key can be done with any algorithm, but ed25519 is
+recommended.
 
 ```bash
 ssh-keygen -t rsa -b 4096 -C "email@example.com"
@@ -36,7 +38,8 @@ Look for `PasswordAuthentication` and set it to `no`, see below:
 PasswordAuthentication no
 ```
 
-**FALLBACK** -- enable password authentication for local connections by putting this in the bottom of the file (formatting matters here):
+**FALLBACK** -- enable password authentication for local connections by putting
+this in the bottom of the file (formatting matters here):
 
 ```yml
 # Allow password authentication for all local connections.
@@ -96,7 +99,8 @@ tunnels:
     addr: 22
 ```
 
-Run the command to ensure the config is correct. This will also prepare the service.
+Run the command to ensure the config is correct. This will also prepare the
+service.
 
 ```bash
 # Run the uninstall command if the service is already installed.

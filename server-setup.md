@@ -39,14 +39,20 @@
 
 ### Restart
 
-- `shutdown -r now` (This will perform a system shutdown in a proper way and then reboot the computer).
+- `shutdown -r now` (This will perform a system shutdown in a proper way and
+  then reboot the computer).
 - `reboot`
 
 ## Node.js
 
-Head over to **[nodejs-downloads](https://nodejs.org/en/download/)** scroll down and select "_Installing Node.js via package manager_". Select Ubuntu and follow the instructions that are given.
+Head over to **[nodejs-downloads](https://nodejs.org/en/download/)** scroll down
+and select "_Installing Node.js via package manager_". Select Ubuntu and follow
+the instructions that are given.
 
-Distributions for Ubunty and Debian can be found here: **[nodesource-distributions](https://github.com/nodesource/distributions)** (suggest using a bash terminal that allows the script to be entered properly). The script command should install both node and npm.
+Distributions for Ubunty and Debian can be found here: *
+*[nodesource-distributions](https://github.com/nodesource/distributions)** (
+suggest using a bash terminal that allows the script to be entered properly).
+The script command should install both node and npm.
 
 Check if installation was successful by using the commands.
 
@@ -55,7 +61,8 @@ Check if installation was successful by using the commands.
 
 ## NGINX
 
-IMPORTANT! Only edit the `sites-available` or `sites-enabled` default file. Set the new application location outside the `default` block found inside the file.
+IMPORTANT! Only edit the `sites-available` or `sites-enabled` default file. Set
+the new application location outside the `default` block found inside the file.
 
 ### Commands
 
@@ -66,8 +73,10 @@ IMPORTANT! Only edit the `sites-available` or `sites-enabled` default file. Set 
 ### Useful paths
 
 - `/etc/nginx/nginx.conf` Location of global config file.
-- `/etc/nginx/sites-enabled/default` Location of default server block config file.
-- `/etc/nginx/conf.d/server-name.conf` Location of possible server block config file.
+- `/etc/nginx/sites-enabled/default` Location of default server block config
+  file.
+- `/etc/nginx/conf.d/server-name.conf` Location of possible server block config
+  file.
 
 ### Remove server leaks
 
@@ -77,7 +86,9 @@ IMPORTANT! Only edit the `sites-available` or `sites-enabled` default file. Set 
 
 ### Server blocks
 
-**IMPORTANT** -- Only edit under the server `{}`-block, read the comments found in the `default`-file! Pay attention to the `/` at the end of the `location`-block.
+**IMPORTANT** -- Only edit under the server `{}`-block, read the comments found
+in the `default`-file! Pay attention to the `/` at the end of the `location`
+-block.
 
 ```conf
 server {
@@ -120,22 +131,27 @@ server {
 
 - `docker ps` lists all running containers. Add `-all` to list all containers.
 - `docker system prune -a --volumes` removes all:
-  - stopped containers.
-  - networks not used by at least one container.
-  - volumes not used by at least one container.
-  - images without at least one container associated to them.
-  - build cache.
+    - stopped containers.
+    - networks not used by at least one container.
+    - volumes not used by at least one container.
+    - images without at least one container associated to them.
+    - build cache.
 
 ### Basics
 
-1. Follow guide to install the latest version: **[docker-install-ubuntu](https://docs.docker.com/engine/install/ubuntu/)** install using repository x86_64 / amd64.
+Follow guide to install the latest version: *
+*[docker-install-ubuntu](https://docs.docker.com/engine/install/ubuntu/)**
+install using repository x86_64 / amd64.
 
-Docker is now accessible from the server or local terminal (check for newer version). `sudo` may be required to use docker commands.
+Docker is now accessible from the server or local terminal (check for newer
+version). `sudo` may be required to use docker commands.
 
-2. Server
-   1. `docker pull mongo:latest`
-   2. `docker run -d -p 27017:27017 --name mongo mongo:latest`
-   3. **Alt**: run docker on different port: `docker run -d -p 27018:27017 --name mongo mongo:latest`
+#### Server
+
+1. `docker pull mongo:latest`
+2. `docker run -d -p 27017:27017 --name mongo mongo:latest`
+3. **Alt**: run docker on different port:
+   `docker run -d -p 27018:27017 --name mongo mongo:latest`
 
 ### Networks
 
@@ -151,7 +167,9 @@ Run the mongo container:
 docker run --network={name} -d -p 27017:27017 --name mongo mongo:latest
 ```
 
-**IMPORTANT** -- Update any `.env`-files to adhere with the container's name: `mongodb://mongo:27017`. Normally outside a docker network this may be `mongodb://localhost:27017`.
+**IMPORTANT** -- Update any `.env`-files to adhere with the container's name:
+`mongodb://mongo:27017`. Normally outside a docker network this may be
+`mongodb://localhost:27017`.
 
 Run the api container:
 

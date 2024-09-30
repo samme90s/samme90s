@@ -10,7 +10,8 @@ Ansible -> Configurer
 
 [Windows WSL Setup](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#file-storage)
 
-For Visual Studio modify to add: "Linux and embedded development with C++" in order for it to work with WSL.
+For Visual Studio modify to add: "Linux and embedded development with C++" in
+order for it to work with WSL.
 
 ## SSH (Ubuntu)
 
@@ -23,7 +24,8 @@ sudo apt install keychain
 
 ```shell
 # Copy .ssh from Windows to Linux and prevents duplicates.
-# It is important to note the trailing slash, this ensures only the content of the directory is copied.
+# It is important to note the trailing slash, this ensures only the content
+# of the directory is copied.
 rsync -av /mnt/c/users/samme/.ssh/ ~/.ssh/
 ```
 
