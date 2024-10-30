@@ -14,6 +14,10 @@ git config --global user.name "name"
 git config --global core.editor "vim"
 ```
 
+```shell
+git config --global pull.rebase false
+```
+
 ## Git Global Gitignore
 
 ```shell

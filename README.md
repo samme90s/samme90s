@@ -33,3 +33,28 @@ ip addr
 # Show host network IPs
 hostname -I
 ```
+
+## Git
+
+### Pull contents of another repository
+
+```shell
+# Clone your new repository locally on your computer
+git clone {new-repo-ssh-address}
+
+# Navigate into its directory
+cd {new-repo-dir}
+
+# Pull contents from the other repository
+git pull {old-repo-ssh-address} --allow-unrelated-histories
+
+# Set the default global pull strategy (do this once)
+git config --global pull.rebase false
+
+# (Optional) Resolve any merge conflicts and then commit if necessary
+# git add .
+# git commit -m "Merged contents from {repository}"
+
+# Push changes to your new GitLab repository
+git push origin main
+```
