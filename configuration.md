@@ -10,17 +10,15 @@ git config --global user.email "email"
 git config --global user.name "name"
 ```
 
+```shell
+git config --global core.editor "vim"
+```
+
 ## Git Global Gitignore
 
 ```shell
-touch ~/.gitignore_global
-```
-
-```shell
-echo ".idea/" >> ~/.gitignore_global
-```
-
-```shell
+touch ~/.gitignore_global && \
+echo ".idea/" >> ~/.gitignore_global && \
 # Configure Git to use the global .gitignore
 git config --global core.excludesfile ~/.gitignore_global
 ```

@@ -10,34 +10,26 @@ guidance for various projects.
 
 ### Filesystem
 
-```bash
+```shell
 # Show disk usage
 df -h
-```
 
-```bash
 # Show memory usage
 free -h
-```
 
-```bash
 # Show performance statistics
 top
 ```
 
 ### Network
 
-```bash
+```shell
 # Get public IP
 curl ifconfig.me
-```
 
-```bash
 # Show network interfaces
 ip addr
-```
 
-```bash
 # Show host network IPs
 hostname -I
 ```
