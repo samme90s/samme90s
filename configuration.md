@@ -31,3 +31,15 @@ git config --global core.excludesfile ~/.gitignore_global
 # To verify the file was correctly added
 git config --global --list
 ```
+
+## Ubuntu
+
+### SDKMAN
+
+```shell
+sudo apt update && \
+sudo apt update && \
+sudo apt install zip unzip && \
+curl -s "https://get.sdkman.io" | bash && \
+source "/home/samme/.sdkman/bin/sdkman-init.sh"
+```
