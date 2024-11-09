@@ -13,14 +13,14 @@ order for it to work with WSL.
 
 ```shell
 # Install keychain
-sudo apt install keychain \
+sudo apt install keychain && \
 # Copy .ssh from Windows to Linux and prevents duplicates.
 # It is important to note the trailing slash, this ensures only the content
 # of the directory is copied.
-&& rsync -av /mnt/c/users/samme/.ssh/ ~/.ssh/ \
+rsync -av /mnt/c/users/samme/.ssh/ ~/.ssh/ && \
 # Change permissions, this is important for the ssh-agent to work!
-&& chmod 700 ~/.ssh \
-&& chmod 600 ~/.ssh/*
+chmod 700 ~/.ssh && \
+chmod 600 ~/.ssh/*
 ```
 
 Add to `~/.bashrc` (filenames after ssh cmd):
@@ -35,6 +35,12 @@ vim ~/.bashrc
 # Ignore warnings if asymmetric key is missing!
 # Auto start ssh agent and add keys
 eval `keychain --eval --agents ssh id_ed25519 ss225ze-keypair.pem`
+```
+
+## Pip
+
+```shell
+sudo apt install python3-pip
 ```
 
 ## OpenStackClient Setup (Ubuntu)
