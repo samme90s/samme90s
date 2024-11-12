@@ -67,13 +67,12 @@ In Kubernetes, **pods**, **nodes**, and the **cluster network** are key componen
 - The **cluster network** ensures that all pods across different nodes can communicate with each other as if they were on the same local network. This allows distributed applications to function smoothly across multiple nodes [1][5].
 - The Kubernetes control plane manages how pods are scheduled onto nodes and how networking is handled to ensure reliable communication between them.
 
-In summary:
+Summarized:
 
 - Pods are deployed on nodes.
 - Nodes work together in a cluster.
 - The cluster network ensures seamless communication between all pods across all nodes.
 
-Citations:
 [1] https://kubernetes.io/docs/concepts/services-networking/
 
 [2] https://www.armosec.io/glossary/pods-and-nodes-kubernetes/
