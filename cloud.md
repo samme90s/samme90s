@@ -102,7 +102,7 @@ python3 -m pip install --upgrade --user ansible && \
 sudo apt install ansible
 ```
 
-## K8s (Ubuntu)
+## Kubernetes (k8s) (Ubuntu)
 
 ```shell
 cd ~ && \
@@ -118,4 +118,11 @@ kubectl version --client --output=yaml
 ```shell
 curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && \
 sudo install skaffold /usr/local/bin/
+```
+
+## Minikube (Ubuntu)
+
+```shell
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
 ```
