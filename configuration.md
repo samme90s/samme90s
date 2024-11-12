@@ -73,3 +73,8 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 # Verify that the installation is successful by running the hello-world image:
 sudo docker run hello-world
 ```
+
+```shell
+# Add docker to user and reload group
+sudo usermod -aG docker $USER && newgrp docker
+```
