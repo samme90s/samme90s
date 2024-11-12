@@ -23,6 +23,7 @@ git config --global pull.rebase false
 ```shell
 touch ~/.gitignore_global && \
 echo ".idea/" >> ~/.gitignore_global && \
+echo ".vscode/" >> ~/.gitignore_global && \
 # Configure Git to use the global .gitignore
 git config --global core.excludesfile ~/.gitignore_global
 ```
