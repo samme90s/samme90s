@@ -40,6 +40,29 @@ kubectl get pods -o wide
 kubectl explain pods
 ```
 
+```shell
+# Opens up a connection url to the service named.
+minikube service {service-name} --url
+```
+
+## GitLab agents
+
+1. Navigate to repository then: **Operate** > **Kubernetes clusters**
+2. **Connect a cluster** (create new agent or use an existing one)
+
+## Create secret for agent
+
+1. Navigate to repository then: **Settings** > **Access tokens**
+2. Add new token (select scopes and role)
+
+```shell
+kubectl create secret docker-registry regcred \
+  --docker-server=gitlab.lnu.se:5050 \
+  --docker-username={USERNAME} \
+  --docker-password={TOKEN} \
+  --docker-email={EMAIL}
+```
+
 ## Cluster
 
 In Kubernetes, **pods**, **nodes**, and the **cluster network** are key components that work together to run and manage containerized applications. Here's a brief explanation of each and how they are related:
