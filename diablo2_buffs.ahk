@@ -16,6 +16,30 @@ W:: {
     Send("q")
 }
 
+E:: {
+    Send("e")
+    Sleep(RandSleep())
+    Click("right")
+    Sleep(RandSleep())
+    Send("q")
+}
+
+R:: {
+    Send("r")
+    Sleep(RandSleep())
+    Click("right")
+    Sleep(RandSleep())
+    Send("q")
+}
+
+F:: {
+    Send("f")
+    Sleep(RandSleep())
+    Click("right")
+    Sleep(RandSleep())
+    Send("q")
+}
+
 B:: {
     Send("b")
     Sleep(RandSleep())
