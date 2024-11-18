@@ -3,45 +3,21 @@
 SetTitleMatchMode(2)
 
 ; Only activate the hotkey if Scroll Lock is ON
-#HotIf WinActive("Diablo") && GetKeyState("ScrollLock", "T")
+#HotIf WinActive("Diablo") && GetKeyState("ScrollLock")
 
 min_delay := 250
 max_delay := 650
 
-W:: {
-    Send("w")
-    Sleep(RandSleep())
-    Click("right")
-    Sleep(RandSleep())
-    Send("q")
-}
+; Define hotkeys
+W:: HandleKeyPress("w")
+E:: HandleKeyPress("e")
+R:: HandleKeyPress("r")
+F:: HandleKeyPress("f")
+B:: HandleKeyPress("b")
 
-E:: {
-    Send("e")
-    Sleep(RandSleep())
-    Click("right")
-    Sleep(RandSleep())
-    Send("q")
-}
-
-R:: {
-    Send("r")
-    Sleep(RandSleep())
-    Click("right")
-    Sleep(RandSleep())
-    Send("q")
-}
-
-F:: {
-    Send("f")
-    Sleep(RandSleep())
-    Click("right")
-    Sleep(RandSleep())
-    Send("q")
-}
-
-B:: {
-    Send("b")
+; Function to handle key press actions
+HandleKeyPress(key) {
+    Send(key)
     Sleep(RandSleep())
     Click("right")
     Sleep(RandSleep())
@@ -49,7 +25,6 @@ B:: {
 }
 
 ; Function to generate a random sleep duration
-; between Min and Max milliseconds
 RandSleep() {
     return Random(min_delay, max_delay)
 }
