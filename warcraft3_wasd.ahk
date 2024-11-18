@@ -3,7 +3,7 @@
 SetTitleMatchMode(2)
 
 ; Only activate the hotkey if Scroll Lock is ON
-#HotIf WinActive("Warcraft") && GetKeyState("ScrollLock")
+#HotIf WinActive("Warcraft")
 
 ;;;;; W - Up ;;;;;;
 w:: Send("{Up Down}")

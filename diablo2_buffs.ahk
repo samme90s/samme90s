@@ -3,7 +3,7 @@
 SetTitleMatchMode(2)
 
 ; Only activate the hotkey if Scroll Lock is ON
-#HotIf WinActive("Diablo") && GetKeyState("ScrollLock")
+#HotIf WinActive("Diablo")
 
 min_delay := 250
 max_delay := 650
