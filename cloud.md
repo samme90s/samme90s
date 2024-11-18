@@ -130,6 +130,8 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-a
 ### Configuration
 
 ```shell
+# Start minikube, check status,
+# and set kubernetes current use context to minikube.
 minikube start && \
 minikube status && \
 kubectl config use-context minikube
