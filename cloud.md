@@ -94,10 +94,7 @@ sudo apt-get install terraform
 ```shell
 sudo apt update && \
 sudo apt upgrade -y && \
-# Install and upgrade Ansible
-python3 -m pip install --user ansible && \
-python3 -m pip install --upgrade --user ansible && \
-# If ansible was not added to PATH
+# Install ansible
 sudo apt install ansible
 ```
 
