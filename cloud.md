@@ -49,8 +49,7 @@ sudo apt install python3-pip
 sudo apt update && \
 sudo apt upgrade -y && \
 # In order for the binary path to get set we install it as an apt package!
-sudo apt install python3-openstackclient && \
-pip install --upgrade python-openstackclient
+sudo apt install python3-openstackclient
 ```
 
 ## Terraform Setup (Ubuntu)
