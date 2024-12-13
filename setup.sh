@@ -54,6 +54,7 @@ LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/re
     tar xf lazygit.tar.gz lazygit &&
     sudo install lazygit -D -t /usr/local/bin/ &&
     rm lazygit.tar.gz &&
+    rm lazygit &&
     print_colored $GREEN "LazyGit installed"
 
 # Install FD
