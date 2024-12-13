@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Enable strict error handling
+set -e
+
 # Define color codes
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -116,6 +119,43 @@ else
         print_colored $GREEN "$FZF_PKG installed"
 fi
 
+# Install SDKMAN
+SDKMAN_PKG="sdk"
+
+if command_exists $SDKMAN_PKG; then
+    print_colored $GREEN "$SDKMAN_PKG is already installed"
+else
+    print_colored $YELLOW "Installing $SDKMAN_PKG..."
+    sudo apt install zip unzip &&
+        curl -s "https://get.sdkman.io" | bash &&
+        source "$HOME/.sdkman/bin/sdkman-init.sh" &&
+        print_colored $GREEN "$SDKMAN_PKG installed"
+fi
+
+# Install Docker
+DOCKER_PKG="docker"
+
+if is_installed docker-ce; then
+    print_colored $GREEN "Docker is already installed"
+else
+    print_colored $YELLOW "Installing Docker..."
+    # Add Docker's official GPG key:
+    sudo apt-get update &&
+        sudo apt-get install ca-certificates curl &&
+        sudo install -m 0755 -d /etc/apt/keyrings &&
+        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc &&
+        sudo chmod a+r /etc/apt/keyrings/docker.asc &&
+        # Add the repository to Apt sources:
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null &&
+        sudo apt-get update &&
+        # To install the latest version, run:
+        sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y &&
+        # Add current user to the Docker group:
+        echo "Adding current user to the Docker group..." &&
+        sudo usermod -aG docker $USER &&
+        print_colored $GREEN "Docker installed"
+fi
+
 # Setup
 #
 # Check if the directory exists
@@ -143,3 +183,4 @@ cd "$DIR/$GIT_REPO" &&
     print_colored $YELLOW "Moved to '$DIR/$GIT_REPO'"
 
 print_colored $GREEN "Setup complete!"
+print_colored $RED "Please restart your terminal to apply any hanging changes!"
