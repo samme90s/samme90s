@@ -14,6 +14,17 @@ print_colored() {
     echo -e "${color}${message}${NC}"
 }
 
+# Function to check if a package is installed
+is_installed() {
+    dpkg -l | grep -q "^ii  $1 "
+}
+
+# Function to check if a command is available in PATH.
+# This is an alternative to the is_installed() function.
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
 DIR="$HOME/dev"
 GIT_REPO="setup"
 GIT_URI="git@github.com:samme90s/$GIT_REPO.git"
@@ -33,72 +44,102 @@ sudo apt-get update &&
     print_colored $GREEN "Update and upgrade complete"
 
 # Install Bat
-print_colored $YELLOW "Installing Bat..."
+BAT_PKG="bat"
 
-sudo apt install bat -y &&
-    print_colored $GREEN "Bat installed"
+if is_installed $BAT_PKG; then
+    print_colored $GREEN "$BAT_PKG is already installed"
+else
+    print_colored $YELLOW "Installing $BAT_PKG..."
+    sudo apt install bat -y &&
+        print_colored $GREEN "$BAT_PKG installed"
+fi
 
 # Install RipGrep
-print_colored $YELLOW "Installing RipGrep..."
+RIPGREP_PKG="ripgrep"
 
-curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb &&
-    sudo dpkg -i ripgrep_14.1.0-1_amd64.deb &&
-    rm ripgrep_14.1.0-1_amd64.deb &&
-    print_colored $GREEN "RipGrep installed"
+if is_installed $RIPGREP_PKG; then
+    print_colored $GREEN "$RIPGREP_PKG is already installed"
+else
+    print_colored $YELLOW "Installing $RIPGREP_PKG..."
+    curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb &&
+        sudo dpkg -i ripgrep_14.1.0-1_amd64.deb &&
+        rm ripgrep_14.1.0-1_amd64.deb &&
+        print_colored $GREEN "$RIPGREP_PKG installed"
+fi
 
 # Install LazyGit
-print_colored $YELLOW "Installing LazyGit..."
+LAZYGIT_PKG="lazygit"
 
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*') &&
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" &&
-    tar xf lazygit.tar.gz lazygit &&
-    sudo install lazygit -D -t /usr/local/bin/ &&
-    rm lazygit.tar.gz &&
-    rm lazygit &&
-    print_colored $GREEN "LazyGit installed"
+if command_exists $LAZYGIT_PKG; then
+    print_colored $GREEN "$LAZYGIT_PKG is already installed"
+else
+    print_colored $YELLOW "Installing $LAZYGIT_PKG..."
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*') &&
+        curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" &&
+        tar xf lazygit.tar.gz lazygit &&
+        sudo install lazygit -D -t /usr/local/bin/ &&
+        rm lazygit.tar.gz &&
+        rm lazygit &&
+        print_colored $GREEN "$LAZYGIT_PKG installed"
+fi
 
-# Install FD
-print_colored $YELLOW "Installing FD-find..."
+# Install FD-find (fd)
+FD_PKG="fd-find"
 
-sudo apt install fd-find -y &&
-    print_colored $GREEN "FD-find installed"
+if is_installed $FD_PKG; then
+    print_colored $GREEN "$FD_PKG is already installed"
+else
+    print_colored $YELLOW "Installing $FD_PKG..."
+    sudo apt install fd-find -y &&
+        print_colored $GREEN "$FD_PKG installed"
+fi
 
 # Install JQ
-print_colored $YELLOW "Installing JQ..."
+JQ_PKG="jq"
 
-sudo apt-get install jq -y &&
-    print_colored $GREEN "JQ installed"
+if is_installed $JQ_PKG; then
+    print_colored $GREEN "$JQ_PKG is already installed"
+else
+    print_colored $YELLOW "Installing $JQ_PKG..."
+    sudo apt-get install jq -y &&
+        print_colored $GREEN "$JQ_PKG installed"
+fi
 
-# Install FuzzyFinder (FZF)
-print_colored $YELLOW "Installing FuzzyFinder..."
+# Install FuzzyFinder (fzf)
+FZF_PKG="fzf"
 
-sudo apt install fzf -y &&
-    print_colored $GREEN "FuzzyFinder installed"
+if is_installed $FZF_PKG; then
+    print_colored $GREEN "$FZF_PKG is already installed"
+else
+    print_colored $YELLOW "Installing $FZF_PKG..."
+    sudo apt install fzf -y &&
+        print_colored $GREEN "$FZF_PKG installed"
+fi
 
 # Setup
 #
 # Check if the directory exists
-if [ -d $DIR ]; then
+if [ -d "$DIR" ]; then
     print_colored $GREEN "Directory exists"
 else
     print_colored $RED "Directory does not exist. Creating..."
-    mkdir $DIR &&
+    mkdir "$DIR" &&
         print_colored $GREEN "Directory created"
 fi
 
-cd $DIR &&
+cd "$DIR" &&
     print_colored $GREEN "Moved to '$DIR'"
 
 # Check if the directory is empty
-if [ "$(ls -A $DIR)" ]; then
+if [ "$(ls -A "$DIR")" ]; then
     print_colored $YELLOW "Directory is not empty. Skipping cloning..."
 else
     print_colored $YELLOW "Directory is empty. Cloning..."
-    git clone $GIT_URI &&
+    git clone "$GIT_URI" &&
         print_colored $GREEN "Cloned '$GIT_REPO'"
 fi
 
-cd $DIR/$GIT_REPO &&
+cd "$DIR/$GIT_REPO" &&
     print_colored $YELLOW "Moved to '$DIR/$GIT_REPO'"
 
 print_colored $GREEN "Setup complete!"

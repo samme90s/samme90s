@@ -1,0 +1,6 @@
+# Ignore everything except chosen files
+*
+
+!*.md
+!*ignore
+!setup.sh
