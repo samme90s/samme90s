@@ -117,6 +117,7 @@ install_docker() {
 DIR="$HOME/dev"
 GIT_REPO="setup"
 GIT_URI="git@github.com:samme90s/$GIT_REPO.git"
+USER=$(whoami)
 
 print_colored $BLUE "Directory: $DIR"
 print_colored $BLUE "Git Repository: $GIT_REPO"
@@ -148,26 +149,22 @@ install_package "Docker" "docker" "docker" install_docker
 # SETUP
 ########################################
 # Check if the directory exists
-if [ -d "$DIR" ]; then
-    print_colored $GREEN "Directory exists"
-else
-    print_colored $RED "Directory does not exist. Creating..."
-    mkdir "$DIR"
-fi
-
-cd "$DIR"
-print_colored $GREEN "Moved to '$DIR'"
+mkdir -p "$DIR"
 
 # Check if the directory is empty
 if [ "$(ls -A "$DIR")" ]; then
     print_colored $YELLOW "Directory is not empty. Skipping cloning..."
 else
     print_colored $YELLOW "Directory is empty. Cloning..."
-    git clone "$GIT_URI"
+    git clone "$GIT_URI" "$DIR/$GIT_REPO"
 fi
-
-cd "$DIR/$GIT_REPO"
-print_colored $YELLOW "Moved to '$DIR/$GIT_REPO'"
+# Check if the symbolic link already exists
+if [ -L "$HOME/dev/setup/alacritty/alacritty.toml" ]; then
+    print_colored $YELLOW "Symbolic link for alacritty.toml already exists. Skipping..."
+else
+    ln -s /mnt/c/Users/$USER/AppData/Roaming/alacritty/alacritty.toml $HOME/dev/setup/alacritty/alacritty.toml
+    print_colored $GREEN "Symbolic link for alacritty.toml created."
+fi
 
 print_colored $GREEN "Setup complete!"
 print_colored $RED "Please restart your terminal to apply any hanging changes!"
