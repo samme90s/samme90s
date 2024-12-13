@@ -119,10 +119,33 @@ else
         print_colored $GREEN "$FZF_PKG installed"
 fi
 
+# Install FNM
+FNM_PKG="fnm"
+
+if command_exists $FNM_PKG; then
+    print_colored $GREEN "$FNM_PKG is already installed"
+else
+    print_colored $YELLOW "Installing $FNM_PKG..."
+    curl -fsSL https://fnm.vercel.app/install | bash &&
+        print_colored $GREEN "$FNM_PKG installed"
+fi
+
+# Install Node
+NODE_PKG="node"
+
+if command_exists $NODE_PKG; then
+    print_colored $GREEN "$NODE_PKG is already installed"
+else
+    print_colored $YELLOW "Installing $NODE_PKG..."
+    # download and install Node.js
+    fnm use --install-if-missing 22 &&
+        print_colored $GREEN "$NODE_PKG installed"
+fi
+
 # Install Python3-Pip
 PIP_PKG="pip"
 
-if is_installed $PIP_PKG; then
+if command_exists $PIP_PKG; then
     print_colored $GREEN "$PIP_PKG is already installed"
 else
     print_colored $YELLOW "Installing $PIP_PKG..."
