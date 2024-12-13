@@ -117,6 +117,7 @@ install_docker() {
 DIR="$HOME/dev"
 GIT_REPO="setup"
 GIT_URI="git@github.com:samme90s/$GIT_REPO.git"
+# Depending on the Windows username this may have to be changed!
 USER=$(whoami)
 
 print_colored $BLUE "Directory: $DIR"
@@ -158,13 +159,16 @@ else
     print_colored $YELLOW "Directory is empty. Cloning..."
     git clone "$GIT_URI" "$DIR/$GIT_REPO"
 fi
-# Check if the symbolic link already exists
-if [ -L "$HOME/dev/setup/alacritty/alacritty.toml" ]; then
-    print_colored $YELLOW "Symbolic link for alacritty.toml already exists. Skipping..."
-else
-    ln -s /mnt/c/Users/$USER/AppData/Roaming/alacritty/alacritty.toml $HOME/dev/setup/alacritty/alacritty.toml
-    print_colored $GREEN "Symbolic link for alacritty.toml created."
-fi
+
+# Copy configurations
+print_colored $YELLOW "Copying configurations..."
+print_colored $YELLOW "Checking if the directory exists..."
+mkdir -p /mnt/c/Users/$USER/AppData/Roaming/alacritty/ &&
+    print_colored $GREEN "Directory exists (or was created)" &&
+    rsync -v $HOME/dev/setup/imports/alacritty.toml /mnt/c/Users/$USER/AppData/Roaming/alacritty/alacritty.toml &&
+    print_colored $GREEN "Alacritty configuration copied"
 
 print_colored $GREEN "Setup complete!"
 print_colored $RED "Please restart your terminal to apply any hanging changes!"
+
+print_colored $BLUE "Import any custom configurations from the cloned repository to Windows"
