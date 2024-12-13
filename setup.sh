@@ -10,169 +10,94 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Function to print colored messages
+# GENERAL FUNCTIONS
+########################################
 print_colored() {
+    # Function to print colored messages
     local color=$1
     local message=$2
     echo -e "${color}${message}${NC}"
 }
 
-# Function to check if a package is installed
 is_installed() {
+    # Function to check if a package is installed
     dpkg -l | grep -q "^ii  $1 "
 }
 
-# Function to check if a command is available in PATH.
-# This is an alternative to the is_installed() function.
 command_exists() {
+    # Function to check if a command is available in PATH.
     command -v "$1" >/dev/null 2>&1
 }
 
-DIR="$HOME/dev"
-GIT_REPO="setup"
-GIT_URI="git@github.com:samme90s/$GIT_REPO.git"
+install_package() {
+    # Function to install a package if it is not already installed.
+    local name=$1
+    local package_name=$2
+    local command_name=$3
+    local install_function=$4
 
-print_colored $BLUE "Directory: $DIR"
-print_colored $BLUE "Git Repository: $GIT_REPO"
-print_colored $BLUE "Git URI: $GIT_URI"
+    if is_installed "$package_name" || command_exists "$command_name"; then
+        print_colored $GREEN "$name is already installed"
+    else
+        print_colored $YELLOW "Installing $name..."
+        $install_function
+        print_colored $GREEN "$name installed"
+    fi
+}
 
-# Public tools
-#
-# Update and upgrade
-print_colored $YELLOW "Installing public tools"
-print_colored $YELLOW "Updating and upgrading..."
+# PACKAGES
+########################################
+install_bat() {
+    sudo apt install bat -y
+}
 
-sudo apt-get update &&
-    sudo apt-get upgrade -y &&
-    print_colored $GREEN "Update and upgrade complete"
-
-# Install Bat
-BAT_PKG="bat"
-
-if is_installed $BAT_PKG; then
-    print_colored $GREEN "$BAT_PKG is already installed"
-else
-    print_colored $YELLOW "Installing $BAT_PKG..."
-    sudo apt install bat -y &&
-        print_colored $GREEN "$BAT_PKG installed"
-fi
-
-# Install RipGrep
-RIPGREP_PKG="ripgrep"
-
-if is_installed $RIPGREP_PKG; then
-    print_colored $GREEN "$RIPGREP_PKG is already installed"
-else
-    print_colored $YELLOW "Installing $RIPGREP_PKG..."
+install_ripgrep() {
     curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb &&
         sudo dpkg -i ripgrep_14.1.0-1_amd64.deb &&
-        rm ripgrep_14.1.0-1_amd64.deb &&
-        print_colored $GREEN "$RIPGREP_PKG installed"
-fi
+        rm ripgrep_14.1.0-1_amd64.deb
+}
 
-# Install LazyGit
-LAZYGIT_PKG="lazygit"
-
-if command_exists $LAZYGIT_PKG; then
-    print_colored $GREEN "$LAZYGIT_PKG is already installed"
-else
-    print_colored $YELLOW "Installing $LAZYGIT_PKG..."
+install_lazygit() {
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*') &&
         curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" &&
         tar xf lazygit.tar.gz lazygit &&
         sudo install lazygit -D -t /usr/local/bin/ &&
         rm lazygit.tar.gz &&
-        rm lazygit &&
-        print_colored $GREEN "$LAZYGIT_PKG installed"
-fi
+        rm lazygit
+}
 
-# Install FD-find (fd)
-FD_PKG="fd-find"
+install_fd_find() {
+    sudo apt install fd-find -y
+}
 
-if is_installed $FD_PKG; then
-    print_colored $GREEN "$FD_PKG is already installed"
-else
-    print_colored $YELLOW "Installing $FD_PKG..."
-    sudo apt install fd-find -y &&
-        print_colored $GREEN "$FD_PKG installed"
-fi
+install_jq() {
+    sudo apt-get install jq -y
+}
 
-# Install JQ
-JQ_PKG="jq"
+install_fzf() {
+    sudo apt install fzf -y
+}
 
-if is_installed $JQ_PKG; then
-    print_colored $GREEN "$JQ_PKG is already installed"
-else
-    print_colored $YELLOW "Installing $JQ_PKG..."
-    sudo apt-get install jq -y &&
-        print_colored $GREEN "$JQ_PKG installed"
-fi
+install_fnm() {
+    curl -fsSL https://fnm.vercel.app/install | bash
+    source $HOME/.bashrc
+}
 
-# Install FuzzyFinder (fzf)
-FZF_PKG="fzf"
+install_nodejs() {
+    fnm use --install-if-missing 22
+}
 
-if is_installed $FZF_PKG; then
-    print_colored $GREEN "$FZF_PKG is already installed"
-else
-    print_colored $YELLOW "Installing $FZF_PKG..."
-    sudo apt install fzf -y &&
-        print_colored $GREEN "$FZF_PKG installed"
-fi
+install_python3_pip() {
+    sudo apt install python3-pip -y
+}
 
-# Install FNM
-FNM_PKG="fnm"
-
-if command_exists $FNM_PKG; then
-    print_colored $GREEN "$FNM_PKG is already installed"
-else
-    print_colored $YELLOW "Installing $FNM_PKG..."
-    curl -fsSL https://fnm.vercel.app/install | bash &&
-        print_colored $GREEN "$FNM_PKG installed"
-fi
-
-# Install Node
-NODE_PKG="node"
-
-if command_exists $NODE_PKG; then
-    print_colored $GREEN "$NODE_PKG is already installed"
-else
-    print_colored $YELLOW "Installing $NODE_PKG..."
-    # download and install Node.js
-    fnm use --install-if-missing 22 &&
-        print_colored $GREEN "$NODE_PKG installed"
-fi
-
-# Install Python3-Pip
-PIP_PKG="pip"
-
-if command_exists $PIP_PKG; then
-    print_colored $GREEN "$PIP_PKG is already installed"
-else
-    print_colored $YELLOW "Installing $PIP_PKG..."
-    sudo apt install python3-pip -y &&
-        print_colored $GREEN "$PIP_PKG installed"
-fi
-
-# Install SDKMAN
-SDKMAN_PKG="sdk"
-
-if command_exists $SDKMAN_PKG; then
-    print_colored $GREEN "$SDKMAN_PKG is already installed"
-else
-    print_colored $YELLOW "Installing $SDKMAN_PKG..."
+install_sdkman() {
     sudo apt install zip unzip &&
         curl -s "https://get.sdkman.io" | bash &&
-        source "$HOME/.sdkman/bin/sdkman-init.sh" &&
-        print_colored $GREEN "$SDKMAN_PKG installed"
-fi
+        source $HOME/.sdkman/bin/sdkman-init.sh
+}
 
-# Install Docker
-DOCKER_PKG="docker"
-
-if is_installed docker-ce; then
-    print_colored $GREEN "Docker is already installed"
-else
-    print_colored $YELLOW "Installing Docker..."
+install_docker() {
     # Add Docker's official GPG key:
     sudo apt-get update &&
         sudo apt-get install ca-certificates curl &&
@@ -186,35 +111,63 @@ else
         sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y &&
         # Add current user to the Docker group:
         echo "Adding current user to the Docker group..." &&
-        sudo usermod -aG docker $USER &&
-        print_colored $GREEN "Docker installed"
-fi
+        sudo usermod -aG docker $USER
+}
 
-# Setup
-#
+DIR="$HOME/dev"
+GIT_REPO="setup"
+GIT_URI="git@github.com:samme90s/$GIT_REPO.git"
+
+print_colored $BLUE "Directory: $DIR"
+print_colored $BLUE "Git Repository: $GIT_REPO"
+print_colored $BLUE "Git URI: $GIT_URI"
+
+# INSTALLATION OF PACKAGES
+########################################
+# Update and upgrade
+print_colored $YELLOW "Installing public tools"
+print_colored $YELLOW "Updating and upgrading..."
+sudo apt-get update &&
+    sudo apt-get upgrade -y &&
+    print_colored $GREEN "Update and upgrade complete"
+
+# Install packages using the generic function with specific functions for each installation.
+# install_package "Name" "Package Name" "Command Name" "Install Function"
+install_package "Bat" "bat" "bat" install_bat
+install_package "RipGrep" "ripgrep" "rg" install_ripgrep
+install_package "LazyGit" "" "lazygit" install_lazygit
+install_package "FD-find (fd)" "fd-find" "fd" install_fd_find
+install_package "JQ" "jq" "jq" install_jq
+install_package "FuzzyFinder (fzf)" "fzf" "fzf" install_fzf
+install_package "FNM" "fnm" "fnm" install_fnm
+install_package "Node.js" "node" "node" install_nodejs
+install_package "Python3-Pip" "pip3" "pip3" install_python3_pip
+install_package "SDKMAN" "sdk" "sdk" install_sdkman
+install_package "Docker" "docker" "docker" install_docker
+
+# SETUP
+########################################
 # Check if the directory exists
 if [ -d "$DIR" ]; then
     print_colored $GREEN "Directory exists"
 else
     print_colored $RED "Directory does not exist. Creating..."
-    mkdir "$DIR" &&
-        print_colored $GREEN "Directory created"
+    mkdir "$DIR"
 fi
 
-cd "$DIR" &&
-    print_colored $GREEN "Moved to '$DIR'"
+cd "$DIR"
+print_colored $GREEN "Moved to '$DIR'"
 
 # Check if the directory is empty
 if [ "$(ls -A "$DIR")" ]; then
     print_colored $YELLOW "Directory is not empty. Skipping cloning..."
 else
     print_colored $YELLOW "Directory is empty. Cloning..."
-    git clone "$GIT_URI" &&
-        print_colored $GREEN "Cloned '$GIT_REPO'"
+    git clone "$GIT_URI"
 fi
 
-cd "$DIR/$GIT_REPO" &&
-    print_colored $YELLOW "Moved to '$DIR/$GIT_REPO'"
+cd "$DIR/$GIT_REPO"
+print_colored $YELLOW "Moved to '$DIR/$GIT_REPO'"
 
 print_colored $GREEN "Setup complete!"
 print_colored $RED "Please restart your terminal to apply any hanging changes!"
