@@ -38,6 +38,42 @@ print_colored $YELLOW "Installing Bat..."
 sudo apt install bat -y &&
     print_colored $GREEN "Bat installed"
 
+# Install RipGrep
+print_colored $YELLOW "Installing RipGrep..."
+
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb &&
+    sudo dpkg -i ripgrep_14.1.0-1_amd64.deb &&
+    rm ripgrep_14.1.0-1_amd64.deb &&
+    print_colored $GREEN "RipGrep installed"
+
+# Install LazyGit
+print_colored $YELLOW "Installing LazyGit..."
+
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*') &&
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" &&
+    tar xf lazygit.tar.gz lazygit &&
+    sudo install lazygit -D -t /usr/local/bin/ &&
+    rm lazygit.tar.gz &&
+    print_colored $GREEN "LazyGit installed"
+
+# Install FD
+print_colored $YELLOW "Installing FD-find..."
+
+sudo apt install fd-find -y &&
+    print_colored $GREEN "FD-find installed"
+
+# Install JQ
+print_colored $YELLOW "Installing JQ..."
+
+sudo apt-get install jq -y &&
+    print_colored $GREEN "JQ installed"
+
+# Install FuzzyFinder (FZF)
+print_colored $YELLOW "Installing FuzzyFinder..."
+
+sudo apt install fzf -y &&
+    print_colored $GREEN "FuzzyFinder installed"
+
 # Setup
 #
 # Check if the directory exists
