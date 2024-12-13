@@ -119,6 +119,17 @@ else
         print_colored $GREEN "$FZF_PKG installed"
 fi
 
+# Install Python3-Pip
+PIP_PKG="pip"
+
+if is_installed $PIP_PKG; then
+    print_colored $GREEN "$PIP_PKG is already installed"
+else
+    print_colored $YELLOW "Installing $PIP_PKG..."
+    sudo apt install python3-pip -y &&
+        print_colored $GREEN "$PIP_PKG installed"
+fi
+
 # Install SDKMAN
 SDKMAN_PKG="sdk"
 
