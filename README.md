@@ -2,6 +2,7 @@
 
 ## Pre-Requisites for WSL (Ubuntu 24.02 LTS)
 
+- JetBrains Mono Nerd Font
 - Bash (usually comes with Git)
 - Git & configuration
 - SSH & configuration
