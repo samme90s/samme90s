@@ -12,10 +12,18 @@ NC='\033[0m' # No Color
 
 # GENERAL FUNCTIONS
 ########################################
-print_colored() {
+print() {
     # Function to print colored messages
     local color=$1
     local message=$2
+    echo -e "${color}${message}${NC}"
+}
+
+println() {
+    # Function to print colored messages
+    local color=$1
+    local message=$2
+    echo ""
     echo -e "${color}${message}${NC}"
 }
 
@@ -37,11 +45,11 @@ install_package() {
     local install_function=$4
 
     if is_installed "$package_name" || command_exists "$command_name"; then
-        print_colored $GREEN "$name is already installed"
+        print $GREEN "$name is already installed"
     else
-        print_colored $YELLOW "Installing $name..."
+        print $YELLOW "Installing $name..."
         $install_function
-        print_colored $GREEN "$name installed"
+        print $GREEN "$name installed"
     fi
 }
 
@@ -118,33 +126,43 @@ install_neovim() {
     sudo apt-get install neovim -y
 }
 
-DIR="$HOME/dev"
+# VARIABLES
+########################################
+GIT_DIR="$HOME/dev"
 GIT_REPO="setup"
 GIT_URI="git@github.com:samme90s/$GIT_REPO.git"
 # Depending on the Windows username this may have to be changed!
 USER=$(whoami)
+IMPORTS_SRC="$GIT_DIR/$GIT_REPO/imports"
+ALACRITTY_DEST="/mnt/c/Users/$USER/AppData/Roaming/alacritty"
+ALACRITTY_FILE="alacritty.toml"
 
-print_colored $BLUE "Directory: $DIR"
-print_colored $BLUE "Git Repository: $GIT_REPO"
-print_colored $BLUE "Git URI: $GIT_URI"
+# Print variables for debug purposes
+println $BLUE "Printing variables for debug purposes"
+print $BLUE "GIT_DIR: $GIT_DIR"
+print $BLUE "GIT_REPO: $GIT_REPO"
+print $BLUE "GIT_URI: $GIT_URI"
+print $BLUE "USER: $USER"
+print $BLUE "IMPORTS_SRC: $IMPORTS_SRC"
+print $BLUE "ALACRITTY_DEST: $ALACRITTY_DEST"
+print $BLUE "ALACRITTY_FILE: $ALACRITTY_FILE"
 
 # INSTALLATION OF PACKAGES
 ########################################
 # General messages
-print_colored $BLUE "Strict error handling enabled"
-
+println $BLUE "Strict error handling enabled"
 # Update and upgrade
-print_colored $YELLOW "Installing public tools"
-print_colored $YELLOW "Updating packages..."
+print $YELLOW "Installing public tools"
+print $YELLOW "Updating packages..."
 sudo apt-get update &&
     # sudo apt-get upgrade -y &&
-    print_colored $GREEN "Update complete"
+    print $GREEN "Update complete"
 
 # Install packages using the generic function with specific functions for each installation.
 # install_package "Name" "Package Name" "Command Name" "Install Function"
 install_package "Bat" "bat" "bat" install_bat
 install_package "RipGrep" "ripgrep" "rg" install_ripgrep
-install_package "LazyGit" "" "lazygit" install_lazygit
+install_package "LazyGit" "lazygit" "lazygit" install_lazygit
 install_package "FD-find (fd)" "fd-find" "fd" install_fd_find
 install_package "JQ" "jq" "jq" install_jq
 install_package "FuzzyFinder (fzf)" "fzf" "fzf" install_fzf
@@ -157,34 +175,39 @@ install_package "Neovim" "nvim" "nvim" install_neovim
 
 # SETUP
 ########################################
-# Check if the directory exists
-mkdir -p "$DIR"
-
-# Check if the directory is empty
-if [ "$(ls -A "$DIR")" ]; then
-    print_colored $YELLOW "Directory is not empty. Skipping cloning..."
+println $YELLOW "Checking if the directory ($GIT_DIR) is empty or does not exist..."
+# Check if the directory is empty or does not exist
+if [ ! -d $GIT_DIR ] || [ -z "$(ls -A "$GIT_DIR")" ]; then
+    print $YELLOW "Directory is empty or does not exist. Cloning..."
+    git clone "$GIT_URI" "$GIT_DIR/$GIT_REPO" &&
+        print $GREEN "Cloning complete"
 else
-    print_colored $YELLOW "Directory is empty. Cloning..."
-    git clone "$GIT_URI" "$DIR/$GIT_REPO"
+    print $YELLOW "Directory is not empty. Skipping cloning..."
 fi
 
 # Copy configurations
-print_colored $YELLOW "Copying configurations..."
-print_colored $YELLOW "Checking if the directory exists..."
+print $YELLOW "Copying configurations..."
+print $YELLOW "Checking if the directory exists..."
 mkdir -p /mnt/c/Users/$USER/AppData/Roaming/alacritty/ &&
-    print_colored $GREEN "Directory exists (or was created)" &&
-    rsync -v $HOME/dev/setup/imports/alacritty.toml /mnt/c/Users/$USER/AppData/Roaming/alacritty/alacritty.toml &&
-    print_colored $GREEN "Alacritty configuration copied"
+    print $GREEN "Directory exists (or was created)"
 
-print_colored $GREEN "Setup complete!"
-print_colored $RED "Please restart your terminal to apply any hanging changes!"
+# Check if the file has changed before copying
+print $YELLOW "Checking if the file ($ALACRITTY_FILE) has changed..."
+if ! rsync -aci --dry-run $IMPORTS_SRC/$ALACRITTY_FILE $ALACRITTY_DEST/$ALACRITTY_FILE | grep -q '^>f'; then
+    print $YELLOW "No changes detected. Skipping copy."
+else
+    print $YELLOW "Changes detected. Copying..."
+    rsync -v $IMPORTS_SRC/$ALACRITTY_FILE $ALACRITTY_DEST/$ALACRITTY_FILE &&
+        print $GREEN "Alacritty configuration copied"
+fi
 
-echo ""
-print_colored $BLUE "######################################################################"
-print_colored $BLUE "Import any custom configurations from the cloned repository to Windows"
+# END
+########################################
+print $GREEN "Setup complete!"
+print $RED "Please restart your terminal to apply any hanging changes!"
 
+println $BLUE "######################################################################"
+print $BLUE "Import any custom configurations from the cloned repository to Windows"
 # Disable strict error handling
-echo ""
-print_colored $BLUE "##############################"
-print_colored $BLUE "Strict error handling disabled"
+print $BLUE "Strict error handling disabled"
 set +e
