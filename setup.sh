@@ -114,6 +114,10 @@ install_docker() {
         sudo usermod -aG docker $USER
 }
 
+install_neovim() {
+    sudo apt-get install neovim -y
+}
+
 DIR="$HOME/dev"
 GIT_REPO="setup"
 GIT_URI="git@github.com:samme90s/$GIT_REPO.git"
@@ -126,12 +130,15 @@ print_colored $BLUE "Git URI: $GIT_URI"
 
 # INSTALLATION OF PACKAGES
 ########################################
+# General messages
+print_colored $BLUE "Strict error handling enabled"
+
 # Update and upgrade
 print_colored $YELLOW "Installing public tools"
-print_colored $YELLOW "Updating and upgrading..."
+print_colored $YELLOW "Updating packages..."
 sudo apt-get update &&
-    sudo apt-get upgrade -y &&
-    print_colored $GREEN "Update and upgrade complete"
+    # sudo apt-get upgrade -y &&
+    print_colored $GREEN "Update complete"
 
 # Install packages using the generic function with specific functions for each installation.
 # install_package "Name" "Package Name" "Command Name" "Install Function"
@@ -146,6 +153,7 @@ install_package "Node.js" "node" "node" install_nodejs
 install_package "Python3-Pip" "pip3" "pip3" install_python3_pip
 install_package "SDKMAN" "sdk" "sdk" install_sdkman
 install_package "Docker" "docker" "docker" install_docker
+install_package "Neovim" "nvim" "nvim" install_neovim
 
 # SETUP
 ########################################
@@ -171,4 +179,12 @@ mkdir -p /mnt/c/Users/$USER/AppData/Roaming/alacritty/ &&
 print_colored $GREEN "Setup complete!"
 print_colored $RED "Please restart your terminal to apply any hanging changes!"
 
+echo ""
+print_colored $BLUE "######################################################################"
 print_colored $BLUE "Import any custom configurations from the cloned repository to Windows"
+
+# Disable strict error handling
+echo ""
+print_colored $BLUE "##############################"
+print_colored $BLUE "Strict error handling disabled"
+set +e
