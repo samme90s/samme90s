@@ -2,9 +2,8 @@
 *
 
 !*.md
+!*.sh
 !*ignore
-!setup.sh
 
 # IMPORTS
-!imports/
 !imports/*

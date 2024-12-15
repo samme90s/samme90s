@@ -84,7 +84,6 @@ M.ui = {
 
 ```lua
 -- Add last in ~/.config/nvim/init.lua
-
 -- Enable transparency
 vim.cmd [[
   highlight Normal guibg=none ctermbg=none
@@ -92,4 +91,3 @@ vim.cmd [[
   highlight EndOfBuffer guibg=none ctermbg=none
 ]]
 ```
-

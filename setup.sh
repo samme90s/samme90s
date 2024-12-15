@@ -3,12 +3,36 @@
 # Enable strict error handling
 set -e
 
-# Define color codes
+# VARIABLES
+########################################
+GIT_DIR="$HOME/dev"
+GIT_REPO="setup"
+GIT_URI="git@github.com:samme90s/$GIT_REPO.git"
+# Depending on the Windows username this may have to be changed!
+USER=$(whoami)
+IMPORTS_SRC="$GIT_DIR/$GIT_REPO/imports"
+ALACRITTY_DEST="/mnt/c/Users/$USER/AppData/Roaming/alacritty"
+ALACRITTY_FILE="alacritty.toml"
+NVIM_CONF_DIR="$HOME/.config/nvim"
+
+# Print variables for debug purposes
+println $BLUE "Printing variables for debug purposes"
+print $BLUE "GIT_DIR: $GIT_DIR"
+print $BLUE "GIT_REPO: $GIT_REPO"
+print $BLUE "GIT_URI: $GIT_URI"
+print $BLUE "USER: $USER"
+print $BLUE "IMPORTS_SRC: $IMPORTS_SRC"
+print $BLUE "ALACRITTY_DEST: $ALACRITTY_DEST"
+print $BLUE "ALACRITTY_FILE: $ALACRITTY_FILE"
+print $BLUE "NVIM_CONF_DIR: $NVIM_CONF_DIR"
+
+# COLORS
+########################################
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 # GENERAL FUNCTIONS
 ########################################
@@ -59,50 +83,8 @@ install_bat() {
     sudo apt install bat -y
 }
 
-install_ripgrep() {
-    curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb &&
-        sudo dpkg -i ripgrep_14.1.0-1_amd64.deb &&
-        rm ripgrep_14.1.0-1_amd64.deb
-}
-
-install_lazygit() {
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*') &&
-        curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" &&
-        tar xf lazygit.tar.gz lazygit &&
-        sudo install lazygit -D -t /usr/local/bin/ &&
-        rm lazygit.tar.gz &&
-        rm lazygit
-}
-
-install_fd_find() {
-    sudo apt install fd-find -y
-}
-
-install_jq() {
-    sudo apt-get install jq -y
-}
-
-install_fzf() {
-    sudo apt install fzf -y
-}
-
-install_fnm() {
-    curl -fsSL https://fnm.vercel.app/install | bash
-    source $HOME/.bashrc
-}
-
-install_nodejs() {
-    fnm use --install-if-missing 22
-}
-
-install_python3_pip() {
-    sudo apt install python3-pip -y
-}
-
-install_sdkman() {
-    sudo apt install zip unzip &&
-        curl -s "https://get.sdkman.io" | bash &&
-        source $HOME/.sdkman/bin/sdkman-init.sh
+install_clang() {
+    sudo apt install clang -y
 }
 
 install_docker() {
@@ -122,6 +104,32 @@ install_docker() {
         sudo usermod -aG docker $USER
 }
 
+install_fd_find() {
+    sudo apt install fd-find -y
+}
+
+install_fnm() {
+    curl -fsSL https://fnm.vercel.app/install | bash
+    source $HOME/.bashrc
+}
+
+install_fzf() {
+    sudo apt install fzf -y
+}
+
+install_jq() {
+    sudo apt-get install jq -y
+}
+
+install_lazygit() {
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*') &&
+        curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" &&
+        tar xf lazygit.tar.gz lazygit &&
+        sudo install lazygit -D -t /usr/local/bin/ &&
+        rm lazygit.tar.gz &&
+        rm lazygit
+}
+
 install_neovim() {
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
     # Remove old and unzip tar file
@@ -132,28 +140,25 @@ install_neovim() {
     rm -f nvim-linux64.tar.gz
 }
 
-# VARIABLES
-########################################
-GIT_DIR="$HOME/dev"
-GIT_REPO="setup"
-GIT_URI="git@github.com:samme90s/$GIT_REPO.git"
-# Depending on the Windows username this may have to be changed!
-USER=$(whoami)
-IMPORTS_SRC="$GIT_DIR/$GIT_REPO/imports"
-ALACRITTY_DEST="/mnt/c/Users/$USER/AppData/Roaming/alacritty"
-ALACRITTY_FILE="alacritty.toml"
-NVIM_CONF_DIR="~/.config/nvim"
+install_nodejs() {
+    fnm use --install-if-missing 22
+}
 
-# Print variables for debug purposes
-println $BLUE "Printing variables for debug purposes"
-print $BLUE "GIT_DIR: $GIT_DIR"
-print $BLUE "GIT_REPO: $GIT_REPO"
-print $BLUE "GIT_URI: $GIT_URI"
-print $BLUE "USER: $USER"
-print $BLUE "IMPORTS_SRC: $IMPORTS_SRC"
-print $BLUE "ALACRITTY_DEST: $ALACRITTY_DEST"
-print $BLUE "ALACRITTY_FILE: $ALACRITTY_FILE"
-print $BLUE "NVIM_CONF_DIR: $NVIM_CONF_DIR"
+install_python3_pip() {
+    sudo apt install python3-pip -y
+}
+
+install_ripgrep() {
+    curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb &&
+        sudo dpkg -i ripgrep_14.1.0-1_amd64.deb &&
+        rm ripgrep_14.1.0-1_amd64.deb
+}
+
+install_sdkman() {
+    sudo apt install zip unzip &&
+        curl -s "https://get.sdkman.io" | bash &&
+        source $HOME/.sdkman/bin/sdkman-init.sh
+}
 
 # INSTALLATION OF PACKAGES
 ########################################
@@ -168,18 +173,22 @@ sudo apt-get update &&
 
 # Install packages using the generic function with specific functions for each installation.
 # install_package "Name" "Package Name" "Command Name" "Install Function"
-install_package "Bat" "bat" "bat" install_bat
-install_package "RipGrep" "ripgrep" "rg" install_ripgrep
-install_package "LazyGit" "lazygit" "lazygit" install_lazygit
-install_package "FD-find (fd)" "fd-find" "fd" install_fd_find
-install_package "JQ" "jq" "jq" install_jq
-install_package "FuzzyFinder (fzf)" "fzf" "fzf" install_fzf
-install_package "FNM" "fnm" "fnm" install_fnm
-install_package "Node.js" "node" "node" install_nodejs
+#
+# Essentials, these need to be installed first
 install_package "Python3-Pip" "pip3" "pip3" install_python3_pip
+install_package "Node.js" "node" "node" install_nodejs
 install_package "SDKMAN" "sdk" "sdk" install_sdkman
+# Tools
+install_package "Bat" "bat" "bat" install_bat
+install_package "Clang" "clang" "clang" install_clang
 install_package "Docker" "docker" "docker" install_docker
+install_package "FD-find (fd)" "fd-find" "fd" install_fd_find
+install_package "FNM" "fnm" "fnm" install_fnm
+install_package "FuzzyFinder (fzf)" "fzf" "fzf" install_fzf
+install_package "JQ" "jq" "jq" install_jq
+install_package "LazyGit" "lazygit" "lazygit" install_lazygit
 install_package "Neovim" "nvim" "nvim" install_neovim
+install_package "RipGrep" "ripgrep" "rg" install_ripgrep
 
 # SETUP
 ########################################
