@@ -142,6 +142,7 @@ USER=$(whoami)
 IMPORTS_SRC="$GIT_DIR/$GIT_REPO/imports"
 ALACRITTY_DEST="/mnt/c/Users/$USER/AppData/Roaming/alacritty"
 ALACRITTY_FILE="alacritty.toml"
+NVIM_CONF_DIR="~/.config/nvim"
 
 # Print variables for debug purposes
 println $BLUE "Printing variables for debug purposes"
@@ -152,6 +153,7 @@ print $BLUE "USER: $USER"
 print $BLUE "IMPORTS_SRC: $IMPORTS_SRC"
 print $BLUE "ALACRITTY_DEST: $ALACRITTY_DEST"
 print $BLUE "ALACRITTY_FILE: $ALACRITTY_FILE"
+print $BLUE "NVIM_CONF_DIR: $NVIM_CONF_DIR"
 
 # INSTALLATION OF PACKAGES
 ########################################
@@ -181,7 +183,8 @@ install_package "Neovim" "nvim" "nvim" install_neovim
 
 # SETUP
 ########################################
-println $YELLOW "Checking if the directory ($GIT_DIR) is empty or does not exist..."
+println $YELLOW "Setting up local configs"
+print $YELLOW "Checking if the directory ($GIT_DIR) is empty or does not exist..."
 # Check if the directory is empty or does not exist
 if [ ! -d $GIT_DIR ] || [ -z "$(ls -A "$GIT_DIR")" ]; then
     print $YELLOW "Directory is empty or does not exist. Cloning..."
@@ -192,7 +195,7 @@ else
 fi
 
 # Copy configurations
-print $YELLOW "Copying configurations..."
+println $YELLOW "Configuring IMPORTS/"
 print $YELLOW "Checking if the directory exists..."
 mkdir -p /mnt/c/Users/$USER/AppData/Roaming/alacritty/ &&
     print $GREEN "Directory exists (or was created)"
@@ -207,10 +210,7 @@ else
         print $GREEN "Alacritty configuration copied"
 fi
 
-println $YELLOW "Configuring NVIM..."
-
-NVIM_CONF_DIR=~/.config/nvim
-
+println $YELLOW "Configure NVIM"
 if [ -d $NVIM_CONF_DIR ]; then
     print $YELLOW "NVIM configuration already exists. Skipping clone..."
     print $YELLOW "(If this was not intended please remove the '$NVIM_CONF_DIR' folder)"
