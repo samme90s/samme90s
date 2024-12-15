@@ -211,11 +211,11 @@ mkdir -p /mnt/c/Users/$USER/AppData/Roaming/alacritty/ &&
 
 # Check if the file has changed before copying
 print $YELLOW "Checking if the file ($ALACRITTY_FILE) has changed..."
-if ! rsync -aci --dry-run $IMPORTS_SRC/$ALACRITTY_FILE $ALACRITTY_DEST/$ALACRITTY_FILE | grep -q '^>f'; then
+if ! rsync -aci --dry-run ${IMPORTS_SRC}/${ALACRITTY_FILE} ${ALACRITTY_DEST}/${ALACRITTY_FILE} | grep -q '^>f'; then
     print $YELLOW "No changes detected. Skipping copy."
 else
     print $YELLOW "Changes detected. Copying..."
-    rsync -v $IMPORTS_SRC/$ALACRITTY_FILE $ALACRITTY_DEST/$ALACRITTY_FILE &&
+    rsync -v ${IMPORTS_SRC}/${ALACRITTY_FILE} ${ALACRITTY_DEST}/${ALACRITTY_FILE} &&
         print $GREEN "Alacritty configuration copied"
 fi
 
