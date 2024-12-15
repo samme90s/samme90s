@@ -75,20 +75,12 @@ source setup.sh
 ### Enable transparency for Neovim
 
 ```lua
--- Add in ~/.config/nvim/lua/chadrc.lua
--- Before the "return M" statement
-M.ui = {
-  transparency = true, -- Enable transparency
-}
-```
-
-```lua
--- Add last in ~/.config/nvim/init.lua
+-- Add in ~/.config/nvim/init.lua
 -- Enable transparency
 vim.cmd [[
-  highlight Normal guibg=none ctermbg=none
-  highlight NonText guibg=none ctermbg=none
-  highlight EndOfBuffer guibg=none ctermbg=none
-  highlight NvimTreeNormal guibg=none ctermbg=none
+  highlight Normal guibg=NONE
+  highlight NonText guibg=NONE
+  highlight Normal ctermbg=NONE
+  highlight NonText ctermbg=NONE
 ]]
 ```
