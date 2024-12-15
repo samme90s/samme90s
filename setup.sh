@@ -144,9 +144,9 @@ println $BLUE "Strict error handling enabled"
 
 # Update packages
 print $YELLOW "Installing public tools"
-print $YELLOW "Updating packages..."
+print $YELLOW "Updating packages"
 sudo apt-get update &&
-    print $GREEN "Updating packages... - complete"
+    print $GREEN "Updating packages - complete"
 
 # Install packages using the generic function with specific functions for each installation.
 # install_package "Name" "Package Name" "Command Name" "Install Function"
@@ -169,23 +169,27 @@ install_package "RipGrep" "ripgrep" "rg" install_ripgrep
 
 # SETUP
 ########################################
-# Clone repository
+# Clone or update repository
 DIR="$HOME/dev/setup"
-GIT_URI="git@github.com:samme90s/$GIT_REPO.git"
-# Check if the .git directory exists
-if ! -d "$DIR/.git"; then
-    println $YELLOW "Cloning... ($GIT_URI > $DIR)"
+GIT_URI="git@github.com:samme90s/setup.git"
+# Check if the directory exists
+if [ -d "$DIR/.git" ]; then
+    println $YELLOW "Pulling ($GIT_URI > $DIR)"
+    git -C "$DIR" pull &&
+        print $GREEN "Pulling ($GIT_URI > $DIR) - complete"
+else
+    println $YELLOW "Cloning ($GIT_URI > $DIR)"
     git clone "$GIT_URI" "$DIR" &&
-        print $GREEN "Cloning... ($GIT_URI > $DIR) complete"
+        print $GREEN "Cloning ($GIT_URI > $DIR) - complete"
 fi
 
 # Copy alacritty configuration
 USER=$(whoami)
-ALACRITTY_SRC="${DIR}/${GIT_REPO}/imports/alacritty.toml"
-ALACRITTY_DEST="/mnt/c/Users/${USER}/AppData/Roaming/alacritty/alacritty.toml"
+ALACRITTY_SRC="$DIR/imports/alacritty.toml"
+ALACRITTY_DEST="/mnt/c/Users/$USER/AppData/Roaming/alacritty/alacritty.toml"
 # Check if the alacritty configuration file has changed
 if rsync -aci --dry-run $ALACRITTY_SRC $ALACRITTY_DEST | grep -q '^>f'; then
-    mkdir -p /mnt/c/Users/$USER/AppData/Roaming/alacritty/ &&
+    mkdir -p $(dirname $ALACRITTY_DEST) &&
         rsync -v $ALACRITTY_SRC $ALACRITTY_DEST &&
         print $GREEN "Alacritty configuration copied"
 fi
