@@ -123,7 +123,13 @@ install_docker() {
 }
 
 install_neovim() {
-    sudo apt-get install neovim -y
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+    # Remove old and unzip tar file
+    sudo rm -rf /opt/nvim
+    sudo tar -C /opt -xzf nvim-linux64.tar.gz
+    # Set nvim to PATH by creating a symbolic link
+    sudo ln -s /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
+    rm -f nvim-linux64.tar.gz
 }
 
 # VARIABLES
@@ -199,6 +205,27 @@ else
     print $YELLOW "Changes detected. Copying..."
     rsync -v $IMPORTS_SRC/$ALACRITTY_FILE $ALACRITTY_DEST/$ALACRITTY_FILE &&
         print $GREEN "Alacritty configuration copied"
+fi
+
+println $YELLOW "Configuring NVIM..."
+
+NVIM_CONF_DIR=~/.config/nvim
+
+if [ -d $NVIM_CONF_DIR ]; then
+    print $YELLOW "NVIM configuration already exists. Skipping clone..."
+    print $YELLOW "(If this was not intended please remove the '$NVIM_CONF_DIR' folder)"
+else
+    print $RED "Removing nvim cache"
+    rm -rf ~/.local/share/nvim
+    print $YELLOW "Cloning NvChad starter config to $NVIM_CONF_DIR"
+    git clone https://github.com/NvChad/starter $NVIM_CONF_DIR
+    print $RED "Removing .git folder"
+    rm -rf $NVIM_CONF_DIR/.git
+    print $GREEN "NvChad config cloned. Please follow the steps below:"
+
+    println $BLUE "Run :MasonInstallAll command after lazy.nvim finishes downloading plugins"
+    print $BLUE "Learn customization of ui & base46 from :h nvui"
+    print $BLUE ":space:th (to change theme)"
 fi
 
 # END
