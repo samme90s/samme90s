@@ -3,6 +3,9 @@
 ## Pre-Requisites for WSL (Ubuntu 24.02 LTS)
 
 - JetBrains Mono Nerd Font (Windows)
+  1. USE GITHUB LATEST RELEASE
+  2. DOWNLOAD .ZIP & EXTRACT
+  3. INSTALL FOR ALL USERS
 - Alacritty
 - Bash (usually comes with Git)
 - Git & configuration
@@ -62,5 +65,31 @@ echo "eval \$(keychain --eval --agents ssh id_ed25519 ss225ze-keypair.pem)" >> $
 ## Usage
 
 ```shell
+# Use only in Linux Distro!
+source fonts.sh
 source setup.sh
 ```
+
+## Post-setup
+
+### Enable transparency for Neovim
+
+```lua
+-- Add in ~/.config/nvim/lua/chadrc.lua
+-- Before the "return M" statement
+M.ui = {
+  transparency = true, -- Enable transparency
+}
+```
+
+```lua
+-- Add last in ~/.config/nvim/init.lua
+
+-- Enable transparency
+vim.cmd [[
+  highlight Normal guibg=none ctermbg=none
+  highlight NonText guibg=none ctermbg=none
+  highlight EndOfBuffer guibg=none ctermbg=none
+]]
+```
+
