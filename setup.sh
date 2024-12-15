@@ -3,29 +3,6 @@
 # Enable strict error handling
 set -e
 
-# VARIABLES
-########################################
-GIT_DIR="$HOME/dev"
-GIT_REPO="setup"
-GIT_URI="git@github.com:samme90s/$GIT_REPO.git"
-# Depending on the Windows username this may have to be changed!
-USER=$(whoami)
-IMPORTS_SRC="$GIT_DIR/$GIT_REPO/imports"
-ALACRITTY_DEST="/mnt/c/Users/$USER/AppData/Roaming/alacritty"
-ALACRITTY_FILE="alacritty.toml"
-NVIM_CONF_DIR="$HOME/.config/nvim"
-
-# Print variables for debug purposes
-println $BLUE "Printing variables for debug purposes"
-print $BLUE "GIT_DIR: $GIT_DIR"
-print $BLUE "GIT_REPO: $GIT_REPO"
-print $BLUE "GIT_URI: $GIT_URI"
-print $BLUE "USER: $USER"
-print $BLUE "IMPORTS_SRC: $IMPORTS_SRC"
-print $BLUE "ALACRITTY_DEST: $ALACRITTY_DEST"
-print $BLUE "ALACRITTY_FILE: $ALACRITTY_FILE"
-print $BLUE "NVIM_CONF_DIR: $NVIM_CONF_DIR"
-
 # COLORS
 ########################################
 RED='\033[0;31m'
@@ -80,11 +57,11 @@ install_package() {
 # PACKAGES
 ########################################
 install_bat() {
-    sudo apt install bat -y
+    sudo apt-get install bat -y
 }
 
 install_clang() {
-    sudo apt install clang -y
+    sudo apt-get install clang -y
 }
 
 install_docker() {
@@ -105,7 +82,7 @@ install_docker() {
 }
 
 install_fd_find() {
-    sudo apt install fd-find -y
+    sudo apt-get install fd-find -y
 }
 
 install_fnm() {
@@ -114,7 +91,7 @@ install_fnm() {
 }
 
 install_fzf() {
-    sudo apt install fzf -y
+    sudo apt-get install fzf -y
 }
 
 install_jq() {
@@ -145,7 +122,7 @@ install_nodejs() {
 }
 
 install_python3_pip() {
-    sudo apt install python3-pip -y
+    sudo apt-get install python3-pip -y
 }
 
 install_ripgrep() {
@@ -164,12 +141,12 @@ install_sdkman() {
 ########################################
 # General messages
 println $BLUE "Strict error handling enabled"
-# Update and upgrade
+
+# Update packages
 print $YELLOW "Installing public tools"
 print $YELLOW "Updating packages..."
 sudo apt-get update &&
-    # sudo apt-get upgrade -y &&
-    print $GREEN "Update complete"
+    print $GREEN "Updating packages... - complete"
 
 # Install packages using the generic function with specific functions for each installation.
 # install_package "Name" "Package Name" "Command Name" "Install Function"
@@ -192,49 +169,25 @@ install_package "RipGrep" "ripgrep" "rg" install_ripgrep
 
 # SETUP
 ########################################
-println $YELLOW "Setting up local configs"
-print $YELLOW "Checking if the directory ($GIT_DIR) is empty or does not exist..."
-# Check if the directory is empty or does not exist
-if [ ! -d $GIT_DIR ] || [ -z "$(ls -A "$GIT_DIR")" ]; then
-    print $YELLOW "Directory is empty or does not exist. Cloning..."
-    git clone "$GIT_URI" "$GIT_DIR/$GIT_REPO" &&
-        print $GREEN "Cloning complete"
-else
-    print $YELLOW "Directory is not empty. Skipping cloning..."
+# Clone repository
+DIR="$HOME/dev/setup"
+GIT_URI="git@github.com:samme90s/$GIT_REPO.git"
+# Check if the .git directory exists
+if ! -d "$DIR/.git"; then
+    println $YELLOW "Cloning... ($GIT_URI > $DIR)"
+    git clone "$GIT_URI" "$DIR" &&
+        print $GREEN "Cloning... ($GIT_URI > $DIR) complete"
 fi
 
-# Copy configurations
-println $YELLOW "Configuring IMPORTS/"
-print $YELLOW "Checking if the directory exists..."
-mkdir -p /mnt/c/Users/$USER/AppData/Roaming/alacritty/ &&
-    print $GREEN "Directory exists (or was created)"
-
-# Check if the file has changed before copying
-print $YELLOW "Checking if the file ($ALACRITTY_FILE) has changed..."
-if ! rsync -aci --dry-run ${IMPORTS_SRC}/${ALACRITTY_FILE} ${ALACRITTY_DEST}/${ALACRITTY_FILE} | grep -q '^>f'; then
-    print $YELLOW "No changes detected. Skipping copy."
-else
-    print $YELLOW "Changes detected. Copying..."
-    rsync -v ${IMPORTS_SRC}/${ALACRITTY_FILE} ${ALACRITTY_DEST}/${ALACRITTY_FILE} &&
+# Copy alacritty configuration
+USER=$(whoami)
+ALACRITTY_SRC="${DIR}/${GIT_REPO}/imports/alacritty.toml"
+ALACRITTY_DEST="/mnt/c/Users/${USER}/AppData/Roaming/alacritty/alacritty.toml"
+# Check if the alacritty configuration file has changed
+if rsync -aci --dry-run $ALACRITTY_SRC $ALACRITTY_DEST | grep -q '^>f'; then
+    mkdir -p /mnt/c/Users/$USER/AppData/Roaming/alacritty/ &&
+        rsync -v $ALACRITTY_SRC $ALACRITTY_DEST &&
         print $GREEN "Alacritty configuration copied"
-fi
-
-println $YELLOW "Configure NVIM"
-if [ -d $NVIM_CONF_DIR ]; then
-    print $YELLOW "NVIM configuration already exists. Skipping clone..."
-    print $YELLOW "(If this was not intended please remove the '$NVIM_CONF_DIR' folder)"
-else
-    print $RED "Removing nvim cache"
-    rm -rf ~/.local/share/nvim
-    print $YELLOW "Cloning NvChad starter config to $NVIM_CONF_DIR"
-    git clone https://github.com/NvChad/starter $NVIM_CONF_DIR
-    print $RED "Removing .git folder"
-    rm -rf $NVIM_CONF_DIR/.git
-    print $GREEN "NvChad config cloned. Please follow the steps below:"
-
-    println $BLUE "Run :MasonInstallAll command after lazy.nvim finishes downloading plugins"
-    print $BLUE "Learn customization of ui & base46 from :h nvui"
-    print $BLUE ":space:th (to change theme)"
 fi
 
 # END
