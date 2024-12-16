@@ -125,10 +125,25 @@ install_python3_pip() {
     sudo apt-get install python3-pip -y
 }
 
+install_pipx() {
+    sudo apt install pipx -y &&
+        pipx ensurepath
+}
+
+install_poetry() {
+    pipx install poetry
+    pipx upgrade poetry
+    poetry completions bash >>$HOME/.bash_completion
+}
+
 install_ripgrep() {
     curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb &&
         sudo dpkg -i ripgrep_14.1.0-1_amd64.deb &&
         rm ripgrep_14.1.0-1_amd64.deb
+}
+
+install_ruby() {
+    sudo apt-get install ruby-full -y
 }
 
 install_sdkman() {
@@ -153,6 +168,7 @@ sudo apt-get update &&
 #
 # Essentials, these need to be installed first
 install_package "Python3-Pip" "pip3" "pip3" install_python3_pip
+install_package "Pipx" "pipx" "pipx" install_pipx
 install_package "Node.js" "node" "node" install_nodejs
 install_package "SDKMAN" "sdk" "sdk" install_sdkman
 # Tools
@@ -165,7 +181,9 @@ install_package "FuzzyFinder (fzf)" "fzf" "fzf" install_fzf
 install_package "JQ" "jq" "jq" install_jq
 install_package "LazyGit" "lazygit" "lazygit" install_lazygit
 install_package "Neovim" "nvim" "nvim" install_neovim
+install_package "Poetry" "poetry" "poetry" install_poetry
 install_package "RipGrep" "ripgrep" "rg" install_ripgrep
+install_package "Ruby" "ruby" "ruby" install_ruby
 
 # SETUP
 ########################################
