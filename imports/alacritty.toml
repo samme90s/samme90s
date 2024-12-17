@@ -23,7 +23,7 @@ bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
 # All imports must either be absolute paths starting with /,
 # paths relative to the user's home directory starting with ~/,
 # or paths relative from the current config file.
-import = ["~/.config/alacritty/themes/themes/rose_pine.toml"]
+import = ["~/.config/alacritty/themes/themes/rose_pine_moon.toml"]
 
 # This would normally work, but since we use WSL the instance will crash.
 # working_directory = "~/"
