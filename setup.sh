@@ -41,11 +41,10 @@ command_exists() {
 install_package() {
     # Function to install a package if it is not already installed.
     local name=$1
-    local package_name=$2
-    local command_name=$3
-    local install_function=$4
+    local pkg=$2
+    local install_function=$3
 
-    if is_installed "$package_name" || command_exists "$command_name"; then
+    if is_installed "$pkg" || command_exists "$pkg"; then
         print $GREEN "$name is already installed"
     else
         print $YELLOW "Installing $name..."
@@ -96,6 +95,14 @@ install_fzf() {
 
 install_jq() {
     sudo apt-get install jq -y
+}
+
+install_lua() {
+    sudo apt-get install lua5.4 -y
+}
+
+install_luarocks() {
+    sudo apt-get install luarocks -y
 }
 
 install_neovim() {
@@ -158,22 +165,24 @@ sudo apt-get update &&
 # install_package "Name" "Package Name" "Command Name" "Install Function"
 #
 # Essentials, these need to be installed first
-install_package "Python3-Pip" "pip3" "pip3" install_python3_pip
-install_package "Pipx" "pipx" "pipx" install_pipx
-install_package "Node.js" "node" "node" install_nodejs
-install_package "SDKMAN" "sdk" "sdk" install_sdkman
+install_package "Python3-Pip" "pip3" install_python3_pip
+install_package "Pipx" "pipx" install_pipx
+install_package "Node.js" "node" install_nodejs
+install_package "SDKMAN" "sdk" install_sdkman
 # Tools
-install_package "Bat" "bat" "bat" install_bat
-install_package "Clang" "clang" "clang" install_clang
-install_package "Docker" "docker" "docker" install_docker
-install_package "FD-find (fd)" "fd-find" "fd" install_fd_find
-install_package "FNM" "fnm" "fnm" install_fnm
-install_package "FuzzyFinder (fzf)" "fzf" "fzf" install_fzf
-install_package "JQ" "jq" "jq" install_jq
-install_package "Neovim" "nvim" "nvim" install_neovim
-install_package "Poetry" "poetry" "poetry" install_poetry
-install_package "RipGrep" "ripgrep" "rg" install_ripgrep
-install_package "Ruby" "ruby" "ruby" install_ruby
+install_package "Bat" "bat" install_bat
+install_package "Clang" "clang" install_clang
+install_package "Docker" "docker" install_docker
+install_package "FD-find (fd)" "fdfind" install_fd_find
+install_package "FNM" "fnm" install_fnm
+install_package "FuzzyFinder (fzf)" "fzf" install_fzf
+install_package "JQ" "jq" install_jq
+install_package "Lua" "lua" install_lua
+install_package "LuaRocks" "luarocks" install_luarocks
+install_package "Neovim" "nvim" install_neovim
+install_package "Poetry" "poetry" install_poetry
+install_package "RipGrep" "rg" install_ripgrep
+install_package "Ruby" "ruby" install_ruby
 
 # SETUP
 ########################################
