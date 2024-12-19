@@ -1,4 +1,4 @@
-# General Docs
+# Do
 
 ## About
 
@@ -34,27 +34,18 @@ ip addr
 hostname -I
 ```
 
-## Git
+## SSH
 
-### Pull contents of another repository
+### Windows
+
+1. Run using `Win + R` using `services.msc`.
+2. Find `OpenSSH Authentication Agent` in the list.
+3. Goto `properties` and set start method to `automatic`.
+4. Hit `apply` then press `start` and `ok`.
 
 ```shell
-# Clone your new repository locally on your computer
-git clone {new-repo-ssh-address}
-
-# Navigate into its directory
-cd {new-repo-dir}
-
-# Pull contents from the other repository
-git pull {old-repo-ssh-address} --allow-unrelated-histories
-
-# Set the default global pull strategy (do this once)
-git config --global pull.rebase false
-
-# (Optional) Resolve any merge conflicts and then commit if necessary
-# git add .
-# git commit -m "Merged contents from {repository}"
-
-# Push changes to your new GitLab repository
-git push origin main
+# Add identity file to the ssh agent
+ssh-add {identity-file} && \
+# Check if key was added
+ssh-add -l
 ```

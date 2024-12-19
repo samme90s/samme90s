@@ -7,43 +7,7 @@
 For Visual Studio modify to add: "Linux and embedded development with C++" in
 order for it to work with WSL.
 
-## SSH (Ubuntu)
-
-[Sharing SSH Keys](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
-
-```shell
-# Install keychain
-sudo apt install keychain && \
-# Copy .ssh from Windows to Linux and prevents duplicates.
-# It is important to note the trailing slash, this ensures only the content
-# of the directory is copied.
-rsync -av /mnt/c/users/samme/.ssh/ ~/.ssh/ && \
-# Change permissions, this is important for the ssh-agent to work!
-chmod 700 ~/.ssh && \
-chmod 600 ~/.ssh/*
-```
-
-Add to `~/.bashrc` (filenames after ssh cmd):
-
-```shell
-vim ~/.bashrc
-```
-
-```text
-# Add to the start of the "~/.bashrc" file
-#
-# Ignore warnings if asymmetric key is missing!
-# Auto start ssh agent and add keys
-eval `keychain --eval --agents ssh id_ed25519 ss225ze-keypair.pem`
-```
-
-## Pip
-
-```shell
-sudo apt install python3-pip
-```
-
-## OpenStackClient Setup (Ubuntu)
+## OpenStackClient Setup
 
 ```shell
 sudo apt update && \
@@ -52,7 +16,7 @@ sudo apt upgrade -y && \
 sudo apt install python3-openstackclient
 ```
 
-## Terraform Setup (Ubuntu)
+## Terraform Setup
 
 [Terraform Install](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 
@@ -87,7 +51,7 @@ sudo apt update && \
 sudo apt-get install terraform
 ```
 
-## Ansible Setup (Ubuntu)
+## Ansible Setup
 
 [Ansible Install](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pip)
 
@@ -98,7 +62,7 @@ sudo apt upgrade -y && \
 sudo apt install ansible
 ```
 
-## Kubernetes (k8s) (Ubuntu)
+## Kubernetes (k8s)
 
 ```shell
 cd ~ && \
@@ -109,14 +73,14 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl && \
 kubectl version --client --output=yaml
 ```
 
-## Skaffold (Ubuntu)
+## Skaffold
 
 ```shell
 curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && \
 sudo install skaffold /usr/local/bin/
 ```
 
-## Minikube (Ubuntu)
+## Minikube
 
 ```shell
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
