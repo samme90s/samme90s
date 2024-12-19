@@ -69,18 +69,3 @@ echo "eval \$(keychain --eval --agents ssh id_ed25519 ss225ze-keypair.pem)" >> $
 source fonts.sh
 source setup.sh
 ```
-
-## Post-setup
-
-### Enable transparency for Neovim
-
-```lua
--- Add in ~/.config/nvim/init.lua
--- Enable transparency
-vim.cmd [[
-  highlight Normal guibg=NONE
-  highlight NonText guibg=NONE
-  highlight Normal ctermbg=NONE
-  highlight NonText ctermbg=NONE
-]]
-```
