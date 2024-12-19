@@ -98,15 +98,6 @@ install_jq() {
     sudo apt-get install jq -y
 }
 
-install_lazygit() {
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*') &&
-        curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" &&
-        tar xf lazygit.tar.gz lazygit &&
-        sudo install lazygit -D -t /usr/local/bin/ &&
-        rm lazygit.tar.gz &&
-        rm lazygit
-}
-
 install_neovim() {
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
     # Remove old and unzip tar file
@@ -179,7 +170,6 @@ install_package "FD-find (fd)" "fd-find" "fd" install_fd_find
 install_package "FNM" "fnm" "fnm" install_fnm
 install_package "FuzzyFinder (fzf)" "fzf" "fzf" install_fzf
 install_package "JQ" "jq" "jq" install_jq
-install_package "LazyGit" "lazygit" "lazygit" install_lazygit
 install_package "Neovim" "nvim" "nvim" install_neovim
 install_package "Poetry" "poetry" "poetry" install_poetry
 install_package "RipGrep" "ripgrep" "rg" install_ripgrep
