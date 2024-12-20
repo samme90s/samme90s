@@ -18,37 +18,12 @@ sudo apt install python3-openstackclient
 
 ## Terraform Setup
 
-[Terraform Install](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+[Terraform Install](https://developer.hashicorp.com/terraform/install)
 
 ```shell
-# Ensure system is up to date and "gnupg", "software-properties-common" and "curl" are installed.
-# These packages to verify HashiCorp's GPG signature and install HashiCorp's Debian package repository.
-sudo apt-get update && \
-sudo apt-get install -y gnupg software-properties-common \
-# Install HashiCorp's GPG key
-wget -O- https://apt.releases.hashicorp.com/gpg | \
-gpg --dearmor | \
-sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
-```
-
-```shell
-# Verify the key's fingerprint
-gpg --no-default-keyring \
---keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
---fingerprint
-```
-
-```shell
-# Add HashiCorp's official Debian repository
-echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
-https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
-sudo tee /etc/apt/sources.list.d/hashicorp.list
-```
-
-```shell
-# Update and install Terraform
-sudo apt update && \
-sudo apt-get install terraform
+wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg && \
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list && \
+sudo apt update && sudo apt install terraform
 ```
 
 ## Ansible Setup
