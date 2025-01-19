@@ -10,5 +10,11 @@ SetTitleMatchMode(2)
 ;;;;; F - F3 (Debug) ;;;;;;
 f:: Send("{F3}")
 
+;;;;; Shift + F - F3 (Debug) ;;;;;;
++f:: Send("+{F3}")
+
+;;;;; Ctrl + F - F3 (Debug) ;;;;;;
+^f:: Send("^{F3}")
+
 #HotIf
 ; End of conditional block
