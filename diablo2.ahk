@@ -3,7 +3,8 @@
 
 SetTitleMatchMode(2)
 
-; Only activate the hotkey if Scroll Lock is ON
+; Only activate if the window title contains
+; something of the following...
 #HotIf WinActive("Diablo")
 
 min_delay := 250
@@ -30,4 +31,5 @@ RandSleep() {
     return Random(min_delay, max_delay)
 }
 
-#HotIf  ; End of conditional block
+#HotIf
+; End of conditional block
