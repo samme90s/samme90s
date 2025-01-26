@@ -59,10 +59,6 @@ install_bat() {
     sudo apt-get install bat -y
 }
 
-install_clang() {
-    sudo apt-get install clang -y
-}
-
 install_docker() {
     # Add Docker's official GPG key:
     sudo apt-get update &&
@@ -97,14 +93,6 @@ install_jq() {
     sudo apt-get install jq -y
 }
 
-install_lua() {
-    sudo apt-get install lua5.4 -y
-}
-
-install_luarocks() {
-    sudo apt-get install luarocks -y
-}
-
 install_neovim() {
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
     # Remove old and unzip tar file
@@ -123,31 +111,20 @@ install_python3_pip() {
     sudo apt-get install python3-pip -y
 }
 
-install_pipx() {
-    sudo apt install pipx -y &&
-        pipx ensurepath
-}
-
-install_poetry() {
-    pipx install poetry
-    pipx upgrade poetry
-    poetry completions bash >>$HOME/.bash_completion
-}
-
 install_ripgrep() {
     curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb &&
         sudo dpkg -i ripgrep_14.1.0-1_amd64.deb &&
         rm ripgrep_14.1.0-1_amd64.deb
 }
 
-install_ruby() {
-    sudo apt-get install ruby-full -y
-}
-
 install_sdkman() {
-    sudo apt install zip unzip &&
+    sudo apt-get install zip unzip &&
         curl -s "https://get.sdkman.io" | bash &&
         source $HOME/.sdkman/bin/sdkman-init.sh
+}
+
+install_tmux() {
+    sudo apt-get install tmux
 }
 
 # INSTALLATION OF PACKAGES
@@ -166,28 +143,23 @@ sudo apt-get update &&
 #
 # Essentials, these need to be installed first
 install_package "Python3-Pip" "pip3" install_python3_pip
-install_package "Pipx" "pipx" install_pipx
 install_package "Node.js" "node" install_nodejs
 install_package "SDKMAN" "sdk" install_sdkman
 # Tools
 install_package "Bat" "bat" install_bat
-install_package "Clang" "clang" install_clang
 install_package "Docker" "docker" install_docker
 install_package "FD-find (fd)" "fdfind" install_fd_find
 install_package "FNM" "fnm" install_fnm
 install_package "FuzzyFinder (fzf)" "fzf" install_fzf
 install_package "JQ" "jq" install_jq
-install_package "Lua" "lua" install_lua
-install_package "LuaRocks" "luarocks" install_luarocks
 install_package "Neovim" "nvim" install_neovim
-install_package "Poetry" "poetry" install_poetry
 install_package "RipGrep" "rg" install_ripgrep
-install_package "Ruby" "ruby" install_ruby
+install_package "Tmux" "tmux" install_tmux
 
 # SETUP
 ########################################
 # Clone or update repository
-DIR="$HOME/dev/setup"
+DIR="$HOME/dev/github/setup"
 GIT_URI="git@github.com:samme90s/setup.git"
 # Check if the directory exists
 if [ -d "$DIR/.git" ]; then
@@ -218,6 +190,10 @@ print $RED "Please restart your terminal to apply any hanging changes!"
 
 println $BLUE "######################################################################"
 print $BLUE "Import any custom configurations from the cloned repository to Windows"
+
+prinln $BLUE "Also update your ~/.bashrc to create a new Tmux instance on launch!"
+print $BLUE "This is normally done using: tmux new-session -A -s main"
+
 # Disable strict error handling
-print $BLUE "Strict error handling disabled"
+println $BLUE "Strict error handling disabled"
 set +e
