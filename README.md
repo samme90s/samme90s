@@ -72,14 +72,16 @@ source fonts.sh
 
 ## Themes
 
+> MAKE SURE TO UNCOMMENT (~/.bashrc)
+> force_color_prompt=yes
+
 ```shell
-# Install themes
-git clone https://github.com/rose-pine/alacritty.git &&
 # Make sure the directory exists
 mkdir -p $HOME/.config/alacritty &&
-# Copies the content to the alacritty config location
-cp ./alacritty/dist/* $HOME/.config/alacritty
-# You can remove the folder if wanted afterwards
+curl -LO --output-dir ~/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-latte.toml
+curl -LO --output-dir ~/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-frappe.toml
+curl -LO --output-dir ~/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-macchiato.toml
+curl -LO --output-dir ~/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-mocha.toml
 ```
 
 ## Alacritty Config
