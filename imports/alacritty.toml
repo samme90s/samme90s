@@ -15,16 +15,6 @@ bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
 # GENERAL
 ######################
 [general]
-# Import additional configuration files.
-#
-# Imports are loaded in order, skipping all missing files, with the importing file being loaded last.
-# If a field is already present in a previous import, it will be replaced.
-#
-# All imports must either be absolute paths starting with /,
-# paths relative to the user's home directory starting with ~/,
-# or paths relative from the current config file.
-import = ["~/.config/alacritty/rose_pine_moon.toml"]
-
 # Live config reload (changes require restart)
 live_config_reload = true
 
@@ -46,8 +36,6 @@ style = { shape = "Block", blinking = "Off" }
 # When this is true, the cursor is temporarily hidden when typing.
 # Default: false
 hide_when_typing = false
-# Allows pasting with the right mouse button.
-bindings = [{ mouse = "Right", action = "Paste" }]
 
 # SCROLLING
 ######################

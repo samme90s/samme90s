@@ -62,27 +62,22 @@ install_bat() {
 install_docker() {
     # Add Docker's official GPG key:
     sudo apt-get update &&
-        sudo apt-get install ca-certificates curl &&
-        sudo install -m 0755 -d /etc/apt/keyrings &&
-        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc &&
-        sudo chmod a+r /etc/apt/keyrings/docker.asc &&
-        # Add the repository to Apt sources:
-        echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null &&
-        sudo apt-get update &&
-        # To install the latest version, run:
-        sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y &&
-        # Add current user to the Docker group:
-        echo "Adding current user to the Docker group..." &&
-        sudo usermod -aG docker $USER
+    sudo apt-get install ca-certificates curl &&
+    sudo install -m 0755 -d /etc/apt/keyrings &&
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc &&
+    sudo chmod a+r /etc/apt/keyrings/docker.asc &&
+    # Add the repository to Apt sources:
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null &&
+    sudo apt-get update &&
+    # To install the latest version, run:
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y &&
+    # Add current user to the Docker group:
+    echo "Adding current user to the Docker group..." &&
+    sudo usermod -aG docker $USER
 }
 
 install_fd_find() {
     sudo apt-get install fd-find -y
-}
-
-install_fnm() {
-    curl -fsSL https://fnm.vercel.app/install | bash
-    source $HOME/.bashrc
 }
 
 install_fzf() {
@@ -91,40 +86,6 @@ install_fzf() {
 
 install_jq() {
     sudo apt-get install jq -y
-}
-
-install_neovim() {
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-    # Remove old and unzip tar file
-    sudo rm -rf /opt/nvim
-    sudo tar -C /opt -xzf nvim-linux64.tar.gz
-    # Set nvim to PATH by creating a symbolic link
-    sudo ln -s /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
-    rm -f nvim-linux64.tar.gz
-}
-
-install_nodejs() {
-    fnm use --install-if-missing 22
-}
-
-install_python3_pip() {
-    sudo apt-get install python3-pip -y
-}
-
-install_ripgrep() {
-    curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep_14.1.0-1_amd64.deb &&
-        sudo dpkg -i ripgrep_14.1.0-1_amd64.deb &&
-        rm ripgrep_14.1.0-1_amd64.deb
-}
-
-install_sdkman() {
-    sudo apt-get install zip unzip &&
-        curl -s "https://get.sdkman.io" | bash &&
-        source $HOME/.sdkman/bin/sdkman-init.sh
-}
-
-install_tmux() {
-    sudo apt-get install tmux
 }
 
 # INSTALLATION OF PACKAGES
@@ -136,46 +97,22 @@ println $BLUE "Strict error handling enabled"
 print $YELLOW "Installing public tools"
 print $YELLOW "Updating packages"
 sudo apt-get update &&
-    print $GREEN "Updating packages - complete"
+print $GREEN "Updating packages - complete"
 
 # Install packages using the generic function with specific functions for each installation.
 # install_package "Name" "Package Name" "Command Name" "Install Function"
 #
-# Essentials, these need to be installed first
-install_package "Python3-Pip" "pip3" install_python3_pip
-install_package "Node.js" "node" install_nodejs
-install_package "SDKMAN" "sdk" install_sdkman
 # Tools
 install_package "Bat" "bat" install_bat
 install_package "Docker" "docker" install_docker
 install_package "FD-find (fd)" "fdfind" install_fd_find
-install_package "FNM" "fnm" install_fnm
 install_package "FuzzyFinder (fzf)" "fzf" install_fzf
 install_package "JQ" "jq" install_jq
-install_package "Neovim" "nvim" install_neovim
-install_package "RipGrep" "rg" install_ripgrep
-install_package "Tmux" "tmux" install_tmux
-
-# SETUP
-########################################
-# Clone or update repository
-DIR="$HOME/dev/github/setup"
-GIT_URI="git@github.com:samme90s/setup.git"
-# Check if the directory exists
-if [ -d "$DIR/.git" ]; then
-    println $YELLOW "Pulling ($GIT_URI > $DIR)"
-    git -C "$DIR" pull &&
-        print $GREEN "Pulling ($GIT_URI > $DIR) - complete"
-else
-    println $YELLOW "Cloning ($GIT_URI > $DIR)"
-    git clone "$GIT_URI" "$DIR" &&
-        print $GREEN "Cloning ($GIT_URI > $DIR) - complete"
-fi
 
 # Copy alacritty configuration
 USER=$(whoami)
-ALACRITTY_SRC="$DIR/imports/alacritty.toml"
-ALACRITTY_DEST="/mnt/c/Users/$USER/AppData/Roaming/alacritty/alacritty.toml"
+ALACRITTY_SRC="./imports/alacritty.toml"
+ALACRITTY_DEST="$HOME/.config/alacritty/alacritty.toml"
 # Check if the alacritty configuration file has changed
 if rsync -aci --dry-run $ALACRITTY_SRC $ALACRITTY_DEST | grep -q '^>f'; then
     mkdir -p $(dirname $ALACRITTY_DEST) &&
@@ -186,13 +123,7 @@ fi
 # END
 ########################################
 print $GREEN "Setup complete!"
-print $RED "Please restart your terminal to apply any hanging changes!"
-
-println $BLUE "######################################################################"
-print $BLUE "Import any custom configurations from the cloned repository to Windows"
-
-prinln $BLUE "Also update your ~/.bashrc to create a new Tmux instance on launch!"
-print $BLUE "This is normally done using: tmux new-session -A -s main"
+print $GREEN "Please restart your terminal to apply any hanging changes!"
 
 # Disable strict error handling
 println $BLUE "Strict error handling disabled"
