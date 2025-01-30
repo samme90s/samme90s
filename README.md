@@ -1,15 +1,15 @@
 # Setup
 
-## Pre-Requisites for WSL (Ubuntu 24.02 LTS)
+## Clone
 
-- JetBrains Mono Nerd Font (Windows)
-  1. USE GITHUB LATEST RELEASE
-  2. DOWNLOAD .ZIP & EXTRACT
-  3. INSTALL FOR ALL USERS
-- Alacritty
-- Bash (usually comes with Git)
-- Git & configuration
-- SSH & configuration
+```shell
+# Clone repository
+git clone git@github.com:samme90s/setup.git && cd setup
+```
+
+## Pre-Requisites
+
+1. Alacritty
 
 ## Git
 
@@ -62,10 +62,32 @@ echo "# Auto start ssh agent and add keys" >> $HOME/.bashrc && \
 echo "eval \$(keychain --eval --agents ssh id_ed25519 ss225ze-keypair.pem)" >> $HOME/.bashrc
 ```
 
-## Usage
+## Fonts
 
 ```shell
-# Use only in Linux Distro!
+# Only use for Ubuntu!
+# Or verify the script beforehand.
 source fonts.sh
-source setup.sh
+```
+
+## Themes
+
+```shell
+# Install themes
+git clone https://github.com/rose-pine/alacritty.git &&
+# Make sure the directory exists
+mkdir -p $HOME/.config/alacritty &&
+# Copies the content to the alacritty config location
+cp ./alacritty/dist/* $HOME/.config/alacritty
+# You can remove the folder if wanted afterwards
+```
+
+## Alacritty Config
+
+```shell
+# Make sure the directory exists
+mkdir -p $HOME/.config/alacritty &&
+# Copy the file to the new location
+# (this will replace any existing one)
+cp -f ./imports/alacritty.toml $HOME/.config/alacritty
 ```
