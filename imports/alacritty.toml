@@ -61,6 +61,6 @@ history = 10000
 # Window dimensions (changes require restart)
 # "Fullscreen" | "Maximized"
 startup_mode = "Maximized"
-opacity = 0.90
+opacity = 0.80
 option_as_alt = "Both"
 level = "Normal"
