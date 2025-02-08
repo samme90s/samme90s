@@ -1,5 +1,6 @@
 # Alacritty TOML Configuration
 # version: 15.0.0
+# https://alacritty.org/config-alacritty.html
 
 # FONTS
 ##################################

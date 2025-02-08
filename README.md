@@ -76,6 +76,7 @@ source fonts.sh
 > force_color_prompt=yes
 
 ```shell
+# https://github.com/catppuccin/alacritty
 # Make sure the directory exists
 mkdir -p $HOME/.config/alacritty &&
 curl -LO --output-dir ~/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-latte.toml
