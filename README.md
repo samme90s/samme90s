@@ -4,12 +4,9 @@
 
 ```shell
 # Clone repository
-git clone git@github.com:samme90s/setup.git && cd setup
+git clone git@github.com:samme90s/setup.git &&
+cd setup
 ```
-
-## Pre-Requisites
-
-1. Alacritty
 
 ## Git
 
@@ -59,7 +56,7 @@ chmod 600 $HOME/.ssh/*
 echo "" >> $HOME/.bashrc && \
 echo "# Ignore warnings if asymmetric key is missing!" >> $HOME/.bashrc && \
 echo "# Auto start ssh agent and add keys" >> $HOME/.bashrc && \
-echo "eval \$(keychain --eval --agents ssh id_ed25519 ss225ze-keypair.pem)" >> $HOME/.bashrc
+echo "eval \$(keychain --eval --agents ssh id_ed25519)" >> $HOME/.bashrc
 ```
 
 ## Fonts
@@ -70,27 +67,31 @@ echo "eval \$(keychain --eval --agents ssh id_ed25519 ss225ze-keypair.pem)" >> $
 source fonts.sh
 ```
 
-## Themes
-
-> MAKE SURE TO UNCOMMENT (~/.bashrc)
-> force_color_prompt=yes
+## Other (~/.bashrc)
 
 ```shell
-# https://github.com/catppuccin/alacritty
-# Make sure the directory exists
-mkdir -p $HOME/.config/alacritty &&
-curl -LO --output-dir ~/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-latte.toml
-curl -LO --output-dir ~/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-frappe.toml
-curl -LO --output-dir ~/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-macchiato.toml
-curl -LO --output-dir ~/.config/alacritty https://github.com/catppuccin/alacritty/raw/main/catppuccin-mocha.toml
+# Uncomment
+force_color_prompt=yes
 ```
 
-## Alacritty Config
+## Imports
+
+### Alacritty
 
 ```shell
 # Make sure the directory exists
 mkdir -p $HOME/.config/alacritty &&
 # Copy the file to the new location
 # (this will replace any existing one)
-cp -f ./imports/alacritty.toml $HOME/.config/alacritty
+cp -f ./imports/alacritty/alacritty.toml $HOME/.config/alacritty
+```
+
+### Ghostty
+
+```shell
+# Make sure the directory exists
+mkdir -p $HOME/.config/ghostty &&
+# Copy the file to the new location
+# (this will replace any existing one)
+cp -f ./imports/ghostty/config $HOME/.config/ghostty
 ```
