@@ -73,3 +73,9 @@ source fonts.sh
 # Uncomment
 force_color_prompt=yes
 ```
+
+## Imports
+
+### Wezterm
+
+`%USERPROFILE%\.wezterm.lua`
