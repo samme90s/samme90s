@@ -1,9 +1,0 @@
-# Ignore everything except chosen files
-*
-
-!*.md
-!*.sh
-!*ignore
-
-# IMPORTS
-!imports/*
