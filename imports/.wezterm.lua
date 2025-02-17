@@ -1,4 +1,11 @@
 local wezterm = require("wezterm")
+
+wezterm.on("gui-startup", function(cmd)
+    local mux = wezterm.mux
+    local tab, pane, window = mux.spawn_window(cmd or {})
+    window:gui_window():maximize()
+end)
+
 local config = {}
 
 if wezterm.config_builder then
