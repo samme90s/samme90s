@@ -73,25 +73,3 @@ source fonts.sh
 # Uncomment
 force_color_prompt=yes
 ```
-
-## Imports
-
-### Alacritty
-
-```shell
-# Make sure the directory exists
-mkdir -p $HOME/.config/alacritty &&
-# Copy the file to the new location
-# (this will replace any existing one)
-cp -f ./imports/alacritty/alacritty.toml $HOME/.config/alacritty
-```
-
-### Ghostty
-
-```shell
-# Make sure the directory exists
-mkdir -p $HOME/.config/ghostty &&
-# Copy the file to the new location
-# (this will replace any existing one)
-cp -f ./imports/ghostty/config $HOME/.config/ghostty
-```
