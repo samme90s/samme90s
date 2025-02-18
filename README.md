@@ -1,11 +1,8 @@
 # Setup
 
-## Clone
-
 ```shell
 # Clone repository
-git clone git@github.com:samme90s/setup.git &&
-cd setup
+git clone git@github.com:samme90s/setup.git && cd setup
 ```
 
 ## Git
@@ -41,7 +38,9 @@ git config --global core.excludesfile $HOME/.gitignore_global && \
 git config --global --list
 ```
 
-## SSH
+## Linux/Ubuntu
+
+### SSH
 
 ```shell
 # Install keychain
@@ -59,7 +58,7 @@ echo "# Auto start ssh agent and add keys" >> $HOME/.bashrc && \
 echo "eval \$(keychain --eval --agents ssh id_ed25519)" >> $HOME/.bashrc
 ```
 
-## Fonts
+### Fonts
 
 ```shell
 # Only use for Ubuntu!
@@ -67,20 +66,14 @@ echo "eval \$(keychain --eval --agents ssh id_ed25519)" >> $HOME/.bashrc
 source fonts.sh
 ```
 
-## Other (~/.bashrc)
+### Other (~/.bashrc)
 
 ```shell
 # Uncomment
 force_color_prompt=yes
 ```
 
-## Imports
-
-### Wezterm
-
-`%USERPROFILE%\.wezterm.lua`
-
-## Third party tools
+## Windows
 
 ```shell
 # Open an administrative shell, then run the following commands:
@@ -94,4 +87,6 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
 
 choco install bat
 choco install jq
+choco install ripgrep
+choco install fd
 ```
