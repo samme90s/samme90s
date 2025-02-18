@@ -79,3 +79,17 @@ force_color_prompt=yes
 ### Wezterm
 
 `%USERPROFILE%\.wezterm.lua`
+
+## Third party tools
+
+```shell
+# Open an administrative shell, then run the following commands:
+#
+# With PowerShell, you must ensure Get-ExecutionPolicy is not Restricted.
+# We suggest using Bypass to bypass the policy to get things installed or
+# AllSigned for quite a bit more security.
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+choco install bat
+choco install jq
+```
