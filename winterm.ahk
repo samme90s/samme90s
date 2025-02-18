@@ -8,9 +8,9 @@
 
 ; Ctrl + Ö
 ^ö:: {
-    if WinExist("ahk_exe wezterm-gui.exe") {
-        WinActivate
+    if WinExist("ahk_exe WindowsTerminal.exe") {
+        WinActivate("ahk_exe WindowsTerminal.exe")
     } else {
-        Run '"C:\Program Files\WezTerm\wezterm-gui.exe"'
+        Run("wt")
     }
 }
