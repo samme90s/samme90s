@@ -52,37 +52,3 @@ echo "# Ignore warnings if asymmetric key is missing!" >> $HOME/.bashrc && \
 echo "# Auto start ssh agent and add keys" >> $HOME/.bashrc && \
 echo "eval \$(keychain --eval --agents ssh id_ed25519)" >> $HOME/.bashrc
 ```
-
-### Fonts
-
-```shell
-# Only use for Ubuntu!
-# Or verify the script beforehand.
-source fonts.sh
-```
-
-### Other (~/.bashrc)
-
-```shell
-# Uncomment
-force_color_prompt=yes
-```
-
-## Windows
-
-```shell
-# Open an administrative shell, then run the following commands:
-#
-# With PowerShell, you must ensure Get-ExecutionPolicy is not Restricted.
-# We suggest using Bypass to bypass the policy to get things installed or
-# AllSigned for quite a bit more security.
-Set-ExecutionPolicy Bypass -Scope Process -Force
-[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-
-choco install lazygit
-choco install bat
-choco install jq
-choco install ripgrep
-choco install fd
-```
