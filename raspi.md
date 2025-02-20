@@ -1,4 +1,4 @@
-# RaspberryPi
+# Raspi
 
 ## Flashing (microSD)
 
