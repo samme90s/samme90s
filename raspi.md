@@ -1,8 +1,9 @@
-# Raspi
+# RaspberryPi
 
 ## Flashing (microSD)
 
-Download **Raspberry Pi Imager** from [raspberrypi.org](https://www.raspberrypi.org/software/).
+Download **Raspberry Pi Imager** from
+[raspberrypi.org](https://www.raspberrypi.org/software/).
 
 ## SSH
 
@@ -48,9 +49,9 @@ nmcli radio wifi on
 
 ```shell
 # Connect
-nmcli device wifi connect {SSID} --ask
+nmcli device wifi connect <SSID> --ask
 # If the network is hidden
-nmcli device wifi connect {SSID} hidden yes
+nmcli device wifi connect <SSID> hidden yes
 
 # All connections are stored in separate files (their respective name) in:
 cd /etc/NetworkManager/system-connections/
